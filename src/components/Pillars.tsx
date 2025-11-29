@@ -31,7 +31,6 @@ const Pillars = () => {
       items: [
         "Agentic AI experimentation & hands-on labs",
         "AI Safety Awareness collaborations",
-        "SMB readiness project for FIFA 2026",
         "Real-world Foster AI applications and ROI modeling"
       ]
     }

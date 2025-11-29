@@ -19,12 +19,10 @@ const Pillars = () => {
       title: "Career & Competitions",
       comingSoon: true,
       items: [
-        "Integrated platform combining AI product thinking + case competition prep",
-        "AI product strategy",
-        "Case competition frameworks",
-        "Data-driven storytelling",
-        "Foster AI Hackathon preparation (Jan 30)",
-        "Google & analytics competitions"
+        "Networking & Industry Engagement",
+        "Career & Application Readiness",
+        "Case Competitions",
+        "AI Projects & Innovation Lab"
       ]
     },
     {

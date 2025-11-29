@@ -4,9 +4,7 @@ import Pillars from "@/components/Pillars";
 import Events from "@/components/Events";
 import Join from "@/components/Join";
 import Projects from "@/components/Projects";
-import Leadership from "@/components/Leadership";
-import Gallery from "@/components/Gallery";
-import Partners from "@/components/Partners";
+import JoinTeam from "@/components/JoinTeam";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -19,9 +17,7 @@ const Index = () => {
       <Events />
       <Join />
       <Projects />
-      <Leadership />
-      <Gallery />
-      <Partners />
+      <JoinTeam />
       <Contact />
       <Footer />
     </div>

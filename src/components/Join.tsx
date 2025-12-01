@@ -46,7 +46,7 @@ const Join = () => {
         ))}
       </div>
       
-      <div className="text-center slide-up" style={{ animationDelay: '0.3s' }}>
+      <div className="flex flex-col sm:flex-row gap-4 justify-center slide-up" style={{ animationDelay: '0.3s' }}>
         <Button 
           variant="gold" 
           size="lg"
@@ -54,6 +54,14 @@ const Join = () => {
           onClick={() => window.open('https://chat.whatsapp.com/', '_blank')}
         >
           Join the WhatsApp Group
+        </Button>
+        <Button 
+          variant="outline" 
+          size="lg"
+          className="text-lg px-8 bg-background/10 text-primary-foreground border-primary-foreground/20 hover:bg-background/20"
+          onClick={() => window.location.href = '/join'}
+        >
+          Learn More
         </Button>
       </div>
     </section>

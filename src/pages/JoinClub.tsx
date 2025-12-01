@@ -2,6 +2,7 @@ import { UserPlus, MessageCircle, Calendar, Users, Trophy, Cpu, ArrowRight } fro
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const JoinClub = () => {
@@ -45,6 +46,7 @@ const JoinClub = () => {
 
   return (
     <div className="min-h-screen">
+      <Navbar />
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-primary text-primary-foreground overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary/90" />

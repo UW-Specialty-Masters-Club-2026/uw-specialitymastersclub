@@ -126,14 +126,22 @@ const JoinClub = () => {
           ))}
         </div>
         
-        <div className="text-center slide-up" style={{ animationDelay: '0.3s' }}>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center slide-up" style={{ animationDelay: '0.3s' }}>
           <Button 
             variant="gold" 
             size="lg"
             className="text-lg px-12"
+            onClick={() => window.open('https://forms.google.com/your-form-link', '_blank')}
+          >
+            Fill Out Membership Form
+          </Button>
+          <Button 
+            variant="outline" 
+            size="lg"
+            className="text-lg px-12 border-primary hover:bg-primary/10"
             onClick={() => window.open('https://chat.whatsapp.com/', '_blank')}
           >
-            Join the WhatsApp Group
+            Join WhatsApp Group
           </Button>
         </div>
       </section>
@@ -152,17 +160,17 @@ const JoinClub = () => {
               variant="gold" 
               size="lg"
               className="text-lg px-8"
-              onClick={() => window.open('https://chat.whatsapp.com/', '_blank')}
+              onClick={() => window.open('https://forms.google.com/your-form-link', '_blank')}
             >
-              Join WhatsApp Group
+              Fill Out Membership Form
             </Button>
             <Button 
               variant="outline" 
               size="lg"
               className="text-lg px-8 bg-background/10 text-primary-foreground border-primary-foreground/20 hover:bg-background/20"
-              onClick={() => navigate('/')}
+              onClick={() => window.open('https://chat.whatsapp.com/', '_blank')}
             >
-              Back to Home
+              Join WhatsApp Group
             </Button>
           </div>
         </div>

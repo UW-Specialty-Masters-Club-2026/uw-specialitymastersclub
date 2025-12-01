@@ -23,7 +23,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="section-container bg-background">
+    <section id="contact" className="section-container bg-background">
       <div className="text-center mb-16 slide-up">
         <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
           Get in Touch

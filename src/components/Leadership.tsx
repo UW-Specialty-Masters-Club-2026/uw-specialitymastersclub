@@ -17,7 +17,7 @@ const Leadership = () => {
     },
     {
       name: "Priya Patel",
-      program: "MSGF",
+      program: "MSCM",
       role: "VP of Projects",
       image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Priya"
     },

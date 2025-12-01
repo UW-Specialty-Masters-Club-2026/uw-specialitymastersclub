@@ -14,7 +14,7 @@ const Footer = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4">Specialty Masters Club</h3>
             <p className="text-primary-foreground/80">
-              Empowering MSBA, MSIS, MSGF & Specialty Master's Students at UW Foster School of Business.
+              Empowering MSBA, MSIS, MSCM & Specialty Master's Students at UW Foster School of Business.
             </p>
           </div>
           

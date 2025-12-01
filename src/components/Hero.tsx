@@ -21,7 +21,7 @@ const Hero = () => {
           Specialty Masters Club
         </h1>
         <p className="text-xl md:text-2xl lg:text-3xl mb-8 max-w-4xl mx-auto opacity-95 slide-up" style={{ animationDelay: '0.1s' }}>
-          Empowering MSBA, MSIS, MSGF & Specialty Master's Students at UW Foster
+          Empowering MSBA, MSIS, MSCM & Specialty Master's Students at UW Foster
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center slide-up" style={{ animationDelay: '0.2s' }}>
           <Button 

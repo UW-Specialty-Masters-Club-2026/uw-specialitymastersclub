@@ -10,7 +10,7 @@ const About = () => {
           </h2>
           <div className="w-24 h-1 bg-gold" />
           <p className="text-lg text-foreground leading-relaxed">
-            The Specialty Masters Club (SMC) at the UW Foster School brings together students across MSBA, MSIS, MSGF, MSA and other specialized programs.
+            The Specialty Masters Club (SMC) at the UW Foster School brings together students across MSBA, MSIS, MSCM, MSA and other specialized programs.
           </p>
           <p className="text-lg text-foreground leading-relaxed">
             Our mission is to create belonging, industry exposure, and skill-building opportunities through networking, competitions, and AI-driven projects.

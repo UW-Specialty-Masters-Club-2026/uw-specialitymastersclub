@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
+import smcLogo from "@/assets/smc-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,9 +59,13 @@ const Navbar = () => {
           {/* Logo/Brand */}
           <button
             onClick={() => handleNavigation("/")}
-            className="text-xl md:text-2xl font-bold text-primary hover:text-primary/80 transition-colors"
+            className="hover:opacity-80 transition-opacity"
           >
-            SMC
+            <img 
+              src={smcLogo} 
+              alt="Specialty Masters Committee" 
+              className="h-10 md:h-12 w-auto"
+            />
           </button>
 
           {/* Desktop Navigation */}

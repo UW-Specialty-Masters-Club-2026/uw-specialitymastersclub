@@ -1,4 +1,4 @@
-import { UserPlus, MessageCircle, Calendar } from "lucide-react";
+import { UserPlus, MessageCircle, Calendar, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Join = () => {
@@ -46,22 +46,24 @@ const Join = () => {
         ))}
       </div>
       
-      <div className="flex flex-col sm:flex-row gap-4 justify-center slide-up" style={{ animationDelay: '0.3s' }}>
+      <div className="flex flex-col sm:flex-row gap-6 justify-center items-center slide-up" style={{ animationDelay: '0.3s' }}>
         <Button 
           variant="gold" 
           size="lg"
-          className="text-lg px-12"
-          onClick={() => window.open('https://chat.whatsapp.com/', '_blank')}
+          className="text-lg px-12 shadow-lg"
+          onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSc-o8C836NmjLx2ACf1QKpsGz4_1Jxi91O5yhbwY23-yVvLkg/viewform', '_blank')}
         >
-          Join the WhatsApp Group
+          Register Now
+          <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
+        <span className="text-primary-foreground/60 text-sm">or</span>
         <Button 
           variant="outline" 
           size="lg"
-          className="text-lg px-8 bg-background/10 text-primary-foreground border-primary-foreground/20 hover:bg-background/20"
-          onClick={() => window.location.href = '/join'}
+          className="text-lg px-8 bg-transparent text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/10"
+          onClick={() => window.open('https://chat.whatsapp.com/JmIaSV8fD7q0Pgv1Tj2CAz?mode=hqrc', '_blank')}
         >
-          Learn More
+          Join WhatsApp
         </Button>
       </div>
     </section>

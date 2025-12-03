@@ -131,7 +131,7 @@ const JoinClub = () => {
             variant="gold" 
             size="lg"
             className="text-lg px-12"
-            onClick={() => window.open('https://forms.google.com/your-form-link', '_blank')}
+            onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSc-o8C836NmjLx2ACf1QKpsGz4_1Jxi91O5yhbwY23-yVvLkg/viewform', '_blank')}
           >
             Fill Out Membership Form
           </Button>
@@ -160,7 +160,7 @@ const JoinClub = () => {
               variant="gold" 
               size="lg"
               className="text-lg px-8"
-              onClick={() => window.open('https://forms.google.com/your-form-link', '_blank')}
+              onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSc-o8C836NmjLx2ACf1QKpsGz4_1Jxi91O5yhbwY23-yVvLkg/viewform', '_blank')}
             >
               Fill Out Membership Form
             </Button>

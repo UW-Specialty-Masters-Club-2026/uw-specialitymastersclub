@@ -62,7 +62,7 @@ const JoinClub = () => {
             size="lg"
             className="text-lg px-12 slide-up"
             style={{ animationDelay: '0.2s' }}
-            onClick={() => window.open('https://chat.whatsapp.com/', '_blank')}
+            onClick={() => window.open('https://chat.whatsapp.com/JmIaSV8fD7q0Pgv1Tj2CAz?mode=hqrc', '_blank')}
           >
             Join the WhatsApp Group
             <ArrowRight className="ml-2 h-5 w-5" />
@@ -139,7 +139,7 @@ const JoinClub = () => {
             variant="outline" 
             size="lg"
             className="text-lg px-12 border-primary hover:bg-primary/10"
-            onClick={() => window.open('https://chat.whatsapp.com/', '_blank')}
+            onClick={() => window.open('https://chat.whatsapp.com/JmIaSV8fD7q0Pgv1Tj2CAz?mode=hqrc', '_blank')}
           >
             Join WhatsApp Group
           </Button>
@@ -168,7 +168,7 @@ const JoinClub = () => {
               variant="outline" 
               size="lg"
               className="text-lg px-8 bg-background/10 text-primary-foreground border-primary-foreground/20 hover:bg-background/20"
-              onClick={() => window.open('https://chat.whatsapp.com/', '_blank')}
+              onClick={() => window.open('https://chat.whatsapp.com/JmIaSV8fD7q0Pgv1Tj2CAz?mode=hqrc', '_blank')}
             >
               Join WhatsApp Group
             </Button>

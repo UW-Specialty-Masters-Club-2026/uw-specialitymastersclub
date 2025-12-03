@@ -78,9 +78,9 @@ const Navbar = () => {
             <Button
               variant="gold"
               size="sm"
-              onClick={() => window.open('https://chat.whatsapp.com/', '_blank')}
+              onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSc-o8C836NmjLx2ACf1QKpsGz4_1Jxi91O5yhbwY23-yVvLkg/viewform', '_blank')}
             >
-              Join WhatsApp
+              Register
             </Button>
           </div>
 
@@ -113,10 +113,10 @@ const Navbar = () => {
                   className="w-full"
                   onClick={() => {
                     setIsOpen(false);
-                    window.open('https://chat.whatsapp.com/', '_blank');
+                    window.open('https://docs.google.com/forms/d/e/1FAIpQLSc-o8C836NmjLx2ACf1QKpsGz4_1Jxi91O5yhbwY23-yVvLkg/viewform', '_blank');
                   }}
                 >
-                  Join WhatsApp
+                  Register
                 </Button>
               </div>
             </div>

@@ -6,6 +6,7 @@ import Events from "@/components/Events";
 import Join from "@/components/Join";
 import Projects from "@/components/Projects";
 import JoinTeam from "@/components/JoinTeam";
+import Newsletter from "@/components/Newsletter";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -20,6 +21,7 @@ const Index = () => {
       <Join />
       <Projects />
       <JoinTeam />
+      <Newsletter />
       <Contact />
       <Footer />
     </div>

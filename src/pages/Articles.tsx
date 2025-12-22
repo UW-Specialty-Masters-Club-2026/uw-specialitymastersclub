@@ -1,6 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Newspaper, Calendar, User, ArrowRight } from "lucide-react";
+import articleHero from "@/assets/article-ai-hero.jpg";
+import articleSeattle from "@/assets/article-seattle-fifa.jpg";
+import articleBuilders from "@/assets/article-builders.jpg";
 
 const Articles = () => {
   const mainArticle = {
@@ -51,6 +54,11 @@ const Articles = () => {
       {
         type: "highlight",
         text: "AI is expanding who gets to solve meaningful problems."
+      },
+      {
+        type: "image",
+        src: "seattle",
+        alt: "Seattle skyline preparing for FIFA 2026"
       },
       {
         type: "heading",
@@ -125,6 +133,11 @@ const Articles = () => {
           "Building tools people actually use",
           "And yes, most importantly—having fun while doing it."
         ]
+      },
+      {
+        type: "image",
+        src: "builders",
+        alt: "Students collaborating on projects"
       },
       {
         type: "heading",
@@ -242,9 +255,13 @@ const Articles = () => {
       <section className="section-container">
         <div className="max-w-4xl mx-auto">
           <article className="bg-card rounded-3xl overflow-hidden border border-border shadow-lg">
-            <div className="h-64 bg-gradient-to-br from-primary via-primary-dark to-primary flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent" />
-              <span className="text-9xl opacity-10 text-gold font-bold">01</span>
+            <div className="h-80 relative overflow-hidden">
+              <img 
+                src={articleHero} 
+                alt="AI in Business - Neural networks connecting to business infrastructure" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
             </div>
             <div className="p-8 md:p-12">
               <div className="flex flex-wrap items-center gap-4 mb-6">
@@ -299,6 +316,18 @@ const Articles = () => {
                         <p className="text-gold font-semibold text-lg italic">
                           {block.text}
                         </p>
+                      </div>
+                    );
+                  }
+                  if (block.type === "image") {
+                    const imageSrc = block.src === "seattle" ? articleSeattle : articleBuilders;
+                    return (
+                      <div key={index} className="my-10 -mx-8 md:-mx-12">
+                        <img 
+                          src={imageSrc} 
+                          alt={block.alt || "Article image"} 
+                          className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
+                        />
                       </div>
                     );
                   }

@@ -531,7 +531,7 @@ const Articles = () => {
                         <span>{article.date}</span>
                       </div>
                     </div>
-                    <h2 className="text-lg md:text-xl font-bold text-white mb-2 line-clamp-3 drop-shadow-lg">
+                    <h2 className="text-lg md:text-xl font-bold text-foreground mb-2 line-clamp-3 drop-shadow-lg">
                       {article.title}
                     </h2>
                     <p className="text-gold font-medium italic text-sm line-clamp-2">

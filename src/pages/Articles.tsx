@@ -193,8 +193,8 @@ const Articles = () => {
       id: "ai-competitive-advantage",
       title: "AI Is Quietly Becoming the Real Competitive Advantage.",
       subtitle: "Not because not everyone has access to it—but because very few know how to use it well.",
-      author: "SMC Editorial Team",
-      date: "December 2024",
+      author: "Archit Gupta",
+      date: "December 2025",
       category: "Technology",
       heroImage: articleHero,
       content: [
@@ -497,56 +497,56 @@ const Articles = () => {
         </div>
       </section>
 
-      {/* Articles List */}
+      {/* Articles List - Side by Side */}
       <section className="section-container">
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {articles.map((article) => (
             <article 
               key={article.id}
-              className="bg-card rounded-3xl overflow-hidden border border-border shadow-lg"
+              className="bg-card rounded-3xl overflow-hidden border border-border shadow-lg flex flex-col"
             >
               {/* Article Header - Always Visible */}
               <div 
                 className="cursor-pointer"
                 onClick={() => setExpandedArticle(expandedArticle === article.id ? null : article.id)}
               >
-                <div className="h-64 md:h-80 relative overflow-hidden">
+                <div className="h-56 md:h-64 relative overflow-hidden">
                   <img 
                     src={article.heroImage} 
                     alt={article.title} 
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 brightness-125"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <div className="flex flex-wrap items-center gap-4 mb-4">
-                      <span className="inline-block px-4 py-1 bg-gold/20 text-gold rounded-full text-sm font-medium backdrop-blur-sm">
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/70 to-card/30" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                      <span className="inline-block px-3 py-1 bg-gold/30 text-gold rounded-full text-xs font-medium backdrop-blur-sm">
                         {article.category}
                       </span>
-                      <div className="flex items-center gap-2 text-sm text-white/80">
-                        <User className="w-4 h-4" />
+                      <div className="flex items-center gap-1 text-xs text-white">
+                        <User className="w-3 h-3" />
                         <span>{article.author}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-white/80">
-                        <Calendar className="w-4 h-4" />
+                      <div className="flex items-center gap-1 text-xs text-white">
+                        <Calendar className="w-3 h-3" />
                         <span>{article.date}</span>
                       </div>
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                    <h2 className="text-lg md:text-xl font-bold text-white mb-2 line-clamp-3 drop-shadow-lg">
                       {article.title}
                     </h2>
-                    <p className="text-gold font-medium italic">
+                    <p className="text-gold font-medium italic text-sm line-clamp-2">
                       {article.subtitle}
                     </p>
                   </div>
                 </div>
                 
                 {/* Expand/Collapse Indicator */}
-                <div className="flex items-center justify-center py-4 bg-card border-t border-border/50">
-                  <span className="text-foreground/60 text-sm mr-2">
+                <div className="flex items-center justify-center py-3 bg-card border-t border-border/50">
+                  <span className="text-foreground/60 text-xs mr-2">
                     {expandedArticle === article.id ? "Click to collapse" : "Click to read more"}
                   </span>
                   <ChevronDown 
-                    className={`w-5 h-5 text-gold transition-transform duration-300 ${
+                    className={`w-4 h-4 text-gold transition-transform duration-300 ${
                       expandedArticle === article.id ? "rotate-180" : ""
                     }`} 
                   />
@@ -559,7 +559,7 @@ const Articles = () => {
                   expandedArticle === article.id ? "max-h-[10000px] opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="p-8 md:p-12 border-t border-border/50">
+                <div className="p-6 md:p-8 border-t border-border/50">
                   {renderArticleContent(article)}
                 </div>
               </div>

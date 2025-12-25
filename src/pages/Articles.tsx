@@ -23,6 +23,7 @@ type Article = {
   title: string;
   subtitle: string;
   author: string;
+  authorAvatar: string;
   date: string;
   category: string;
   heroImage: string;
@@ -30,7 +31,7 @@ type Article = {
 };
 
 const Articles = () => {
-  const [expandedArticle, setExpandedArticle] = useState<string | null>("ai-battleground");
+  const [expandedArticle, setExpandedArticle] = useState<string | null>(null);
 
   const articles: Article[] = [
     {
@@ -38,6 +39,7 @@ const Articles = () => {
       title: "The AI Battleground Is Bigger Than Models — It's About Winning Trust, Utility, and Cultural Relevance",
       subtitle: "Opinion",
       author: "Anushka Mathur",
+      authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=AM&backgroundColor=4a154b",
       date: "December 2025",
       category: "Opinion",
       heroImage: articleBattleground,
@@ -196,6 +198,7 @@ const Articles = () => {
       title: "AI Is Quietly Becoming the Real Competitive Advantage.",
       subtitle: "Not because not everyone has access to it—but because very few know how to use it well.",
       author: "Archit Gupta",
+      authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=AG&backgroundColor=2d5016",
       date: "December 2025",
       category: "Technology",
       heroImage: articleHero,
@@ -387,6 +390,7 @@ const Articles = () => {
       title: "GenAI/LLMs Process Flow",
       subtitle: "A practical framework for introducing AI products and services to stakeholders",
       author: "Dan Blevins",
+      authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=DB&backgroundColor=1e3a5f",
       date: "December 2025",
       category: "Technical",
       heroImage: articleGenaiProcess,
@@ -618,70 +622,63 @@ const Articles = () => {
 
       {/* Articles List - Side by Side */}
       <section className="section-container">
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {articles.map((article) => (
             <article 
               key={article.id}
-              className="bg-card rounded-3xl overflow-hidden border border-border shadow-lg flex flex-col"
+              className="bg-card rounded-2xl overflow-hidden border border-border shadow-lg flex flex-col group cursor-pointer hover:shadow-xl transition-all duration-300"
+              onClick={() => setExpandedArticle(expandedArticle === article.id ? null : article.id)}
             >
-              {/* Article Header - Always Visible */}
-              <div 
-                className="cursor-pointer"
-                onClick={() => setExpandedArticle(expandedArticle === article.id ? null : article.id)}
-              >
-                <div className="h-56 md:h-64 relative overflow-hidden">
-                  <img 
-                    src={article.heroImage} 
-                    alt={article.title} 
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 brightness-125"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/70 to-card/30" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="flex flex-wrap items-center gap-3 mb-3">
-                      <span className="inline-block px-3 py-1 bg-gold/30 text-gold rounded-full text-xs font-medium backdrop-blur-sm">
-                        {article.category}
-                      </span>
-                      <div className="flex items-center gap-1 text-xs text-white">
-                        <User className="w-3 h-3" />
-                        <span>{article.author}</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-xs text-white">
-                        <Calendar className="w-3 h-3" />
-                        <span>{article.date}</span>
-                      </div>
-                    </div>
-                    <h2 className="text-lg md:text-xl font-bold text-foreground mb-2 line-clamp-3 drop-shadow-lg">
-                      {article.title}
-                    </h2>
-                    <p className="text-gold font-medium italic text-sm line-clamp-2">
-                      {article.subtitle}
-                    </p>
-                  </div>
-                </div>
+              {/* Article Image */}
+              <div className="h-44 relative overflow-hidden">
+                <img 
+                  src={article.heroImage} 
+                  alt={article.title} 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 brightness-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                <span className="absolute top-3 left-3 px-2 py-1 bg-gold/90 text-primary rounded-full text-xs font-semibold">
+                  {article.category}
+                </span>
+              </div>
+
+              {/* Article Info */}
+              <div className="p-5 flex flex-col flex-1">
+                <h2 className="text-base font-bold text-foreground mb-2 line-clamp-2 group-hover:text-gold transition-colors">
+                  {article.title}
+                </h2>
+                <p className="text-foreground/60 text-sm mb-4 line-clamp-2">
+                  {article.subtitle}
+                </p>
                 
-                {/* Expand/Collapse Indicator */}
-                <div className="flex items-center justify-center py-3 bg-card border-t border-border/50">
-                  <span className="text-foreground/60 text-xs mr-2">
-                    {expandedArticle === article.id ? "Click to collapse" : "Click to read more"}
-                  </span>
+                {/* Author Info */}
+                <div className="mt-auto flex items-center gap-3 pt-4 border-t border-border/50">
+                  <img 
+                    src={article.authorAvatar} 
+                    alt={article.author}
+                    className="w-9 h-9 rounded-full"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-foreground truncate">{article.author}</p>
+                    <p className="text-xs text-foreground/50">{article.date}</p>
+                  </div>
                   <ChevronDown 
-                    className={`w-4 h-4 text-gold transition-transform duration-300 ${
+                    className={`w-4 h-4 text-gold transition-transform duration-300 flex-shrink-0 ${
                       expandedArticle === article.id ? "rotate-180" : ""
                     }`} 
                   />
                 </div>
               </div>
 
-              {/* Article Content - Expandable */}
-              <div 
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  expandedArticle === article.id ? "max-h-[10000px] opacity-100" : "max-h-0 opacity-0"
-                }`}
-              >
-                <div className="p-6 md:p-8 border-t border-border/50">
+              {/* Expanded Content */}
+              {expandedArticle === article.id && (
+                <div 
+                  className="border-t border-border/50 p-6 bg-background/50"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   {renderArticleContent(article)}
                 </div>
-              </div>
+              )}
             </article>
           ))}
         </div>

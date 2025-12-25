@@ -1,3 +1,5 @@
+import smcLogo from "@/assets/smc-logo.png";
+
 const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -12,7 +14,11 @@ const Footer = () => {
       <div className="section-container">
         <div className="grid md:grid-cols-3 gap-12 mb-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4">Specialty Masters Club</h3>
+            <img 
+              src={smcLogo} 
+              alt="Specialty Masters Club" 
+              className="h-16 w-auto mb-4 brightness-0 invert"
+            />
             <p className="text-primary-foreground/80">
               Empowering MSBA, MSIS, MSCM & Specialty Master's Students at UW Foster School of Business.
             </p>

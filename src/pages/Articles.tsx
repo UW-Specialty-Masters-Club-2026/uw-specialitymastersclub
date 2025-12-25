@@ -7,6 +7,8 @@ import articleSeattle from "@/assets/article-seattle-fifa.jpg";
 import articleBuilders from "@/assets/article-builders.jpg";
 import articleBattleground from "@/assets/article-ai-battleground.jpg";
 import articlePartnerships from "@/assets/article-partnerships.jpg";
+import articleGenaiProcess from "@/assets/article-genai-process.jpg";
+import articleGenaiFlowchart from "@/assets/article-genai-flowchart.png";
 
 type ContentBlock = {
   type: "paragraph" | "heading" | "list" | "highlight" | "image";
@@ -379,6 +381,122 @@ const Articles = () => {
           text: "Until then—enjoy the holidays, recharge, and get ready. 2026 is going to be fun."
         }
       ]
+    },
+    {
+      id: "genai-llm-process",
+      title: "GenAI/LLMs Process Flow",
+      subtitle: "A practical framework for introducing AI products and services to stakeholders",
+      author: "Dan Blevins",
+      date: "December 2025",
+      category: "Technical",
+      heroImage: articleGenaiProcess,
+      content: [
+        {
+          type: "paragraph",
+          text: "I use this process flow when first engaging with stakeholders and introducing new products, services, or ideas. While the title of this post is GenAI/LLMs, with a few tweaks this process flow can be used in many projects, technical and non-technical."
+        },
+        {
+          type: "paragraph",
+          text: "This post was made with inspiration from UW MSIS 503 taught by Professor Apurva Jain."
+        },
+        {
+          type: "image",
+          src: "genai-flowchart",
+          alt: "GenAI/LLMs Process Flow Diagram"
+        },
+        {
+          type: "heading",
+          text: "Steps Explained"
+        },
+        {
+          type: "heading",
+          text: "Identify Problem Statement / Use Case"
+        },
+        {
+          type: "paragraph",
+          text: "This first step ensures that the proposed solution will actually solve the real business need, objectives, and KPIs. Without this in mind, it's so easy to work on the wrong idea, ask the wrong questions, and miscommunicate expectations."
+        },
+        {
+          type: "heading",
+          text: "Is GenAI Needed for the MVP?"
+        },
+        {
+          type: "paragraph",
+          text: "Once the problem statement/use case is clearly understood, it's best to clarify if GenAI is essential to deliver the basic functionality or a nice-to-have. In other words, can the core problem be solved without GenAI?"
+        },
+        {
+          type: "heading",
+          text: "No, GenAI is NOT Needed for MVP"
+        },
+        {
+          type: "paragraph",
+          text: "If GenAI is not needed to solve for the MVP, then consider simpler alternatives first. This will help the idea get to market faster and maintain limited resources. You could always add GenAI later."
+        },
+        {
+          type: "heading",
+          text: "Yes, GenAI IS Needed. Custom Solution or Pre-built?"
+        },
+        {
+          type: "paragraph",
+          text: "When the MVP needs GenAI, it's crucial to understand whether pre-built or third-party solutions could solve for the problem statement/use case. If the MVP doesn't need a custom solution, then consider simpler alternatives that scale with your problem statement/use case."
+        },
+        {
+          type: "heading",
+          text: "Custom Solution: Consider Data Sources, Frameworks, and Patterns"
+        },
+        {
+          type: "paragraph",
+          text: "Understanding all the custom and sensitive data sources to solve for the MVP is critical. You also want to consider project frameworks (AWS Bedrock, Hugging Face, LangChain, etc.) and common GenAI/LLM patterns (RAG, Prompt engineering, Semantic search, etc.) to solve for the MVP."
+        },
+        {
+          type: "highlight",
+          text: "The following steps are part of an iterative, continuous, constant process once the MVP is released to production."
+        },
+        {
+          type: "heading",
+          text: "Risks, Change Management, and Documentation"
+        },
+        {
+          type: "paragraph",
+          text: "Before getting your hands dirty with coding and implementing you'll want to consider these. Using all of your research to date, you'll want to finalize all of the risks, any change management involved, and ensure the relevant documentation is clean."
+        },
+        {
+          type: "heading",
+          text: "Security Review and Compliance"
+        },
+        {
+          type: "paragraph",
+          text: "From your research above, you'll want to connect with security and compliance teams to finalize security risks and safety considerations and recommendations."
+        },
+        {
+          type: "heading",
+          text: "Before Security Review: Use Fake Data and Test Models"
+        },
+        {
+          type: "paragraph",
+          text: "While the team is working on security and compliance reviews, they can also develop and test different models and processes by using easily accessible fake data. This fake data can be created using GenAI/LLM or through a pilot group. This increases development time and reduces bottlenecks."
+        },
+        {
+          type: "heading",
+          text: "Once Security is Approved: Use Real Data"
+        },
+        {
+          type: "paragraph",
+          text: "By using real data, you can continue to test and finalize your RAG and prompt engineering that the team's been developing using fake data up to this point."
+        },
+        {
+          type: "heading",
+          text: "Review User Feedback, KPIs, and Launch"
+        },
+        {
+          type: "paragraph",
+          text: "Now is the time to gather all of that user feedback from the pilot group, track KPIs to ensure they meet expectations, and launch to production when appropriate."
+        },
+        {
+          type: "highlight",
+          text: "Did I miss a step? Have clarification about a step? Enjoyed reading it? Let me know on LinkedIn: linkedin.com/in/dan-blevins"
+        }
+      ]
     }
   ];
 
@@ -404,6 +522,7 @@ const Articles = () => {
       case "seattle": return articleSeattle;
       case "builders": return articleBuilders;
       case "partnerships": return articlePartnerships;
+      case "genai-flowchart": return articleGenaiFlowchart;
       default: return articleBuilders;
     }
   };

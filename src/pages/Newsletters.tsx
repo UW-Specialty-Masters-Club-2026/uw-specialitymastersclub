@@ -117,14 +117,21 @@ const Newsletters = () => {
                   </div>
                 </div>
 
-                {/* PDF Embed Preview */}
+                {/* PDF Viewer - Scrollable */}
                 <div className="border-t border-border">
-                  <div className="aspect-[16/10] w-full bg-muted">
-                    <iframe
-                      src={`${newsletter.pdfUrl}#view=FitH`}
-                      className="w-full h-full"
-                      title={newsletter.title}
-                    />
+                  <div className="bg-muted/50 p-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-sm font-medium text-foreground">PDF Viewer</span>
+                      <span className="text-xs text-muted-foreground">Scroll to read all pages</span>
+                    </div>
+                    <div className="h-[800px] w-full rounded-lg overflow-hidden border border-border bg-white">
+                      <iframe
+                        src={`${newsletter.pdfUrl}#view=FitH&scrollbar=1&toolbar=1&navpanes=0`}
+                        className="w-full h-full"
+                        title={newsletter.title}
+                        style={{ border: 'none' }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

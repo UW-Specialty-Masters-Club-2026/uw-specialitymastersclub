@@ -50,85 +50,92 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border" 
-          : "bg-background/80 backdrop-blur-sm"
+          ? "bg-background/98 backdrop-blur-lg shadow-lg border-b border-border py-2" 
+          : "bg-background/90 backdrop-blur-md py-4"
       }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
           {/* Logo/Brand */}
           <button
             onClick={() => handleNavigation("/")}
-            className="hover:opacity-80 transition-opacity"
+            className="hover:scale-105 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
           >
             <img 
               src={smcLogo} 
               alt="Specialty Masters Committee" 
-              className="h-10 md:h-12 w-auto"
+              className={`w-auto transition-all duration-300 ${isScrolled ? "h-12 md:h-14" : "h-14 md:h-20"}`}
             />
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <button
                 key={link.label}
                 onClick={() => handleNavigation(link.path, link.hash || undefined)}
-                className="text-foreground hover:text-primary font-medium transition-colors relative group"
+                className="px-4 py-2 text-foreground hover:text-primary font-medium transition-all duration-200 relative group rounded-lg hover:bg-muted/50"
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-300" />
+                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gold group-hover:w-3/4 transition-all duration-300 rounded-full" />
               </button>
             ))}
             <Button
               variant="gold"
-              size="sm"
+              size="default"
+              className="ml-4"
               onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSc-o8C836NmjLx2ACf1QKpsGz4_1Jxi91O5yhbwY23-yVvLkg/viewform', '_blank')}
             >
-              Register
+              Register Now
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-primary hover:bg-muted rounded-lg transition-colors"
+            className="lg:hidden p-3 text-primary hover:bg-muted rounded-xl transition-all duration-200 active:scale-95"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-fade-in">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
+        <div 
+          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isOpen ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="py-4 border-t border-border">
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link, index) => (
                 <button
                   key={link.label}
                   onClick={() => handleNavigation(link.path, link.hash || undefined)}
-                  className="text-left px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg font-medium transition-colors"
+                  className="text-left px-4 py-3 text-foreground hover:text-primary hover:bg-muted/70 rounded-xl font-medium transition-all duration-200 active:scale-[0.98]"
+                  style={{ animationDelay: `${index * 50}ms` }}
                 >
                   {link.label}
                 </button>
               ))}
-              <div className="px-4 pt-2">
+              <div className="px-4 pt-4">
                 <Button
                   variant="gold"
+                  size="lg"
                   className="w-full"
                   onClick={() => {
                     setIsOpen(false);
                     window.open('https://docs.google.com/forms/d/e/1FAIpQLSc-o8C836NmjLx2ACf1QKpsGz4_1Jxi91O5yhbwY23-yVvLkg/viewform', '_blank');
                   }}
                 >
-                  Register
+                  Register Now
                 </Button>
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );

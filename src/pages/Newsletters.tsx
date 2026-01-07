@@ -1,4 +1,4 @@
-import { ArrowLeft, FileText, Download, Calendar } from "lucide-react";
+import { ArrowLeft, FileText, Download, Calendar, Maximize } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -104,6 +104,13 @@ const Newsletters = () => {
                           <FileText className="w-4 h-4" />
                           View PDF
                         </a>
+                        <Link
+                          to={`/pdf-reader?url=${encodeURIComponent(newsletter.pdfUrl)}&title=${encodeURIComponent(newsletter.title + ' - ' + newsletter.volume)}`}
+                          className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+                        >
+                          <Maximize className="w-4 h-4" />
+                          Fullscreen Reader
+                        </Link>
                         <a
                           href={newsletter.pdfUrl}
                           download

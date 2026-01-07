@@ -17,7 +17,7 @@ const Footer = () => {
             <img 
               src={smcLogo} 
               alt="Specialty Masters Club" 
-              className="h-16 w-auto mb-4 brightness-0 invert"
+              className="h-20 w-auto mb-4 brightness-0 invert"
             />
             <p className="text-primary-foreground/80">
               Empowering MSBA, MSIS, MSCM & Specialty Master's Students at UW Foster School of Business.

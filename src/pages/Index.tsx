@@ -9,6 +9,7 @@ import JoinTeam from "@/components/JoinTeam";
 import Newsletter from "@/components/Newsletter";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
       <Newsletter />
       <Contact />
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

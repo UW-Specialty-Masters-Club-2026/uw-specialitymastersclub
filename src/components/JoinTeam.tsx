@@ -1,23 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Target, Lightbulb } from "lucide-react";
+import { Users, Target, GraduationCap } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const JoinTeam = () => {
   const positions = [
     {
-      icon: Users,
-      title: "Event Coordinators",
-      description: "Help organize and execute SMC events, mixers, and workshops"
-    },
-    {
       icon: Target,
-      title: "Project Leads",
-      description: "Lead AI projects and technical initiatives for the community"
+      title: "Strategy",
+      description: "Shape SMC's vision and drive strategic initiatives across programs"
     },
     {
-      icon: Lightbulb,
-      title: "Marketing & Design",
-      description: "Create content and promote SMC activities across platforms"
+      icon: Users,
+      title: "Operations",
+      description: "Coordinate events, manage logistics, and ensure smooth execution"
+    },
+    {
+      icon: GraduationCap,
+      title: "Alumni",
+      description: "Build connections with alumni and create networking opportunities"
     }
   ];
 
@@ -53,9 +54,12 @@ const JoinTeam = () => {
         ))}
       </div>
 
-      <div className="text-center slide-up">
+      <div className="flex flex-col sm:flex-row gap-4 justify-center slide-up">
         <Button size="lg" variant="gold" className="text-lg px-8">
           Apply to Join the Team
+        </Button>
+        <Button size="lg" variant="outline" className="text-lg px-8" asChild>
+          <Link to="/team">Meet the Team</Link>
         </Button>
       </div>
     </section>

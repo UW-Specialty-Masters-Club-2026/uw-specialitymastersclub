@@ -4,90 +4,72 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { Card, CardContent } from "@/components/ui/card";
 import { Linkedin, Camera } from "lucide-react";
 
+// Team member images
+import alexImg from "@/assets/team/alex.jpg";
+import anushkaImg from "@/assets/team/anushka.jpg";
+import huyImg from "@/assets/team/huy.jpg";
+import nattImg from "@/assets/team/natt.jpg";
+import paridhiImg from "@/assets/team/paridhi.jpeg";
+import shivaniImg from "@/assets/team/shivani.jpg";
+import venkatImg from "@/assets/team/venkat.jpeg";
+import vinayakImg from "@/assets/team/vinayak.jpeg";
+
 const MeetTheTeam = () => {
   const teamMembers = [
     {
-      name: "Archit Gupta",
-      role: "President, Founder",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-      linkedin: "https://linkedin.com",
+      name: "Anushka Mathur",
+      role: "Secretary, Founder",
+      image: anushkaImg,
+      linkedin: "https://www.linkedin.com/in/anushka-mktg-analytics/",
       isPlaceholder: false
     },
     {
-      name: "Anushka Mathur",
-      role: "Secretary, Founder",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=face",
-      linkedin: "https://linkedin.com",
+      name: "Natt S",
+      role: "Tech and Product",
+      image: nattImg,
+      linkedin: "https://www.linkedin.com/in/natthapat-sakulborrirug/",
       isPlaceholder: false
     },
     {
       name: "Venkat Kowshik",
       role: "Strategy",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face",
-      linkedin: "https://linkedin.com",
-      isPlaceholder: false
-    },
-    {
-      name: "Hardik Sharma",
-      role: "Strategy",
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face",
-      linkedin: "https://linkedin.com",
-      isPlaceholder: false
-    },
-    {
-      name: "Nat",
-      role: "Tech and Product",
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=300&fit=crop&crop=face",
-      linkedin: "https://linkedin.com",
-      isPlaceholder: false
-    },
-    {
-      name: "Alex",
-      role: "Tech and Product",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
-      linkedin: "https://linkedin.com",
-      isPlaceholder: false
-    },
-    {
-      name: "Lou",
-      role: "Strategy",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
-      linkedin: "https://linkedin.com",
+      image: venkatImg,
+      linkedin: "https://www.linkedin.com/in/venkat-kowshik-277a1b19a/",
       isPlaceholder: false
     },
     {
       name: "Shivani Raut",
       role: "Operations",
-      image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&h=300&fit=crop&crop=face",
-      linkedin: "https://linkedin.com",
+      image: shivaniImg,
+      linkedin: "https://www.linkedin.com/in/raut-shivani/",
       isPlaceholder: false
     },
     {
-      name: "Zuhaib",
-      role: "Alumni Outreach",
-      image: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=300&h=300&fit=crop&crop=face",
-      linkedin: "https://linkedin.com",
+      name: "Huy Nguyen",
+      role: "Case Comp",
+      image: huyImg,
+      linkedin: "https://www.linkedin.com/in/huy-nguyen-m/",
       isPlaceholder: false
     },
     {
-      name: "Vinayak Malhotra",
-      role: "Alumni Outreach",
-      image: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=300&h=300&fit=crop&crop=face",
-      linkedin: "https://linkedin.com",
+      name: "Alex Weng",
+      role: "Tech and Product",
+      image: alexImg,
+      linkedin: "https://www.linkedin.com/in/alexweng97/",
       isPlaceholder: false
     },
     {
       name: "Paridhi Gupta",
       role: "Case Comp",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop&crop=face",
-      linkedin: "https://linkedin.com",
+      image: paridhiImg,
+      linkedin: "https://www.linkedin.com/in/paridhigupta1999/",
       isPlaceholder: false
     },
     {
-      name: "Huy",
-      role: "Case Comp",
-      image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=300&h=300&fit=crop&crop=face",
-      linkedin: "https://linkedin.com",
+      name: "Vinayak Malhotra",
+      role: "Alumni Outreach",
+      image: vinayakImg,
+      linkedin: "https://www.linkedin.com/in/vinayakm93/",
       isPlaceholder: false
     },
     {

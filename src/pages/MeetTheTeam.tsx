@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -16,11 +17,37 @@ import vinayakImg from "@/assets/team/vinayak.jpeg";
 import louImg from "@/assets/team/lou.jpg";
 import architImg from "@/assets/team/archit.jpg";
 
+type Department = "all" | "leads" | "strategy" | "alumni" | "tech" | "casecomp" | "operations";
+
+interface TeamMember {
+  name: string;
+  role: string;
+  department: Department;
+  image: string | null;
+  linkedin: string | null;
+  isPlaceholder: boolean;
+  isHead?: boolean;
+}
+
+const departments: { key: Department; label: string }[] = [
+  { key: "all", label: "All" },
+  { key: "leads", label: "SMC Leads" },
+  { key: "strategy", label: "Strategy" },
+  { key: "alumni", label: "Alumni Outreach" },
+  { key: "tech", label: "Tech & Product" },
+  { key: "casecomp", label: "Case Comp" },
+  { key: "operations", label: "Operations" },
+];
+
 const MeetTheTeam = () => {
-  const teamMembers = [
+  const [activeFilter, setActiveFilter] = useState<Department>("all");
+
+  const teamMembers: TeamMember[] = [
+    // SMC Leads
     {
       name: "Archit Gupta",
       role: "President, Cofounder",
+      department: "leads",
       image: architImg,
       linkedin: "https://www.linkedin.com/in/thearchitgupta",
       isPlaceholder: false
@@ -28,67 +55,95 @@ const MeetTheTeam = () => {
     {
       name: "Anushka Mathur",
       role: "Secretary, Founder",
+      department: "leads",
       image: anushkaImg,
       linkedin: "https://www.linkedin.com/in/anushka-mktg-analytics/",
       isPlaceholder: false
     },
-    {
-      name: "Natt S",
-      role: "Tech and Product",
-      image: nattImg,
-      linkedin: "https://www.linkedin.com/in/natthapat-sakulborrirug/",
-      isPlaceholder: false
-    },
+    // Strategy
     {
       name: "Venkat Kowshik",
       role: "Strategy",
+      department: "strategy",
       image: venkatImg,
       linkedin: "https://www.linkedin.com/in/venkat-kowshik-277a1b19a/",
       isPlaceholder: false
     },
     {
-      name: "Shivani Raut",
-      role: "Operations",
-      image: shivaniImg,
-      linkedin: "https://www.linkedin.com/in/raut-shivani/",
+      name: "Lou Aranzabal",
+      role: "Strategy, Marketing & Comm",
+      department: "strategy",
+      image: louImg,
+      linkedin: "https://www.linkedin.com/in/lourdesgaranzabal",
       isPlaceholder: false
     },
+    // Alumni Outreach
     {
-      name: "Huy Nguyen",
-      role: "Case Comp",
-      image: huyImg,
-      linkedin: "https://www.linkedin.com/in/huy-nguyen-m/",
-      isPlaceholder: false
+      name: "Vinayak Malhotra",
+      role: "Head, Alumni Outreach",
+      department: "alumni",
+      image: vinayakImg,
+      linkedin: "https://www.linkedin.com/in/vinayakm93/",
+      isPlaceholder: false,
+      isHead: true
+    },
+    // Tech & Product
+    {
+      name: "Natt S",
+      role: "Head, Tech & Product",
+      department: "tech",
+      image: nattImg,
+      linkedin: "https://www.linkedin.com/in/natthapat-sakulborrirug/",
+      isPlaceholder: false,
+      isHead: true
     },
     {
       name: "Alex Weng",
-      role: "Tech and Product",
+      role: "Tech & Product",
+      department: "tech",
       image: alexImg,
       linkedin: "https://www.linkedin.com/in/alexweng97/",
       isPlaceholder: false
     },
+    // Case Comp
+    {
+      name: "Huy Nguyen",
+      role: "Head, Case Comp",
+      department: "casecomp",
+      image: huyImg,
+      linkedin: "https://www.linkedin.com/in/huy-nguyen-m/",
+      isPlaceholder: false,
+      isHead: true
+    },
     {
       name: "Paridhi Gupta",
       role: "Case Comp",
+      department: "casecomp",
       image: paridhiImg,
       linkedin: "https://www.linkedin.com/in/paridhigupta1999/",
       isPlaceholder: false
     },
+    // Operations
     {
-      name: "Vinayak Malhotra",
-      role: "Alumni Outreach",
-      image: vinayakImg,
-      linkedin: "https://www.linkedin.com/in/vinayakm93/",
-      isPlaceholder: false
+      name: "Shivani Raut",
+      role: "Head, Operations",
+      department: "operations",
+      image: shivaniImg,
+      linkedin: "https://www.linkedin.com/in/raut-shivani/",
+      isPlaceholder: false,
+      isHead: true
     },
-    {
-      name: "Lou Aranzabal",
-      role: "Strategy, Marketing & Comm",
-      image: louImg,
-      linkedin: "https://www.linkedin.com/in/lourdesgaranzabal",
-      isPlaceholder: false
-    }
   ];
+
+  const filteredMembers = activeFilter === "all" 
+    ? teamMembers 
+    : teamMembers.filter(m => m.department === activeFilter);
+
+  // Group members by department for "all" view
+  const groupedByDepartment = departments.slice(1).map(dept => ({
+    ...dept,
+    members: teamMembers.filter(m => m.department === dept.key)
+  })).filter(group => group.members.length > 0);
 
   return (
     <div className="min-h-screen bg-background">
@@ -97,7 +152,7 @@ const MeetTheTeam = () => {
       <main className="pt-32 pb-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="text-center mb-16 slide-up">
+          <div className="text-center mb-12 slide-up">
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
               MEET THE
             </h1>
@@ -107,55 +162,47 @@ const MeetTheTeam = () => {
             <div className="w-24 h-1 bg-gold mx-auto" />
           </div>
 
-          {/* Team Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
-            {teamMembers.map((member, index) => (
-              <Card 
-                key={index}
-                className="card-hover bg-card border-0 shadow-lg slide-up overflow-hidden group"
-                style={{ animationDelay: `${index * 0.05}s` }}
+          {/* Filter Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 mb-12 slide-up" style={{ animationDelay: '0.1s' }}>
+            {departments.map((dept) => (
+              <button
+                key={dept.key}
+                onClick={() => setActiveFilter(dept.key)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  activeFilter === dept.key
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "bg-muted text-muted-foreground hover:bg-muted/80"
+                }`}
               >
-                <CardContent className="p-4 text-center">
-                  {/* Photo Container */}
-                  <div className="relative w-28 h-28 md:w-32 md:h-32 mx-auto mb-4">
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 to-gold/20 transform rotate-6 group-hover:rotate-12 transition-transform duration-300" />
-                    <div className="relative w-full h-full rounded-2xl overflow-hidden bg-muted shadow-md">
-                      {member.isPlaceholder ? (
-                        <div className="w-full h-full flex items-center justify-center bg-muted">
-                          <Camera className="w-12 h-12 text-muted-foreground/50" />
-                        </div>
-                      ) : (
-                        <img 
-                          src={member.image!} 
-                          alt={member.name}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                        />
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Info */}
-                  <h3 className="text-base md:text-lg font-bold text-foreground mb-1 line-clamp-1">
-                    {member.name}
-                  </h3>
-                  <p className="text-xs md:text-sm font-semibold text-gold uppercase tracking-wide mb-3">
-                    {member.role}
-                  </p>
-
-                  {/* LinkedIn */}
-                  {member.linkedin && !member.isPlaceholder && (
-                    <button 
-                      className="inline-flex items-center gap-1.5 text-primary hover:text-gold transition-colors duration-200"
-                      onClick={() => window.open(member.linkedin!, '_blank')}
-                    >
-                      <Linkedin className="h-4 w-4" />
-                      <span className="text-xs font-medium">Connect</span>
-                    </button>
-                  )}
-                </CardContent>
-              </Card>
+                {dept.label}
+              </button>
             ))}
           </div>
+
+          {/* Show grouped view for "all", filtered view otherwise */}
+          {activeFilter === "all" ? (
+            <div className="space-y-16 max-w-6xl mx-auto">
+              {groupedByDepartment.map((group, groupIndex) => (
+                <div key={group.key} className="slide-up" style={{ animationDelay: `${groupIndex * 0.1}s` }}>
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
+                    {group.label}
+                    <div className="w-16 h-1 bg-gold mx-auto mt-2" />
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                    {group.members.map((member, index) => (
+                      <TeamCard key={index} member={member} index={index} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
+              {filteredMembers.map((member, index) => (
+                <TeamCard key={index} member={member} index={index} />
+              ))}
+            </div>
+          )}
 
           {/* Join CTA */}
           <div className="text-center mt-16 slide-up" style={{ animationDelay: '0.5s' }}>
@@ -177,5 +224,51 @@ const MeetTheTeam = () => {
     </div>
   );
 };
+
+const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => (
+  <Card 
+    className="card-hover bg-card border-0 shadow-lg slide-up overflow-hidden group"
+    style={{ animationDelay: `${index * 0.05}s` }}
+  >
+    <CardContent className="p-4 text-center">
+      {/* Photo Container */}
+      <div className="relative w-28 h-28 md:w-32 md:h-32 mx-auto mb-4">
+        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${member.isHead ? 'from-gold/30 to-primary/30' : 'from-primary/20 to-gold/20'} transform rotate-6 group-hover:rotate-12 transition-transform duration-300`} />
+        <div className={`relative w-full h-full rounded-2xl overflow-hidden bg-muted shadow-md ${member.isHead ? 'ring-2 ring-gold' : ''}`}>
+          {member.isPlaceholder ? (
+            <div className="w-full h-full flex items-center justify-center bg-muted">
+              <Camera className="w-12 h-12 text-muted-foreground/50" />
+            </div>
+          ) : (
+            <img 
+              src={member.image!} 
+              alt={member.name}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            />
+          )}
+        </div>
+      </div>
+
+      {/* Info */}
+      <h3 className="text-base md:text-lg font-bold text-foreground mb-1 line-clamp-1">
+        {member.name}
+      </h3>
+      <p className={`text-xs md:text-sm font-semibold uppercase tracking-wide mb-3 ${member.isHead ? 'text-gold' : 'text-gold/80'}`}>
+        {member.role}
+      </p>
+
+      {/* LinkedIn */}
+      {member.linkedin && !member.isPlaceholder && (
+        <button 
+          className="inline-flex items-center gap-1.5 text-primary hover:text-gold transition-colors duration-200"
+          onClick={() => window.open(member.linkedin!, '_blank')}
+        >
+          <Linkedin className="h-4 w-4" />
+          <span className="text-xs font-medium">Connect</span>
+        </button>
+      )}
+    </CardContent>
+  </Card>
+);
 
 export default MeetTheTeam;

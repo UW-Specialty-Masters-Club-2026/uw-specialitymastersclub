@@ -13,9 +13,18 @@ import paridhiImg from "@/assets/team/paridhi.jpeg";
 import shivaniImg from "@/assets/team/shivani.jpg";
 import venkatImg from "@/assets/team/venkat.jpeg";
 import vinayakImg from "@/assets/team/vinayak.jpeg";
+import louImg from "@/assets/team/lou.jpg";
+import architImg from "@/assets/team/archit.jpg";
 
 const MeetTheTeam = () => {
   const teamMembers = [
+    {
+      name: "Archit Gupta",
+      role: "President, Cofounder",
+      image: architImg,
+      linkedin: "https://www.linkedin.com/in/thearchitgupta",
+      isPlaceholder: false
+    },
     {
       name: "Anushka Mathur",
       role: "Secretary, Founder",
@@ -73,18 +82,11 @@ const MeetTheTeam = () => {
       isPlaceholder: false
     },
     {
-      name: "Coming Soon",
-      role: "Marketing & Comm",
-      image: null,
-      linkedin: null,
-      isPlaceholder: true
-    },
-    {
-      name: "Coming Soon",
-      role: "Marketing & Comm",
-      image: null,
-      linkedin: null,
-      isPlaceholder: true
+      name: "Lou Aranzabal",
+      role: "Strategy, Marketing & Comm",
+      image: louImg,
+      linkedin: "https://www.linkedin.com/in/lourdesgaranzabal",
+      isPlaceholder: false
     }
   ];
 

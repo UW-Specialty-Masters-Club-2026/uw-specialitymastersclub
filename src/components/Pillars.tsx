@@ -17,7 +17,6 @@ const Pillars = () => {
     {
       icon: Trophy,
       title: "Career & Competitions",
-      comingSoon: true,
       items: [
         "Networking & Industry Engagement",
         "Career & Application Readiness",
@@ -49,17 +48,12 @@ const Pillars = () => {
         {pillars.map((pillar, index) => (
           <Card 
             key={index} 
-            className="card-hover border-2 border-lavender bg-card slide-up"
+            className="card-hover border-2 border-lavender bg-card slide-up transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             <CardHeader>
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                  <pillar.icon className="h-8 w-8 text-primary" />
-                </div>
-                {pillar.comingSoon && (
-                  <Badge className="bg-gold text-gold-foreground">Coming Soon</Badge>
-                )}
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <pillar.icon className="h-8 w-8 text-primary" />
               </div>
               <CardTitle className="text-2xl text-primary">{pillar.title}</CardTitle>
             </CardHeader>

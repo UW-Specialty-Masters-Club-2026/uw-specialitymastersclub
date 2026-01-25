@@ -1,4 +1,4 @@
-import paccarhallImage from "@/assets/paccar-hall.jpg";
+import paccarhallImage from "@/assets/paccar-hall-autumn.png";
 
 const About = () => {
   return (

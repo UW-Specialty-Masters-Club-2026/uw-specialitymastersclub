@@ -46,7 +46,7 @@ const MeetTheTeam = () => {
     // SMC Leads
     {
       name: "Archit Gupta",
-      role: "President, Cofounder",
+      role: "President, Founder",
       department: "leads",
       image: architImg,
       linkedin: "https://www.linkedin.com/in/thearchitgupta",

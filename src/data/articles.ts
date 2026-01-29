@@ -5,7 +5,7 @@ import articleBattleground from "@/assets/article-ai-battleground.jpg";
 import articlePartnerships from "@/assets/article-partnerships.jpg";
 import articleGenaiProcess from "@/assets/article-genai-process.jpg";
 import articleGenaiFlowchart from "@/assets/article-genai-flowchart.png";
-
+import articleDigitalAdvertising from "@/assets/article-digital-advertising.jpg";
 export type ContentBlock = {
   type: "paragraph" | "heading" | "list" | "highlight" | "image";
   text?: string;
@@ -502,6 +502,67 @@ export const articles: Article[] = [
       {
         type: "highlight",
         text: "Did I miss a step? Have clarification about a step? Enjoyed reading it? Let me know on LinkedIn: linkedin.com/in/dan-blevins"
+      }
+    ]
+  },
+  {
+    id: "digital-advertising-myth",
+    title: "The Myth of \"More Spend\" in Digital Advertising",
+    subtitle: "Why paid search behaves less like a faucet and more like an investment portfolio",
+    author: "Team 11 (MSBA Gold)",
+    authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=T11&backgroundColor=c9a227",
+    date: "January 2026",
+    category: "Analytics",
+    heroImage: articleDigitalAdvertising,
+    content: [
+      {
+        type: "paragraph",
+        text: "Many businesses still treat paid search as a volume game: spend more, expect more. Our analysis of 800 search observations shows why this intuition fails and why paid search behaves less like a faucet and more like an investment portfolio."
+      },
+      {
+        type: "highlight",
+        text: "We found that doubling a budget rarely doubles sales; this is the law of diminishing returns."
+      },
+      {
+        type: "heading",
+        text: "The Intent Gap"
+      },
+      {
+        type: "paragraph",
+        text: "More revealing, however, is what doesn't drive performance. How much we pay and where the ad appears explain only a small share of revenue. User intent and creative language matter far more."
+      },
+      {
+        type: "paragraph",
+        text: "We call this an \"intent gap\" where high-cost keywords act as a quality signal. While many avoid expensive, competitive keywords, these are often the most profitable. High competition signals users are ready to buy."
+      },
+      {
+        type: "paragraph",
+        text: "Conversely, cheaper keywords like \"free download\" attract browsers who rarely convert."
+      },
+      {
+        type: "heading",
+        text: "Key Implications"
+      },
+      {
+        type: "list",
+        items: [
+          "Generic search keywords can still play a role, but must earn their place through strict cost caps and controlled testing",
+          "High-cost keywords often signal high-intent buyers ready to convert",
+          "Ad position explains less revenue variance than user intent",
+          "Budget allocation guided by user intent beats blanket spending increases"
+        ]
+      },
+      {
+        type: "highlight",
+        text: "In digital advertising, a budget guided by user intent will always beat one that just spends more everywhere."
+      },
+      {
+        type: "heading",
+        text: "Research Team"
+      },
+      {
+        type: "paragraph",
+        text: "This analysis was conducted by Team 11 of the MSBA Gold Section: Tang Tumbahangphe, Amanda Lim, Arhum Nadeem, Suraj Gangaram, and Candace Juang."
       }
     ]
   }

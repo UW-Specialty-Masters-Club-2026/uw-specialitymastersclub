@@ -24,6 +24,7 @@ export type Article = {
   category: string;
   heroImage: string;
   content: ContentBlock[];
+  colabLink?: string;
 };
 
 export const getImageSrc = (src: string) => {
@@ -514,6 +515,7 @@ export const articles: Article[] = [
     date: "January 2026",
     category: "Analytics",
     heroImage: articleDigitalAdvertising,
+    colabLink: "https://colab.research.google.com/drive/1example",
     content: [
       {
         type: "paragraph",

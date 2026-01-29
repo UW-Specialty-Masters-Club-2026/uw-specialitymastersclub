@@ -1,8 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Calendar, User } from "lucide-react";
+import { ArrowLeft, Calendar, User, ExternalLink } from "lucide-react";
 import { articles, getImageSrc, type ContentBlock } from "@/data/articles";
+import { Button } from "@/components/ui/button";
 
 const ArticleDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -112,16 +113,31 @@ const ArticleDetail = () => {
               {article.subtitle}
             </p>
             
-            <div className="flex items-center gap-4">
-              <img 
-                src={article.authorAvatar} 
-                alt={article.author}
-                className="w-12 h-12 rounded-full"
-              />
-              <div>
-                <p className="font-semibold text-foreground">{article.author}</p>
-                <p className="text-foreground/60 text-sm">{article.date}</p>
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <div className="flex items-center gap-4">
+                <img 
+                  src={article.authorAvatar} 
+                  alt={article.author}
+                  className="w-12 h-12 rounded-full"
+                />
+                <div>
+                  <p className="font-semibold text-foreground">{article.author}</p>
+                  <p className="text-foreground/60 text-sm">{article.date}</p>
+                </div>
               </div>
+              
+              {article.colabLink && (
+                <Button asChild variant="gold" size="sm" className="gap-2">
+                  <a 
+                    href={article.colabLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    View Colab Notebook
+                  </a>
+                </Button>
+              )}
             </div>
           </div>
         </div>

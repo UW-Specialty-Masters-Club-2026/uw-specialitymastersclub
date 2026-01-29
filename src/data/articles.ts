@@ -515,7 +515,7 @@ export const articles: Article[] = [
     date: "January 2026",
     category: "Analytics",
     heroImage: articleDigitalAdvertising,
-    colabLink: "https://colab.research.google.com/drive/1example",
+    colabLink: "https://colab.research.google.com/drive/1AoCMXUS48Cxi-fDcjru6bKniGP1Xo8nG#scrollTo=3X4KbztAsX-G",
     content: [
       {
         type: "paragraph",

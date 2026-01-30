@@ -7,6 +7,7 @@ import articleGenaiProcess from "@/assets/article-genai-process.jpg";
 import articleGenaiFlowchart from "@/assets/article-genai-flowchart.png";
 import articleDigitalAdvertising from "@/assets/article-digital-advertising.jpg";
 import articleAiBuilderLearning from "@/assets/article-ai-builder-learning.jpg";
+import articleCaseCompetition from "@/assets/article-case-competition.jpg";
 export type ContentBlock = {
   type: "paragraph" | "heading" | "list" | "highlight" | "image";
   text?: string;
@@ -678,6 +679,74 @@ export const articles: Article[] = [
       {
         type: "highlight",
         text: "When a student solves a simple, personal problem, like automating their homework tracking or planning a quilting project, they stop seeing AI as a buzzword. They start seeing it as a raw material. In doing so, they build the confidence, clarity, and business acumen required to navigate an AI-driven future—not just as participants, but as architects."
+      }
+    ]
+  },
+  {
+    id: "case-competition-learnings",
+    title: "Why Case Competitions Matter for Students",
+    subtitle: "Lessons from the Gilead Case Competition on Decision-Making, Communication, and Real-World Problem Solving",
+    author: "Huy Nguyen",
+    authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=HN&backgroundColor=1a5f7a",
+    date: "January 2026",
+    category: "Career",
+    heroImage: articleCaseCompetition,
+    content: [
+      {
+        type: "paragraph",
+        text: "I first participated in a case competition during my undergraduate capstone project, but the Gilead Case Competition truly showed me why experiences like these matter for students. What began as a way to apply classroom learning quickly became one of the most valuable complements to my education."
+      },
+      {
+        type: "paragraph",
+        text: "The Gilead case placed us in a real-world, high-stakes environment with no single correct answer. I worked under time pressure, incomplete information, and real operational constraints with my teammates, which closely mirror how decisions are made in industry. This experience taught me that innovation is not just about strong analysis. It is about making thoughtful tradeoffs and moving forward with confidence even when the data is imperfect."
+      },
+      {
+        type: "heading",
+        text: "Beyond Analytics: A Broader Business Perspective"
+      },
+      {
+        type: "paragraph",
+        text: "As a Business Analytics student, the Gilead case pushed me to engage more deeply with areas that are not always taught in analytics coursework. I learned how business planning, supply chain considerations, regulatory timelines, and operational feasibility shape strategic decisions."
+      },
+      {
+        type: "paragraph",
+        text: "For example, understanding vaccine clinical trials across three phases and multiple countries required considering logistics, resource allocation, risk, and coordination among stakeholders, not just data models or metrics. This helped me see how analytics fits into a broader business ecosystem rather than existing in isolation."
+      },
+      {
+        type: "heading",
+        text: "From Analysis to Decision-Making"
+      },
+      {
+        type: "paragraph",
+        text: "One of the biggest lessons from the Gilead case was learning to think beyond analysis and focus on decision-making. Early on, it is easy for students to spend too much time explaining the problem. Through feedback and experience, I learned that decision makers already understand the problem."
+      },
+      {
+        type: "highlight",
+        text: "What they care about is how you evaluate options, compare tradeoffs, and recommend a clear path forward. This shift helped me move from thinking like a student completing an assignment to thinking like someone advising a business."
+      },
+      {
+        type: "heading",
+        text: "Communication Under Pressure"
+      },
+      {
+        type: "paragraph",
+        text: "The competition also strengthened my communication skills in ways that directly translate to the workplace. I learned that slides should support the story, not dominate it. Clear structure, simple visuals, and a few focused points made our recommendations easier to follow."
+      },
+      {
+        type: "paragraph",
+        text: "Also, the experience reinforced the value of calm and deliberate delivery. Under pressure, clear communication signals confidence and builds trust in your ideas."
+      },
+      {
+        type: "heading",
+        text: "Bridging Coursework and Real Jobs"
+      },
+      {
+        type: "paragraph",
+        text: "For students, especially those in Business Analytics and other Specialty Master's programs within Foster School of Business, projects like the Gilead case fill an important gap between coursework and real jobs. They build contextual understanding of how analytics, strategy, operations, and supply chain decisions come together in practice."
+      },
+      {
+        type: "highlight",
+        text: "More importantly, they teach you how to think like a decision maker, a skill that is crucial for driving innovation and succeeding in professional roles."
       }
     ]
   }

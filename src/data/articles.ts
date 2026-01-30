@@ -6,6 +6,7 @@ import articlePartnerships from "@/assets/article-partnerships.jpg";
 import articleGenaiProcess from "@/assets/article-genai-process.jpg";
 import articleGenaiFlowchart from "@/assets/article-genai-flowchart.png";
 import articleDigitalAdvertising from "@/assets/article-digital-advertising.jpg";
+import articleAiBuilderLearning from "@/assets/article-ai-builder-learning.jpg";
 export type ContentBlock = {
   type: "paragraph" | "heading" | "list" | "highlight" | "image";
   text?: string;
@@ -567,16 +568,128 @@ export const articles: Article[] = [
         text: "This analysis was conducted by Team 11 of the MSBA Gold Section: Tang Tumbahangphe, Amanda Lim, Arhum Nadeem, Suraj Gangaram, and Candace Juang."
       }
     ]
+  },
+  {
+    id: "consumer-to-creator",
+    title: "From Consumer to Creator: Why Building with AI is the Ultimate Learning Tool",
+    subtitle: "Real learning requires moving students from passive consumers of AI to active creators.",
+    author: "Venkat Chadalavada, MSBA",
+    authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=VC&backgroundColor=4a154b",
+    date: "January 2026",
+    category: "Education",
+    heroImage: articleAiBuilderLearning,
+    content: [
+      {
+        type: "paragraph",
+        text: "In the current educational landscape, Artificial Intelligence is often presented to students as a wave of buzzwords or a threat of \"falling behind.\" While schools rush to integrate these tools, many students remain on the sidelines, viewing AI as a magic black box."
+      },
+      {
+        type: "highlight",
+        text: "The shift we need is fundamental: Real learning requires moving students from passive consumers of AI to active creators."
+      },
+      {
+        type: "paragraph",
+        text: "By using AI to solve personal, tangible problems—a concept researchers and educators call Personal Interest Projects (PIPs), students gain more than just technical literacy. They unknowingly practice the core tenets of business thinking: identifying pain points, validating feasibility, and taking initiative to build solutions."
+      },
+      {
+        type: "heading",
+        text: "1. The Trap of \"Using\" vs. The Power of \"Building\""
+      },
+      {
+        type: "paragraph",
+        text: "Merely \"using\" an AI tool often results in surface-level engagement. However, when students are tasked with building, whether it is a custom chatbot, a scheduler, or a recommendation engine, they must deconstruct how the technology works."
+      },
+      {
+        type: "paragraph",
+        text: "For example, the Open Roberta Lab demonstrates that even younger students can move beyond simple usage to programming artificial neural networks (ANNs). By visually coding the network, students learn to \"teach\" a robot to navigate obstacles, demystifying the black box of AI logic. Similarly, high school programs like Inspirit AI emphasize that building projects (such as pneumonia detection or safe chatbots) forces students to grapple with the entire data science pipeline, from cleaning data to interpreting results."
+      },
+      {
+        type: "paragraph",
+        text: "This hands-on approach shifts the focus from simply getting an answer to understanding the process of generating it."
+      },
+      {
+        type: "heading",
+        text: "2. Personal Pain Points: The \"PIP\" Framework"
+      },
+      {
+        type: "paragraph",
+        text: "The most effective way to learn AI is not through abstract textbook problems, but through Personal Interest Projects (PIPs). As highlighted by Elizabeth Agro Radday in ASCD, PIPs allow students to pursue topics they genuinely care about, from planting gardens to composing music."
+      },
+      {
+        type: "paragraph",
+        text: "When AI is integrated here, it acts not as a replacement for work but as a \"Sidekick\" for executive function. For instance, a student torn between two hobbies can use AI to build a feasibility matrix:"
+      },
+      {
+        type: "list",
+        items: [
+          "The Problem: Deciding between making a quilt or learning to cook family recipes.",
+          "The Build: The student prompts an AI assistant to generate a \"pros and cons\" list based on specific constraints like budget, skills, and timeline.",
+          "The Insight: The AI helps the student realize that quilting requires expensive materials (batting, backing fabric), while cooking offers a lower barrier to entry."
+        ]
+      },
+      {
+        type: "paragraph",
+        text: "This process mirrors the business skill of resource management and feasibility analysis, teaching students to translate a creative urge into a workable plan."
+      },
+      {
+        type: "heading",
+        text: "3. The Hidden Business Curriculum: AI as \"Project Manager\""
+      },
+      {
+        type: "paragraph",
+        text: "When students build with AI, they are unknowingly simulating the role of a product manager. Vertech Academy notes that in Project-Based Learning (PBL), AI tools can assume the role of a \"Project Manager\"—a gentle boss that breaks down massive goals into daily tasks."
+      },
+      {
+        type: "paragraph",
+        text: "Instead of waiting for a teacher to provide a roadmap, the student uses AI to:"
+      },
+      {
+        type: "list",
+        items: [
+          "Identify Real Problems: Students at the Northeastern University project use Large Language Models (LLMs) to create \"task-specific bots\" for personalized learning, such as \"Virtual Office Hours Assistants\" or \"Academic Writing Support\".",
+          "Validate Solutions: Tools like Dialogflow allow students to build their own \"Study Assistant\" chatbots that answer questions based on specific training data (e.g., math or science notes).",
+          "Take Initiative: By using \"no-code\" tools, students can build functional prototypes such as an AI-Powered Resume Scanner using Google AutoML or an Emotion Detector using Lobe AI without needing advanced coding skills."
+        ]
+      },
+      {
+        type: "heading",
+        text: "4. Meaningful Engagement Across All Roles"
+      },
+      {
+        type: "paragraph",
+        text: "This \"builder mindset\" is not limited to tech students; it is essential for future professionals in HR, finance, marketing, and the arts."
+      },
+      {
+        type: "list",
+        items: [
+          "For the Artist: Students can use Generative AI to create \"storyboards\" or visual prototypes. The Inspirit AI curriculum includes \"Generative AI for Art,\" where students harness algorithms to generate vivid stories, treating AI as a creative collaborator.",
+          "For the Future Executive: The \"Moneyball\" project concept teaches students to use AI for sports prediction, effectively acting as business analysts using data to forecast outcomes.",
+          "For the Social Scientist: Students can build chatbots that simulate historical figures or analyze social justice issues, turning static history lessons into interactive research projects."
+        ]
+      },
+      {
+        type: "heading",
+        text: "Conclusion"
+      },
+      {
+        type: "paragraph",
+        text: "We must stop pressuring students to simply \"use\" AI and start encouraging them to build with it. As seen in the \"Build Your Own Robot Friend\" module, creating a tangible artifact increases student interest in AI by making the technology accessible and engaging."
+      },
+      {
+        type: "highlight",
+        text: "When a student solves a simple, personal problem, like automating their homework tracking or planning a quilting project, they stop seeing AI as a buzzword. They start seeing it as a raw material. In doing so, they build the confidence, clarity, and business acumen required to navigate an AI-driven future—not just as participants, but as architects."
+      }
+    ]
   }
 ];
 
 export const upcomingArticles = [
   {
-    title: "Leadership Lessons from Seattle's Top Executives",
-    excerpt: "Insights and wisdom gathered from interviews with leading business figures in the Pacific Northwest.",
-    author: "SMC Editorial Team", 
+    title: "The Rise of AI-Powered Sustainability",
+    excerpt: "How businesses are leveraging artificial intelligence to build more sustainable operations.",
+    author: "Natt Mongkolwat",
     date: "Coming Soon",
-    category: "Leadership"
+    category: "Sustainability"
   },
   {
     title: "Navigating Your First Internship",

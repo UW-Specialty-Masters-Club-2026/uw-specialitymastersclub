@@ -77,12 +77,17 @@ const Newsletters = () => {
                         </span>
                       </div>
                       <div className="h-[500px] lg:h-[600px] w-full rounded-lg overflow-hidden border border-border bg-white">
-                        <iframe
-                          src={`${newsletter.pdfUrl}#view=FitH&scrollbar=1&toolbar=1&navpanes=0&page=1`}
+                        <object
+                          data={`${newsletter.pdfUrl}#view=FitH&scrollbar=1&toolbar=1&navpanes=0`}
+                          type="application/pdf"
                           className="w-full h-full"
-                          title={newsletter.title}
-                          style={{ border: 'none' }}
-                        />
+                        >
+                          <embed
+                            src={`${newsletter.pdfUrl}#view=FitH&scrollbar=1&toolbar=1&navpanes=0`}
+                            type="application/pdf"
+                            className="w-full h-full"
+                          />
+                        </object>
                       </div>
                     </div>
 

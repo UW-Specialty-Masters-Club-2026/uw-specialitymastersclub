@@ -5,6 +5,20 @@ import Footer from "@/components/Footer";
 
 const newsletters = [
   {
+    id: 2,
+    title: "Specialty Masters Club Newsletter",
+    volume: "Vol. 2",
+    date: "January 2026",
+    description: "Signals, Not Noise — What skills and tools are actually hiring-relevant in 2026. Features AI automation workshop insights, case competition updates, and unfiltered student perspectives.",
+    pdfUrl: "/newsletters/Specialty_Masters_Club_Newsletter_VOL_2.pdf",
+    highlights: [
+      "Technology Landscape & Emerging Trends",
+      "Case Competitions: Strategy & Preparation",
+      "Workshop #1: AI Automation Insights",
+      "Student Opinion Page"
+    ]
+  },
+  {
     id: 1,
     title: "Specialty Masters Club Newsletter",
     volume: "Vol. 1",

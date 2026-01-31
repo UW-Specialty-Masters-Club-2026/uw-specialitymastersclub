@@ -1,7 +1,9 @@
 import { ArrowLeft, FileText, Download, Calendar, Maximize, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
 const newsletters = [
   {
     id: 2,
@@ -34,6 +36,12 @@ const newsletters = [
 ];
 
 const Newsletters = () => {
+  const [selectedEdition, setSelectedEdition] = useState<string>("all");
+  
+  const filteredNewsletters = selectedEdition === "all" 
+    ? newsletters 
+    : newsletters.filter(n => n.volume === selectedEdition);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -41,7 +49,7 @@ const Newsletters = () => {
       <main className="pt-24 pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="mb-12">
+          <div className="mb-8">
             <Link 
               to="/#newsletter" 
               className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors mb-6"
@@ -57,9 +65,39 @@ const Newsletters = () => {
             </p>
           </div>
 
+          {/* Edition Filter */}
+          <div className="mb-8 flex flex-wrap items-center gap-3">
+            <span className="text-sm font-medium text-foreground">Filter by Edition:</span>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setSelectedEdition("all")}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  selectedEdition === "all"
+                    ? "bg-gold text-primary-foreground"
+                    : "bg-muted text-muted-foreground hover:bg-muted/80"
+                }`}
+              >
+                All Editions
+              </button>
+              {newsletters.map((newsletter) => (
+                <button
+                  key={newsletter.id}
+                  onClick={() => setSelectedEdition(newsletter.volume)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    selectedEdition === newsletter.volume
+                      ? "bg-gold text-primary-foreground"
+                      : "bg-muted text-muted-foreground hover:bg-muted/80"
+                  }`}
+                >
+                  {newsletter.volume}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Newsletter Grid */}
           <div className="grid gap-8">
-            {newsletters.map((newsletter) => (
+            {filteredNewsletters.map((newsletter) => (
               <div
                 key={newsletter.id}
                 className="bg-card border border-border rounded-xl overflow-hidden hover:border-gold/50 transition-all duration-300"

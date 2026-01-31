@@ -1,8 +1,7 @@
-import { ArrowLeft, FileText, Download, Calendar, Maximize } from "lucide-react";
+import { ArrowLeft, FileText, Download, Calendar, Maximize, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
 const newsletters = [
   {
     id: 2,
@@ -66,16 +65,29 @@ const Newsletters = () => {
                 className="bg-card border border-border rounded-xl overflow-hidden hover:border-gold/50 transition-all duration-300"
               >
                 <div className="p-6 md:p-8">
-                  <div className="flex flex-col md:flex-row md:items-start gap-6">
-                    {/* PDF Icon */}
-                    <div className="flex-shrink-0">
-                      <div className="w-20 h-24 bg-primary/10 rounded-lg flex items-center justify-center border border-primary/20">
-                        <FileText className="w-10 h-10 text-primary" />
+                  <div className="flex flex-col lg:flex-row gap-6">
+                    {/* PDF Viewer - Left Side */}
+                    <div className="lg:w-1/2 flex-shrink-0">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-sm font-medium text-foreground">PDF Viewer</span>
+                        <span className="text-xs text-muted-foreground flex items-center gap-1">
+                          <ChevronLeft className="w-3 h-3" />
+                          Scroll pages
+                          <ChevronRight className="w-3 h-3" />
+                        </span>
+                      </div>
+                      <div className="h-[500px] lg:h-[600px] w-full rounded-lg overflow-hidden border border-border bg-white">
+                        <iframe
+                          src={`${newsletter.pdfUrl}#view=FitH&scrollbar=1&toolbar=1&navpanes=0&page=1`}
+                          className="w-full h-full"
+                          title={newsletter.title}
+                          style={{ border: 'none' }}
+                        />
                       </div>
                     </div>
 
-                    {/* Content */}
-                    <div className="flex-1">
+                    {/* Content - Right Side */}
+                    <div className="flex-1 flex flex-col">
                       <div className="flex items-center gap-3 mb-2">
                         <span className="px-3 py-1 bg-gold/20 text-gold text-sm font-medium rounded-full">
                           {newsletter.volume}
@@ -97,10 +109,10 @@ const Newsletters = () => {
                       {/* Highlights */}
                       <div className="mb-6">
                         <h3 className="text-sm font-semibold text-foreground mb-2">Inside this issue:</h3>
-                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <ul className="grid grid-cols-1 gap-2">
                           {newsletter.highlights.map((highlight, index) => (
                             <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                              <span className="w-1.5 h-1.5 bg-gold rounded-full" />
+                              <span className="w-1.5 h-1.5 bg-gold rounded-full flex-shrink-0" />
                               {highlight}
                             </li>
                           ))}
@@ -108,7 +120,7 @@ const Newsletters = () => {
                       </div>
 
                       {/* Actions */}
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-wrap gap-3 mt-auto">
                         <a
                           href={newsletter.pdfUrl}
                           target="_blank"
@@ -134,24 +146,6 @@ const Newsletters = () => {
                           Download
                         </a>
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* PDF Viewer - Scrollable */}
-                <div className="border-t border-border">
-                  <div className="bg-muted/50 p-4">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm font-medium text-foreground">PDF Viewer</span>
-                      <span className="text-xs text-muted-foreground">Scroll to read all pages</span>
-                    </div>
-                    <div className="h-[800px] w-full rounded-lg overflow-hidden border border-border bg-white">
-                      <iframe
-                        src={`${newsletter.pdfUrl}#view=FitH&scrollbar=1&toolbar=1&navpanes=0`}
-                        className="w-full h-full"
-                        title={newsletter.title}
-                        style={{ border: 'none' }}
-                      />
                     </div>
                   </div>
                 </div>

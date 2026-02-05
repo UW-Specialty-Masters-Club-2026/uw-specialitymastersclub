@@ -200,28 +200,55 @@ const MeetTheTeam = () => {
             ))}
           </div>
 
-          {/* Show grouped view for "all", filtered view otherwise */}
+          {/* "All" view: flat grid of everyone. Filtered view: filtered team + leads & strategy below */}
           {activeFilter === "all" ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
+              {teamMembers.map((member, index) => (
+                <TeamCard key={index} member={member} index={index} />
+              ))}
+            </div>
+          ) : (
             <div className="space-y-16 max-w-6xl mx-auto">
-              {groupedByDepartment.map((group, groupIndex) => (
-                <div key={group.key} className="slide-up" style={{ animationDelay: `${groupIndex * 0.1}s` }}>
+              {/* Filtered department members */}
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
+                  {departments.find(d => d.key === activeFilter)?.label}
+                  <div className="w-16 h-1 bg-gold mx-auto mt-2" />
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                  {filteredMembers.map((member, index) => (
+                    <TeamCard key={index} member={member} index={index} />
+                  ))}
+                </div>
+              </div>
+
+              {/* Show Leads & Strategy below if not already the active filter */}
+              {activeFilter !== "leads" && (
+                <div className="slide-up">
                   <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
-                    {group.label}
+                    SMC Leads
                     <div className="w-16 h-1 bg-gold mx-auto mt-2" />
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-                    {group.members.map((member, index) => (
+                    {teamMembers.filter(m => m.department === "leads").map((member, index) => (
                       <TeamCard key={index} member={member} index={index} />
                     ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
-              {filteredMembers.map((member, index) => (
-                <TeamCard key={index} member={member} index={index} />
-              ))}
+              )}
+              {activeFilter !== "strategy" && (
+                <div className="slide-up">
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
+                    Strategy
+                    <div className="w-16 h-1 bg-gold mx-auto mt-2" />
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                    {teamMembers.filter(m => m.department === "strategy").map((member, index) => (
+                      <TeamCard key={index} member={member} index={index} />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 

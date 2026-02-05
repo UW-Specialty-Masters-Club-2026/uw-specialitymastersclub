@@ -16,6 +16,8 @@ import venkatImg from "@/assets/team/venkat.jpeg";
 import vinayakImg from "@/assets/team/vinayak.jpeg";
 import louImg from "@/assets/team/lou.jpg";
 import architImg from "@/assets/team/archit.jpg";
+import zuhaibImg from "@/assets/team/zuhaib.jpg";
+import hardikImg from "@/assets/team/hardik.jpg";
 
 type Department = "all" | "leads" | "strategy" | "alumni" | "tech" | "casecomp" | "operations";
 
@@ -33,9 +35,9 @@ const departments: { key: Department; label: string }[] = [
   { key: "all", label: "All" },
   { key: "leads", label: "SMC Leads" },
   { key: "strategy", label: "Strategy" },
-  { key: "alumni", label: "Alumni Outreach" },
-  { key: "tech", label: "Tech & Product" },
-  { key: "casecomp", label: "Case Comp" },
+  { key: "alumni", label: "Alumni Relations" },
+  { key: "tech", label: "Tech Development" },
+  { key: "casecomp", label: "Career & Case Comps" },
   { key: "operations", label: "Operations" },
 ];
 
@@ -46,7 +48,7 @@ const MeetTheTeam = () => {
     // SMC Leads
     {
       name: "Archit Gupta",
-      role: "President, Founder",
+      role: "Cofounder, President",
       department: "leads",
       image: architImg,
       linkedin: "https://www.linkedin.com/in/thearchitgupta",
@@ -54,7 +56,7 @@ const MeetTheTeam = () => {
     },
     {
       name: "Anushka Mathur",
-      role: "Secretary, Founder",
+      role: "Cofounder, Secretary",
       department: "leads",
       image: anushkaImg,
       linkedin: "https://www.linkedin.com/in/anushka-mktg-analytics/",
@@ -63,7 +65,7 @@ const MeetTheTeam = () => {
     // Strategy
     {
       name: "Venkat Kowshik",
-      role: "Strategy",
+      role: "Editorial & Tech",
       department: "strategy",
       image: venkatImg,
       linkedin: "https://www.linkedin.com/in/venkat-kowshik-277a1b19a/",
@@ -71,26 +73,43 @@ const MeetTheTeam = () => {
     },
     {
       name: "Lou Aranzabal",
-      role: "Strategy, Marketing & Comm",
+      role: "Marketing & Communications",
       department: "strategy",
       image: louImg,
       linkedin: "https://www.linkedin.com/in/lourdesgaranzabal",
       isPlaceholder: false
     },
-    // Alumni Outreach
+    {
+      name: "Hardik Sharma",
+      role: "Alumni & Tech",
+      department: "strategy",
+      image: hardikImg,
+      linkedin: "https://www.linkedin.com/in/hdksrma/",
+      isPlaceholder: false
+    },
+    // Alumni Relations
     {
       name: "Vinayak Malhotra",
-      role: "Head, Alumni Outreach",
+      role: "Head, Alumni Relations",
       department: "alumni",
       image: vinayakImg,
       linkedin: "https://www.linkedin.com/in/vinayakm93/",
       isPlaceholder: false,
       isHead: true
     },
-    // Tech & Product
+    {
+      name: "Mohd Zuhaib",
+      role: "Head, Alumni Relations",
+      department: "alumni",
+      image: zuhaibImg,
+      linkedin: "https://www.linkedin.com/in/mohdzuhaib98/",
+      isPlaceholder: false,
+      isHead: true
+    },
+    // Tech Development
     {
       name: "Natt S",
-      role: "Head, Tech & Product",
+      role: "Head, Tech Development",
       department: "tech",
       image: nattImg,
       linkedin: "https://www.linkedin.com/in/natthapat-sakulborrirug/",
@@ -99,16 +118,17 @@ const MeetTheTeam = () => {
     },
     {
       name: "Alex Weng",
-      role: "Tech & Product",
+      role: "Head, Tech Development",
       department: "tech",
       image: alexImg,
       linkedin: "https://www.linkedin.com/in/alexweng97/",
-      isPlaceholder: false
+      isPlaceholder: false,
+      isHead: true
     },
-    // Case Comp
+    // Career & Case Comps
     {
       name: "Huy Nguyen",
-      role: "Head, Case Comp",
+      role: "Head, Career & Case Comps",
       department: "casecomp",
       image: huyImg,
       linkedin: "https://www.linkedin.com/in/huy-nguyen-m/",
@@ -117,11 +137,12 @@ const MeetTheTeam = () => {
     },
     {
       name: "Paridhi Gupta",
-      role: "Case Comp",
+      role: "Head, Career & Case Comps",
       department: "casecomp",
       image: paridhiImg,
       linkedin: "https://www.linkedin.com/in/paridhigupta1999/",
-      isPlaceholder: false
+      isPlaceholder: false,
+      isHead: true
     },
     // Operations
     {

@@ -7,15 +7,15 @@ const Events = () => {
         </h2>
         <div className="w-24 h-1 bg-gold mx-auto mb-12" />
 
-        <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg">
+        <div className="w-full rounded-xl overflow-hidden shadow-lg">
           <iframe
             src="https://smcfoster.notion.site/ebd//30c0984ab5b68025b895da1ead5577a6"
             width="100%"
-            height="600"
+            height="1200"
             frameBorder="0"
             allowFullScreen
             title="Upcoming Events"
-            className="w-full"
+            className="w-full min-h-[80vh]"
           />
         </div>
       </div>

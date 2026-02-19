@@ -10,6 +10,7 @@ import ArticleDetail from "./pages/ArticleDetail";
 import Newsletters from "./pages/Newsletters";
 import PdfReader from "./pages/PdfReader";
 import MeetTheTeam from "./pages/MeetTheTeam";
+import EventsPage from "./pages/EventsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/articles/:id" element={<ArticleDetail />} />
           <Route path="/newsletters" element={<Newsletters />} />
           <Route path="/pdf-reader" element={<PdfReader />} />
+          <Route path="/events" element={<EventsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

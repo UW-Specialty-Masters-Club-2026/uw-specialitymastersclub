@@ -44,7 +44,7 @@ const Navbar = () => {
     { label: "Join", path: "/join", hash: null },
     { label: "Articles", path: "/articles", hash: null },
     { label: "Newsletter", path: "/newsletters", hash: null },
-    { label: "Events", path: "/", hash: "#events" },
+    { label: "Events", path: "/events", hash: null },
     { label: "Contact", path: "/", hash: "#contact" },
   ];
 

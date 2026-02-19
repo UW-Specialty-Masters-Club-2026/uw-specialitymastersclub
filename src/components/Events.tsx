@@ -1,46 +1,69 @@
 import { Calendar, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const events = [
+  {
+    title: "Product Management Fireside Chat",
+    date: "Feb 19 (Thu), 4:30–5:45 PM",
+    description: "Industry panel of Senior PMs and PM Directors, moderated by Jenne Peirce.",
+    link: "https://smcfoster.notion.site/pm-fireside",
+  },
+  {
+    title: "Data Analytics & Data Science Fireside Chat",
+    date: "Tentatively Feb 25",
+    description: "Industry panel of Senior Data Analysts. More details and link coming shortly.",
+    link: "https://smcfoster.notion.site/ds-fireside",
+  },
+  {
+    title: "Experimentation Workshop",
+    date: "Mar 2",
+    description: "A Senior Principal Manager from Amazon will talk about building modern experimentation platforms at scale and the complexities involved. More details to follow.",
+    link: null,
+  },
+];
+
 const Events = () => {
   return (
     <section id="events" className="section-container bg-lavender">
       <div className="text-center slide-up">
         <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-          Upcoming Events
+          Upcoming Q1 Events
         </h2>
         <div className="w-24 h-1 bg-gold mx-auto mb-12" />
         
-        <div className="max-w-2xl mx-auto space-y-8">
-          {/* AI Automation Workshop */}
-          <div className="bg-card rounded-xl p-6 shadow-lg border border-lavender transition-all duration-300 hover:shadow-xl hover:scale-[1.01]">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <Calendar className="h-5 w-5 text-gold" />
-              <span className="text-lg font-semibold text-primary">AI Automation Workshop</span>
+        <div className="max-w-3xl mx-auto grid gap-6">
+          {events.map((event, index) => (
+            <div 
+              key={index}
+              className="bg-card rounded-xl p-6 shadow-lg border border-lavender transition-all duration-300 hover:shadow-xl hover:scale-[1.01] text-left slide-up"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
+                  <Calendar className="h-6 w-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-primary mb-1">{event.title}</h3>
+                  <p className="text-sm font-semibold text-gold mb-2">{event.date}</p>
+                  <p className="text-foreground/80 text-sm mb-3">{event.description}</p>
+                  {event.link ? (
+                    <Button asChild size="sm" className="bg-primary hover:bg-primary/90">
+                      <a 
+                        href={event.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2"
+                      >
+                        View Details <ExternalLink className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  ) : (
+                    <span className="text-xs text-muted-foreground italic">Details coming soon</span>
+                  )}
+                </div>
+              </div>
             </div>
-            <p className="text-foreground mb-4">
-              Learn how to leverage AI tools to automate workflows and boost productivity. 
-              Hands-on session with practical applications for business students.
-            </p>
-            <Button asChild className="bg-primary hover:bg-primary/90">
-              <a 
-                href="https://smcfoster.notion.site/AI-Automation-Workshop-2f10984ab5b68095bd00c76d4ee3829a" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2"
-              >
-                View Event Details <ExternalLink className="h-4 w-4" />
-              </a>
-            </Button>
-          </div>
-
-          {/* February Calendar Coming Soon */}
-          <div className="bg-card/50 rounded-xl p-6 border border-dashed border-primary/30">
-            <p className="text-lg text-primary font-medium mb-2">📅 February Calendar Coming Soon</p>
-            <p className="text-foreground">
-              We're planning exciting events for February including networking mixers, 
-              workshops, and more. Stay tuned for announcements!
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </section>

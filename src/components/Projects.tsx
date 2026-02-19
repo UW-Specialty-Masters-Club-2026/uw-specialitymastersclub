@@ -5,8 +5,8 @@ import eventClassroom from "@/assets/event-classroom.jpg";
 import eventGroupSelfie from "@/assets/event-group-selfie.jpg";
 
 const pastEventImages = [
-  { src: eventClassroom, alt: "SMC classroom session" },
-  { src: eventGroupSelfie, alt: "SMC group photo after event" },
+  { src: eventClassroom, alt: "AI Workflow Automation Workshop - classroom session", caption: "Members deep in hands-on AI automation exercises" },
+  { src: eventGroupSelfie, alt: "AI Workflow Automation Workshop - group photo", caption: "Group photo after a great workshop session" },
 ];
 
 const Projects = () => {
@@ -45,7 +45,15 @@ const Projects = () => {
         </Card>
       </div>
 
-      {/* Past Event Photos */}
+      {/* Past Event Photos — AI Workflow Automation Workshop */}
+      <div className="text-center mb-8 slide-up">
+        <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+          AI Workflow Automation Workshop
+        </h3>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          Hands-on session where members learned to leverage AI tools to automate workflows and boost productivity.
+        </p>
+      </div>
       <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
         {pastEventImages.map((img, index) => (
           <div 
@@ -59,6 +67,9 @@ const Projects = () => {
               className="w-full h-64 md:h-72 object-cover"
               loading="lazy"
             />
+            <div className="bg-card p-3 text-center">
+              <p className="text-sm text-muted-foreground">{img.caption}</p>
+            </div>
           </div>
         ))}
       </div>

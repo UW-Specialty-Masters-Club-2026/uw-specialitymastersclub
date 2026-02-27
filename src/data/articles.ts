@@ -12,6 +12,14 @@ import articleData4goodTeam from "@/assets/article-data4good-team.jpg";
 import articleData4goodPresenting from "@/assets/article-data4good-presenting.jpg";
 import articleData4goodSpeaking from "@/assets/article-data4good-speaking.jpg";
 import articleData4goodGroup from "@/assets/article-data4good-group.jpg";
+import articleTcuCheck from "@/assets/article-tcu-check.jpg";
+import articleTcuSpencer from "@/assets/article-tcu-spencer.jpg";
+import articleTcuStadium from "@/assets/article-tcu-stadium.jpg";
+import articleTcuAuditorium from "@/assets/article-tcu-auditorium.jpg";
+import articleTcuMascot from "@/assets/article-tcu-mascot.jpg";
+import articleTcuNeeley from "@/assets/article-tcu-neeley.jpg";
+import articleTcuHandshake from "@/assets/article-tcu-handshake.jpg";
+import articleTcuCheck2 from "@/assets/article-tcu-check2.jpg";
 export type ContentBlock = {
   type: "paragraph" | "heading" | "list" | "highlight" | "image";
   text?: string;
@@ -43,6 +51,14 @@ export const getImageSrc = (src: string) => {
     case "data4good-presenting": return articleData4goodPresenting;
     case "data4good-speaking": return articleData4goodSpeaking;
     case "data4good-group": return articleData4goodGroup;
+    case "tcu-check": return articleTcuCheck;
+    case "tcu-spencer": return articleTcuSpencer;
+    case "tcu-stadium": return articleTcuStadium;
+    case "tcu-auditorium": return articleTcuAuditorium;
+    case "tcu-mascot": return articleTcuMascot;
+    case "tcu-neeley": return articleTcuNeeley;
+    case "tcu-handshake": return articleTcuHandshake;
+    case "tcu-check2": return articleTcuCheck2;
     default: return articleBuilders;
   }
 };
@@ -827,6 +843,89 @@ export const articles: Article[] = [
         type: "image",
         src: "data4good-group",
         alt: "All participants at the Data4Good National Championship"
+      }
+    ]
+  },
+  {
+    id: "tcu-supply-chain-competition",
+    title: "Bridging Classroom Knowledge to Real-World Impact: 1st Runner-Up at TCU Supply Chain Case Competition",
+    subtitle: "How our MSCM team turned textbook concepts into actionable recommendations for Operation Smile",
+    author: "Kevin Cai, Iris Chen, Jane Lo, Forrest (Chi-Sen) Chen",
+    authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=KCIC&backgroundColor=4a154b",
+    date: "February 2026",
+    category: "Competition",
+    heroImage: articleTcuCheck,
+    content: [
+      {
+        type: "image",
+        src: "tcu-spencer",
+        alt: "Team at TCU Spencer Hays Hall"
+      },
+      {
+        type: "paragraph",
+        text: "Participating in the 2026 TCU Graduate Supply Chain Case Competition with Operation Smile became one of the most meaningful experiences we've had in the UW MSCM program. Earning 1st Runner-Up was exciting, but the real takeaway wasn't the result—it was the process: trying to solve a problem that genuinely matters."
+      },
+      {
+        type: "paragraph",
+        text: "From the beginning, our team made a conscious choice to focus on impact over performance. We weren't just trying to \"win a case.\" We were trying to build something Operation Smile could realistically use. That mindset shaped everything—every calculation, every assumption, every trade-off, and every late-night discussion. Even if only one recommendation is adopted, it could still mean one more step toward reaching patients who need care most. That idea made the effort feel worth it."
+      },
+      {
+        type: "heading",
+        text: "The Human Side of Supply Chain"
+      },
+      {
+        type: "paragraph",
+        text: "What stayed with us most was the human side of the case. Hearing Operation Smile's team share their goals in person shifted the experience completely. This wasn't a textbook exercise in optimization—it became a real question of access for real patients. Suddenly, the numbers weren't just numbers. Behind every site activation, every distribution route, and every cost decision were families waiting for cleft care. That perspective forced us to ask harder questions: Are our recommendations practical? Can they be implemented? Will they actually help more people receive surgery?"
+      },
+      {
+        type: "image",
+        src: "tcu-auditorium",
+        alt: "Team at Kim and Bill Shaddock Auditorium"
+      },
+      {
+        type: "heading",
+        text: "Real-World Constraints, Real Teamwork"
+      },
+      {
+        type: "paragraph",
+        text: "At the same time, the competition reminded us what supply chain looks like in the real world—messy constraints, imperfect information, and decisions that require balancing operational feasibility with mission-driven urgency. Under a 24-hour time constraint, we leaned heavily on teamwork and communication. Small insights mattered. A clearer metric, a simpler process, or a stronger assumption could shift the direction of an entire recommendation. The experience deepened our understanding that strong supply chain work isn't only about finding \"the best answer,\" but about building something implementable and useful for the people who will carry it forward."
+      },
+      {
+        type: "image",
+        src: "tcu-handshake",
+        alt: "Team shaking hands with competition organizers"
+      },
+      {
+        type: "heading",
+        text: "Classroom Concepts Meet Real Stakes"
+      },
+      {
+        type: "paragraph",
+        text: "We also saw how classroom concepts connect when the stakes are real. We applied demand forecasting, cost accounting, operations management, and strategic sourcing—and used AI tools to move faster and build a stronger, more comprehensive solution under pressure. More than anything, it reinforced a shared belief: supply chain management has the power to make the world better, especially when it supports care and access."
+      },
+      {
+        type: "highlight",
+        text: "Supply chain management has the power to make the world better, especially when it supports care and access."
+      },
+      {
+        type: "image",
+        src: "tcu-neeley",
+        alt: "Team with peers at TCU Neeley School of Business"
+      },
+      {
+        type: "image",
+        src: "tcu-stadium",
+        alt: "Team at Amon G. Carter Stadium"
+      },
+      {
+        type: "image",
+        src: "tcu-mascot",
+        alt: "Team with TCU mascot SuperFrog"
+      },
+      {
+        type: "image",
+        src: "tcu-check2",
+        alt: "Team holding $10,000 prize check"
       }
     ]
   }

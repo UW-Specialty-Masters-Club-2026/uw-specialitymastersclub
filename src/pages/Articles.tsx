@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Newspaper, Calendar, User, ArrowRight } from "lucide-react";
@@ -6,6 +7,13 @@ import { articles, upcomingArticles } from "@/data/articles";
 
 const Articles = () => {
   const navigate = useNavigate();
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const categories = ["All", ...Array.from(new Set(articles.map(a => a.category)))];
+  const sortedArticles = [...articles].reverse();
+  const filteredArticles = activeFilter === "All" 
+    ? sortedArticles 
+    : sortedArticles.filter(a => a.category === activeFilter);
 
   return (
     <div className="min-h-screen bg-background">
@@ -47,8 +55,25 @@ const Articles = () => {
 
       {/* Articles Grid */}
       <section className="section-container">
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12 max-w-6xl mx-auto">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveFilter(cat)}
+              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${
+                activeFilter === cat
+                  ? "bg-gold text-primary shadow-md"
+                  : "bg-card border border-border text-foreground/70 hover:border-gold hover:text-gold"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {articles.map((article) => (
+          {filteredArticles.map((article) => (
             <article 
               key={article.id}
               className="bg-card rounded-2xl overflow-hidden border border-border shadow-lg flex flex-col group cursor-pointer hover:shadow-xl transition-all duration-300"

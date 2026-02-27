@@ -776,7 +776,7 @@ export const articles: Article[] = [
   },
   {
     id: "llm-factuality-data4good",
-    title: "How Can LLMs Be Kept in Check, Especially on Factuality?",
+    title: "How Can LLMs Be Kept in Check? Regional Champions at the Data4Good National Championship",
     subtitle: "Representing UW Foster at the Data4Good National Championship at Johns Hopkins",
     author: "Alex Weng, Anushka Mathur, Archit Gupta, Natthapat Sakulborrirug",
     authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=AWAN&backgroundColor=1e3a5f",

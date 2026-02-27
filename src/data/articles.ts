@@ -8,6 +8,10 @@ import articleGenaiFlowchart from "@/assets/article-genai-flowchart.png";
 import articleDigitalAdvertising from "@/assets/article-digital-advertising.jpg";
 import articleAiBuilderLearning from "@/assets/article-ai-builder-learning.jpg";
 import articleCaseCompetition from "@/assets/article-case-competition.jpg";
+import articleData4goodTeam from "@/assets/article-data4good-team.jpg";
+import articleData4goodPresenting from "@/assets/article-data4good-presenting.jpg";
+import articleData4goodSpeaking from "@/assets/article-data4good-speaking.jpg";
+import articleData4goodGroup from "@/assets/article-data4good-group.jpg";
 export type ContentBlock = {
   type: "paragraph" | "heading" | "list" | "highlight" | "image";
   text?: string;
@@ -35,6 +39,10 @@ export const getImageSrc = (src: string) => {
     case "builders": return articleBuilders;
     case "partnerships": return articlePartnerships;
     case "genai-flowchart": return articleGenaiFlowchart;
+    case "data4good-team": return articleData4goodTeam;
+    case "data4good-presenting": return articleData4goodPresenting;
+    case "data4good-speaking": return articleData4goodSpeaking;
+    case "data4good-group": return articleData4goodGroup;
     default: return articleBuilders;
   }
 };
@@ -747,6 +755,78 @@ export const articles: Article[] = [
       {
         type: "highlight",
         text: "More importantly, they teach you how to think like a decision maker, a skill that is crucial for driving innovation and succeeding in professional roles."
+      }
+    ]
+  },
+  {
+    id: "llm-factuality-data4good",
+    title: "How Can LLMs Be Kept in Check, Especially on Factuality?",
+    subtitle: "Representing UW Foster at the Data4Good National Championship at Johns Hopkins",
+    author: "Alex Weng, Anushka Mathur, Archit Gupta, Natthapat Sakulborrirug",
+    authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=AWAN&backgroundColor=1e3a5f",
+    date: "February 2026",
+    category: "Competition",
+    heroImage: articleData4goodGroup,
+    content: [
+      {
+        type: "image",
+        src: "data4good-team",
+        alt: "Team photo at Johns Hopkins Carey Business School"
+      },
+      {
+        type: "paragraph",
+        text: "This year, our Foster MSBA team had the opportunity to represent the University of Washington at the Data4Good National Championship at Johns Hopkins. As one of four regional champions across the country, we stepped into a room filled with students tackling complex social-impact challenges with both technical rigor and purpose. Competing at that level was not just about building a strong model. It was about defending every assumption, communicating trade-offs clearly, and thinking like practitioners rather than just students."
+      },
+      {
+        type: "paragraph",
+        text: "Our project focused on addressing AI hallucinations in educational content. As generative AI becomes increasingly integrated into learning platforms, the risk of factually incorrect information reaching young learners becomes more serious. We built a two-step classification system combining traditional machine learning and large language models to detect and flag misleading content. The technical challenge was not simply maximizing performance metrics, but designing a system that could realistically operate in production."
+      },
+      {
+        type: "heading",
+        text: "Balancing ML and LLM Approaches"
+      },
+      {
+        type: "paragraph",
+        text: "One of the most important lessons for us was learning how to balance ML and LLM approaches intentionally. Supervised machine learning offered scalability, predictable evaluation workflows, and clearer cost structures. LLM-based methods improved performance on nuanced classification tasks but introduced trade-offs around latency, API costs, and measurable return on investment. We had to constantly ask ourselves not just \"Does this improve accuracy?\" but \"Does this improve decision value?\""
+      },
+      {
+        type: "image",
+        src: "data4good-presenting",
+        alt: "Team presenting at the Data4Good competition"
+      },
+      {
+        type: "heading",
+        text: "End-to-End System Thinking"
+      },
+      {
+        type: "paragraph",
+        text: "We treated the solution as a full end-to-end system rather than stopping at model development. Deploying the workflow on Microsoft Azure required us to think about batch processing, storage architecture, downstream consumption of outputs, and operational feasibility. That deployment experience made the competition feel closer to real-world implementation rather than an academic exercise."
+      },
+      {
+        type: "image",
+        src: "data4good-speaking",
+        alt: "Team member speaking at the competition"
+      },
+      {
+        type: "heading",
+        text: "The Power of Teamwork"
+      },
+      {
+        type: "paragraph",
+        text: "Beyond the technical growth, the experience reinforced the importance of teamwork. From early problem framing to the final defense, we refined our ideas through honest feedback and iteration. Each teammate brought different strengths, and progress came from aligning those strengths into a cohesive solution. Preparing for nationals raised the bar in terms of clarity, structure, and narrative. It forced us to communicate impact, not just methodology."
+      },
+      {
+        type: "highlight",
+        text: "Meaningful analytics work is not just about models. It is about building systems that create measurable impact and communicating that impact with conviction."
+      },
+      {
+        type: "paragraph",
+        text: "Representing UW and the Foster MSBA program on a national stage was both humbling and energizing. Even though we did not take home the final title, the experience strengthened our confidence as analysts and as collaborators. More importantly, it reminded us that meaningful analytics work is not just about models. It is about building systems that create measurable impact and communicating that impact with conviction."
+      },
+      {
+        type: "image",
+        src: "data4good-group",
+        alt: "All participants at the Data4Good National Championship"
       }
     ]
   }

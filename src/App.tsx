@@ -8,6 +8,7 @@ import JoinClub from "./pages/JoinClub";
 import Articles from "./pages/Articles";
 import ArticleDetail from "./pages/ArticleDetail";
 import Newsletters from "./pages/Newsletters";
+import NewsletterDetail from "./pages/NewsletterDetail";
 import PdfReader from "./pages/PdfReader";
 import MeetTheTeam from "./pages/MeetTheTeam";
 import EventsPage from "./pages/EventsPage";

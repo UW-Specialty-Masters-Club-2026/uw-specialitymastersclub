@@ -29,6 +29,7 @@ const App = () => (
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:id" element={<ArticleDetail />} />
           <Route path="/newsletters" element={<Newsletters />} />
+          <Route path="/newsletters/:slug" element={<NewsletterDetail />} />
           <Route path="/pdf-reader" element={<PdfReader />} />
           <Route path="/events" element={<EventsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

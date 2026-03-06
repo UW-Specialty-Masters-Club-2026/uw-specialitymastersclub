@@ -6,6 +6,20 @@ import Footer from "@/components/Footer";
 
 const newsletters = [
   {
+    id: 3,
+    title: "Specialty Masters Club Newsletter",
+    volume: "Vol. 3",
+    date: "February 2026",
+    description: "The latest edition covering club updates, industry insights, and student stories from the Specialty Masters community.",
+    pdfUrl: "/newsletters/Specialty_Masters_Club_Newsletter_VOL_3.pdf",
+    highlights: [
+      "Latest Industry Trends & Insights",
+      "Club Updates & Highlights",
+      "Student Spotlights",
+      "Upcoming Events & Opportunities"
+    ]
+  },
+  {
     id: 2,
     title: "Specialty Masters Club Newsletter",
     volume: "Vol. 2",

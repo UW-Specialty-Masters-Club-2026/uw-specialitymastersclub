@@ -1,4 +1,4 @@
-import { Mail, MessageSquare } from "lucide-react";
+import { Mail, MessageSquare, Linkedin, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -61,6 +61,30 @@ const Contact = () => {
                   >
                     Join Our Group
                   </Button>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Linkedin className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground">LinkedIn</p>
+                  <a href="https://www.linkedin.com/in/specialty-masters-club-0789893a8/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
+                    Specialty Masters Club
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Instagram className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground">Instagram</p>
+                  <a href="https://www.instagram.com/smclub_uw/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
+                    @smclub_uw
+                  </a>
                 </div>
               </div>
             </div>

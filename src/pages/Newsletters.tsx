@@ -1,71 +1,117 @@
-import { ArrowLeft, FileText, Download, Calendar, Maximize, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, Calendar, ArrowRight, Share2, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { newsletters } from "@/data/newsletters";
 
-const newsletters = [
-  {
-    id: 3,
-    title: "Specialty Masters Club Newsletter",
-    volume: "Vol. 3",
-    date: "February 2026",
-    description: "The latest edition covering club updates, industry insights, and student stories from the Specialty Masters community.",
-    pdfUrl: "/newsletters/Specialty_Masters_Club_Newsletter_VOL_3.pdf",
-    highlights: [
-      "Latest Industry Trends & Insights",
-      "Club Updates & Highlights",
-      "Student Spotlights",
-      "Upcoming Events & Opportunities"
-    ]
-  },
-  {
-    id: 2,
-    title: "Specialty Masters Club Newsletter",
-    volume: "Vol. 2",
-    date: "January 2026",
-    description: "Signals, Not Noise — What skills and tools are actually hiring-relevant in 2026. Features AI automation workshop insights, case competition updates, and unfiltered student perspectives.",
-    pdfUrl: "/newsletters/Specialty_Masters_Club_Newsletter_VOL_2.pdf",
-    highlights: [
-      "Technology Landscape & Emerging Trends",
-      "Case Competitions: Strategy & Preparation",
-      "Workshop #1: AI Automation Insights",
-      "Student Opinion Page"
-    ]
-  },
-  {
-    id: 1,
-    title: "Specialty Masters Club Newsletter",
-    volume: "Vol. 1",
-    date: "December 2025",
-    description: "How Specialized Masters students are shaping the future of work. Features tech trends, case competition strategies, student opinions, and more.",
-    pdfUrl: "/newsletters/Specialty_Masters_Club_Newsletter_VOL_1.pdf",
-    highlights: [
-      "Technology Landscape & Emerging Trends",
-      "Case Competitions: Strategy & Preparation",
-      "Student Opinion Page",
-      "About the Specialty Masters Club"
-    ]
-  }
-];
+const NewsletterCard = ({ newsletter }: { newsletter: typeof newsletters[0] }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyLink = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const url = `${window.location.origin}/newsletters/${newsletter.slug}`;
+    navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <Link
+      to={`/newsletters/${newsletter.slug}`}
+      className="group bg-card border border-border rounded-xl overflow-hidden hover:border-gold/50 hover:shadow-xl transition-all duration-300 flex flex-col"
+    >
+      {/* Thumbnail — styled cover preview */}
+      <div className="relative h-64 sm:h-72 bg-gradient-to-br from-primary via-primary/90 to-primary/70 flex items-center justify-center overflow-hidden">
+        {/* Decorative background pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-4 left-4 w-32 h-32 border border-gold/40 rounded-full" />
+          <div className="absolute bottom-8 right-8 w-48 h-48 border border-gold/30 rounded-full" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-gold/20 rounded-full" />
+        </div>
+
+        {/* Content overlay */}
+        <div className="relative z-10 text-center px-6">
+          <span className="inline-block px-3 py-1 bg-gold/20 text-gold text-xs font-semibold rounded-full mb-3 backdrop-blur-sm border border-gold/30">
+            {newsletter.volume}
+          </span>
+          <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight mb-2">
+            SMC Newsletter
+          </h3>
+          <p className="text-sm text-white/60">{newsletter.date}</p>
+        </div>
+
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
+
+      {/* Card body */}
+      <div className="p-5 flex-1 flex flex-col">
+        <div className="flex items-center gap-3 mb-2">
+          <span className="px-2.5 py-0.5 bg-gold/20 text-gold text-xs font-medium rounded-full">
+            {newsletter.volume}
+          </span>
+          <span className="flex items-center gap-1 text-muted-foreground text-xs">
+            <Calendar className="w-3.5 h-3.5" />
+            {newsletter.date}
+          </span>
+        </div>
+
+        <h2 className="text-lg font-bold text-foreground mb-2 group-hover:text-gold transition-colors">
+          {newsletter.title}
+        </h2>
+
+        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+          {newsletter.description}
+        </p>
+
+        {/* Highlights */}
+        <ul className="mb-4 space-y-1.5">
+          {newsletter.highlights.slice(0, 3).map((h, i) => (
+            <li key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
+              <span className="w-1 h-1 bg-gold rounded-full flex-shrink-0" />
+              {h}
+            </li>
+          ))}
+        </ul>
+
+        {/* Footer actions */}
+        <div className="mt-auto flex items-center justify-between pt-3 border-t border-border">
+          <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold group-hover:gap-2.5 transition-all">
+            Read Newsletter
+            <ArrowRight className="w-4 h-4" />
+          </span>
+          <button
+            onClick={handleCopyLink}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+          >
+            {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Share2 className="w-3.5 h-3.5" />}
+            {copied ? "Copied!" : "Share"}
+          </button>
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 const Newsletters = () => {
   const [selectedEdition, setSelectedEdition] = useState<string>("all");
-  
-  const filteredNewsletters = selectedEdition === "all" 
-    ? newsletters 
+
+  const filteredNewsletters = selectedEdition === "all"
+    ? newsletters
     : newsletters.filter(n => n.volume === selectedEdition);
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       <main className="pt-24 pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8">
-            <Link 
-              to="/#newsletter" 
+            <Link
+              to="/#newsletter"
               className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors mb-6"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -110,103 +156,9 @@ const Newsletters = () => {
           </div>
 
           {/* Newsletter Grid */}
-          <div className="grid gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredNewsletters.map((newsletter) => (
-              <div
-                key={newsletter.id}
-                className="bg-card border border-border rounded-xl overflow-hidden hover:border-gold/50 transition-all duration-300"
-              >
-                <div className="p-6 md:p-8">
-                  <div className="flex flex-col lg:flex-row gap-6">
-                    {/* PDF Viewer - Left Side */}
-                    <div className="lg:w-1/2 flex-shrink-0">
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-sm font-medium text-foreground">PDF Viewer</span>
-                        <span className="text-xs text-muted-foreground flex items-center gap-1">
-                          <ChevronLeft className="w-3 h-3" />
-                          Scroll pages
-                          <ChevronRight className="w-3 h-3" />
-                        </span>
-                      </div>
-                      <div className="h-[500px] lg:h-[600px] w-full rounded-lg overflow-hidden border border-border bg-white">
-                        <object
-                          data={`${newsletter.pdfUrl}#view=FitH&scrollbar=1&toolbar=1&navpanes=0`}
-                          type="application/pdf"
-                          className="w-full h-full"
-                        >
-                          <embed
-                            src={`${newsletter.pdfUrl}#view=FitH&scrollbar=1&toolbar=1&navpanes=0`}
-                            type="application/pdf"
-                            className="w-full h-full"
-                          />
-                        </object>
-                      </div>
-                    </div>
-
-                    {/* Content - Right Side */}
-                    <div className="flex-1 flex flex-col">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="px-3 py-1 bg-gold/20 text-gold text-sm font-medium rounded-full">
-                          {newsletter.volume}
-                        </span>
-                        <span className="flex items-center gap-1 text-muted-foreground text-sm">
-                          <Calendar className="w-4 h-4" />
-                          {newsletter.date}
-                        </span>
-                      </div>
-                      
-                      <h2 className="text-2xl font-bold text-foreground mb-3">
-                        {newsletter.title}
-                      </h2>
-                      
-                      <p className="text-muted-foreground mb-4">
-                        {newsletter.description}
-                      </p>
-
-                      {/* Highlights */}
-                      <div className="mb-6">
-                        <h3 className="text-sm font-semibold text-foreground mb-2">Inside this issue:</h3>
-                        <ul className="grid grid-cols-1 gap-2">
-                          {newsletter.highlights.map((highlight, index) => (
-                            <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                              <span className="w-1.5 h-1.5 bg-gold rounded-full flex-shrink-0" />
-                              {highlight}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Actions */}
-                      <div className="flex flex-wrap gap-3 mt-auto">
-                        <a
-                          href={newsletter.pdfUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-5 py-2.5 bg-gold text-primary-foreground font-semibold rounded-lg hover:bg-gold/90 transition-colors"
-                        >
-                          <FileText className="w-4 h-4" />
-                          View PDF
-                        </a>
-                        <Link
-                          to={`/pdf-reader?url=${encodeURIComponent(newsletter.pdfUrl)}&title=${encodeURIComponent(newsletter.title + ' - ' + newsletter.volume)}`}
-                          className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
-                        >
-                          <Maximize className="w-4 h-4" />
-                          Fullscreen Reader
-                        </Link>
-                        <a
-                          href={newsletter.pdfUrl}
-                          download
-                          className="inline-flex items-center gap-2 px-5 py-2.5 border border-border text-foreground font-semibold rounded-lg hover:bg-accent transition-colors"
-                        >
-                          <Download className="w-4 h-4" />
-                          Download
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <NewsletterCard key={newsletter.id} newsletter={newsletter} />
             ))}
           </div>
         </div>

@@ -8,6 +8,7 @@ import JoinClub from "./pages/JoinClub";
 import Articles from "./pages/Articles";
 import ArticleDetail from "./pages/ArticleDetail";
 import Newsletters from "./pages/Newsletters";
+import NewsletterDetail from "./pages/NewsletterDetail";
 import PdfReader from "./pages/PdfReader";
 import MeetTheTeam from "./pages/MeetTheTeam";
 import EventsPage from "./pages/EventsPage";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:id" element={<ArticleDetail />} />
           <Route path="/newsletters" element={<Newsletters />} />
+          <Route path="/newsletters/:slug" element={<NewsletterDetail />} />
           <Route path="/pdf-reader" element={<PdfReader />} />
           <Route path="/events" element={<EventsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -62,7 +62,7 @@ const JoinClub = () => {
               variant="gold" 
               size="lg"
               className="text-lg px-12 shadow-lg"
-              onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSc-o8C836NmjLx2ACf1QKpsGz4_1Jxi91O5yhbwY23-yVvLkg/viewform', '_blank')}
+              onClick={() => window.open('https://smcfoster.notion.site/3580984ab5b68069996bf623248354cb?pvs=105', '_blank')}
             >
               Register Now
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -140,7 +140,7 @@ const JoinClub = () => {
             variant="gold" 
             size="lg"
             className="text-lg px-12 shadow-lg"
-            onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSc-o8C836NmjLx2ACf1QKpsGz4_1Jxi91O5yhbwY23-yVvLkg/viewform', '_blank')}
+            onClick={() => window.open('https://smcfoster.notion.site/3580984ab5b68069996bf623248354cb?pvs=105', '_blank')}
           >
             Register Now
             <ArrowRight className="ml-2 h-5 w-5" />
@@ -171,7 +171,7 @@ const JoinClub = () => {
               variant="gold" 
               size="lg"
               className="text-lg px-12 shadow-lg"
-              onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSc-o8C836NmjLx2ACf1QKpsGz4_1Jxi91O5yhbwY23-yVvLkg/viewform', '_blank')}
+              onClick={() => window.open('https://smcfoster.notion.site/3580984ab5b68069996bf623248354cb?pvs=105', '_blank')}
             >
               Register Now
               <ArrowRight className="ml-2 h-5 w-5" />

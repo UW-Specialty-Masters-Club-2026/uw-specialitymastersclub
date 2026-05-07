@@ -86,7 +86,7 @@ const Navbar = () => {
               variant="gold"
               size="default"
               className="ml-4"
-              onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSc-o8C836NmjLx2ACf1QKpsGz4_1Jxi91O5yhbwY23-yVvLkg/viewform', '_blank')}
+              onClick={() => window.open('https://smcfoster.notion.site/3580984ab5b68069996bf623248354cb?pvs=105', '_blank')}
             >
               Register Now
             </Button>
@@ -127,7 +127,7 @@ const Navbar = () => {
                   className="w-full"
                   onClick={() => {
                     setIsOpen(false);
-                    window.open('https://docs.google.com/forms/d/e/1FAIpQLSc-o8C836NmjLx2ACf1QKpsGz4_1Jxi91O5yhbwY23-yVvLkg/viewform', '_blank');
+                    window.open('https://smcfoster.notion.site/3580984ab5b68069996bf623248354cb?pvs=105', '_blank');
                   }}
                 >
                   Register Now

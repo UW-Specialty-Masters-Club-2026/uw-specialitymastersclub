@@ -182,7 +182,7 @@ const Articles = () => {
               technology, leadership, and student life. Join our editorial team!
             </p>
             <a 
-              href="https://docs.google.com/forms/d/e/1FAIpQLSc-o8C836NmjLx2ACf1QKpsGz4_1Jxi91O5yhbwY23-yVvLkg/viewform"
+              href="https://smcfoster.notion.site/3580984ab5b68069996bf623248354cb?pvs=105"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gold text-primary px-8 py-4 rounded-full font-bold hover:bg-gold/90 transition-all hover:scale-105"

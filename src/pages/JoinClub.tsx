@@ -1,4 +1,4 @@
-import { UserPlus, MessageCircle, Calendar, Users, Trophy, Cpu, ArrowRight } from "lucide-react";
+import { UserPlus, Calendar, Users, Trophy, Cpu, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
@@ -13,11 +13,6 @@ const JoinClub = () => {
       icon: UserPlus,
       title: "Sign Up",
       description: "Fill out our SMC membership form to get started and become an official member"
-    },
-    {
-      icon: MessageCircle,
-      title: "Join WhatsApp",
-      description: "Connect with the community in our active group chat for updates and networking"
     },
     {
       icon: Calendar,
@@ -57,23 +52,15 @@ const JoinClub = () => {
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-95 slide-up" style={{ animationDelay: '0.1s' }}>
             Become part of a thriving community of MSBA, MSIS, MSCM, MSA students at UW Foster
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center slide-up" style={{ animationDelay: '0.2s' }}>
-            <Button 
-              variant="gold" 
+          <div className="flex justify-center slide-up" style={{ animationDelay: '0.2s' }}>
+            <Button
+              variant="gold"
               size="lg"
               className="text-lg px-12 shadow-lg"
               onClick={() => window.open('https://smcfoster.notion.site/3580984ab5b68069996bf623248354cb?pvs=105', '_blank')}
             >
               Register Now
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="text-lg px-8 bg-background/10 text-primary-foreground border-primary-foreground/30 hover:bg-background/20"
-              onClick={() => window.open('https://chat.whatsapp.com/JmIaSV8fD7q0Pgv1Tj2CAz?mode=hqrc', '_blank')}
-            >
-              Join WhatsApp
             </Button>
           </div>
         </div>
@@ -87,10 +74,10 @@ const JoinClub = () => {
           </h2>
           <div className="w-24 h-1 bg-gold mx-auto" />
         </div>
-        
+
         <div className="grid md:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
-            <Card 
+            <Card
               key={index}
               className="card-hover border-2 border-lavender bg-card slide-up"
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -117,10 +104,10 @@ const JoinClub = () => {
           </h2>
           <div className="w-24 h-1 bg-gold mx-auto" />
         </div>
-        
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
+
+        <div className="grid md:grid-cols-2 gap-12 mb-12 max-w-3xl mx-auto">
           {steps.map((step, index) => (
-            <div 
+            <div
               key={index}
               className="text-center space-y-4 slide-up"
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -134,25 +121,16 @@ const JoinClub = () => {
             </div>
           ))}
         </div>
-        
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center slide-up" style={{ animationDelay: '0.3s' }}>
-          <Button 
-            variant="gold" 
+
+        <div className="flex justify-center slide-up" style={{ animationDelay: '0.3s' }}>
+          <Button
+            variant="gold"
             size="lg"
             className="text-lg px-12 shadow-lg"
             onClick={() => window.open('https://smcfoster.notion.site/3580984ab5b68069996bf623248354cb?pvs=105', '_blank')}
           >
             Register Now
             <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-          <span className="text-muted-foreground text-sm">or</span>
-          <Button 
-            variant="ghost" 
-            size="lg"
-            className="text-lg text-primary hover:text-primary/80 hover:bg-primary/5"
-            onClick={() => window.open('https://chat.whatsapp.com/JmIaSV8fD7q0Pgv1Tj2CAz?mode=hqrc', '_blank')}
-          >
-            Join WhatsApp Group
           </Button>
         </div>
       </section>
@@ -166,24 +144,15 @@ const JoinClub = () => {
           <p className="text-xl mb-8 opacity-95">
             Join hundreds of specialty master's students building their network and careers at Foster
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Button 
-              variant="gold" 
+          <div className="flex justify-center">
+            <Button
+              variant="gold"
               size="lg"
               className="text-lg px-12 shadow-lg"
               onClick={() => window.open('https://smcfoster.notion.site/3580984ab5b68069996bf623248354cb?pvs=105', '_blank')}
             >
               Register Now
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <span className="text-primary-foreground/60 text-sm">or</span>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="text-lg px-8 bg-transparent text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/10"
-              onClick={() => window.open('https://chat.whatsapp.com/JmIaSV8fD7q0Pgv1Tj2CAz?mode=hqrc', '_blank')}
-            >
-              Join WhatsApp
             </Button>
           </div>
         </div>

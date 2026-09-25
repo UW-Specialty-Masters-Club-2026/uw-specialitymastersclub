@@ -1,4 +1,4 @@
-import { Mail, MessageSquare, Linkedin, Instagram } from "lucide-react";
+import { Mail, Linkedin, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -48,21 +48,6 @@ const Contact = () => {
                 </div>
               </div>
               
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <MessageSquare className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">WhatsApp</p>
-                  <Button 
-                    variant="link" 
-                    className="p-0 h-auto text-gold"
-                    onClick={() => window.open('https://chat.whatsapp.com/', '_blank')}
-                  >
-                    Join Our Group
-                  </Button>
-                </div>
-              </div>
 
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">

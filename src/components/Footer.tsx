@@ -12,8 +12,14 @@ const Footer = () => {
   };
 
   const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const element = document.getElementById(sectionId);
+  if (element) {
+    const yOffset = -80; // Account for a fixed header/navbar height if you have one
+    const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+    
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+};
 
   return (
     <footer className="bg-primary text-primary-foreground border-t-4 border-gold">
@@ -57,14 +63,12 @@ const Footer = () => {
               <button onClick={scrollToTop} className="block hover:text-gold transition-colors">
                 Home
               </button>
-              <button onClick={() => scrollToSection('events')} className="block hover:text-gold transition-colors">
-                Events
-              </button>
+             
               <button onClick={() => scrollToSection('join')} className="block hover:text-gold transition-colors">
                 Join
               </button>
               <a href="mailto:smcommittee@uw.edu" className="block hover:text-gold transition-colors">
-                Contact
+
               </a>
             </nav>
           </div>
@@ -101,7 +105,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-primary-foreground/20 pt-8 text-center text-primary-foreground/80">
-          <p>&copy; 2025 Specialty Masters Club. All rights reserved.</p>
+          <p>&copy; 2026 Specialty Masters Club. All rights reserved.</p>
         </div>
       </div>
     </footer>

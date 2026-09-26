@@ -12,6 +12,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Calendar } from "lucide-react";
+import Events from "@/components/Events";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Index = () => {
       <section className="section-container bg-lavender">
         <div className="text-center slide-up">
           <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-            Upcoming Q1 Events
+            Upcoming Q2 Events
           </h2>
           <div className="w-24 h-1 bg-gold mx-auto mb-8" />
           <p className="text-foreground/80 max-w-2xl mx-auto mb-8">
@@ -45,7 +46,7 @@ const Index = () => {
       </section>
 
       <Join />
-      <Projects />
+      {/* <Projects /> */}
       <JoinTeam />
       <Newsletter />
       <Contact />

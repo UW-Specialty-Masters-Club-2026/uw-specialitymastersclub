@@ -175,7 +175,7 @@ FOOTER
 Footer with deep Husky Purple background:
 - Navigation links: About | Events | Join | Projects | Contact
 - Address: UW Foster School of Business, Seattle, WA
-- Copyright © 2025 Specialty Masters Club
+- Copyright © 2026 Specialty Masters Club
 - Thin gold top border
 
 ---------------------------------------------------

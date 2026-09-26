@@ -30,7 +30,7 @@ const Contact = () => {
         </h2>
         <div className="w-24 h-1 bg-gold mx-auto" />
       </div>
-      
+
       <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
         <div className="space-y-8 slide-up">
           <div>
@@ -47,7 +47,7 @@ const Contact = () => {
                   </a>
                 </div>
               </div>
-              
+
 
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
@@ -55,7 +55,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="font-semibold text-foreground">LinkedIn</p>
-                  <a href="https://www.linkedin.com/in/specialty-masters-club-0789893a8/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
+                  <a href="https://www.linkedin.com/company/uw-foster-specialty-masters-student-club//" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
                     Specialty Masters Club
                   </a>
                 </div>
@@ -75,7 +75,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="slide-up" style={{ animationDelay: '0.2s' }}>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -90,7 +90,7 @@ const Contact = () => {
                 className="border-primary/20"
               />
             </div>
-            
+
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                 UW Email
@@ -104,7 +104,7 @@ const Contact = () => {
                 className="border-primary/20"
               />
             </div>
-            
+
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                 Message
@@ -118,7 +118,7 @@ const Contact = () => {
                 className="border-primary/20"
               />
             </div>
-            
+
             <Button type="submit" variant="default" className="w-full" size="lg">
               Send Message
             </Button>

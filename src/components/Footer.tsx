@@ -2,7 +2,7 @@ import { Linkedin, Instagram } from "lucide-react";
 import smcLogo from "@/assets/smc-logo.png";
 
 const SOCIAL_LINKS = {
-  linkedin: "https://www.linkedin.com/in/specialty-masters-club-0789893a8/",
+  linkedin: "https://www.linkedin.com/company/uw-foster-specialty-masters-student-club//",
   instagram: "https://www.instagram.com/smclub_uw/",
 };
 
@@ -20,9 +20,9 @@ const Footer = () => {
       <div className="section-container">
         <div className="grid md:grid-cols-3 gap-12 mb-8">
           <div>
-            <img 
-              src={smcLogo} 
-              alt="Specialty Masters Club" 
+            <img
+              src={smcLogo}
+              alt="Specialty Masters Club"
               className="h-20 w-auto mb-4 brightness-0 invert"
             />
             <p className="text-primary-foreground/80 mb-4">
@@ -50,7 +50,7 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          
+
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <nav className="space-y-2">
@@ -68,7 +68,7 @@ const Footer = () => {
               </a>
             </nav>
           </div>
-          
+
           <div>
             <h4 className="text-lg font-semibold mb-4">Address</h4>
             <p className="text-primary-foreground/80 mb-4">
@@ -99,7 +99,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="border-t border-primary-foreground/20 pt-8 text-center text-primary-foreground/80">
           <p>&copy; 2025 Specialty Masters Club. All rights reserved.</p>
         </div>

@@ -28,11 +28,11 @@ const Index = () => {
       <section className="section-container bg-lavender">
         <div className="text-center slide-up">
           <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-            Upcoming Q2 Events
+            Events
           </h2>
           <div className="w-24 h-1 bg-gold mx-auto mb-8" />
           <p className="text-foreground/80 max-w-2xl mx-auto mb-8">
-            Check out our upcoming fireside chats, workshops, and networking events for this quarter.
+            Check out our previous and upcoming fireside chats, workshops, and networking events .
           </p>
           <Button
             size="lg"
@@ -45,9 +45,9 @@ const Index = () => {
         </div>
       </section>
 
-      <Join />
+      {/* <Join /> */}
       {/* <Projects /> */}
-      <JoinTeam />
+      {/* <JoinTeam /> */}
       <Newsletter />
       <Contact />
       <Footer />

@@ -62,10 +62,10 @@ const Footer = () => {
             <nav className="space-y-2">
               <button onClick={scrollToTop} className="block hover:text-gold transition-colors">
                 Home
-              </button>
+              {/* </button> */}
              
-              <button onClick={() => scrollToSection('join')} className="block hover:text-gold transition-colors">
-                Join
+              {/* <button onClick={() => scrollToSection('join')} className="block hover:text-gold transition-colors">
+                Join */}
               </button>
               <a href="mailto:smcommittee@uw.edu" className="block hover:text-gold transition-colors">
 

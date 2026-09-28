@@ -14,7 +14,7 @@ const Events = () => {
             height="1200"
             frameBorder="0"
             allowFullScreen
-            title="Upcoming Events"
+            title="Events"
             className="w-full min-h-[80vh]"
           />
         </div>

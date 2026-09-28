@@ -83,7 +83,7 @@ const MeetTheTeam = () => {
     {
       name: "Akshaya Jonnalagadda",
       role: "Strategy: AI & Tech and Alumni & Relations ",
-      departments: ["strategy"],
+      departments: ["strategy", "tech"],
       major: "MSIS",
       image: AkshayaImg,
       linkedin: "https://www.linkedin.com/in/akshaya-jonnalagadda-00a30615a",
@@ -104,16 +104,6 @@ const MeetTheTeam = () => {
     },
 
     // Function Leads — AI & Tech
-    {
-      name: "Akshaya Jonnalagadda",
-      role: "Head, AI & Tech",
-      departments: ["tech"],
-      major: "MSIS",
-      image: AkshayaImg,
-      linkedin: "https://www.linkedin.com/in/akshaya-jonnalagadda-00a30615a",
-      isPlaceholder: false,
-      isHead: true
-    },
     {
       name: "Emerson Liu",
       role: "Head, AI & Tech",
@@ -193,13 +183,7 @@ const MeetTheTeam = () => {
   ];
   const filteredMembers = activeFilter === "all"
     ? teamMembers
-    : teamMembers.filter(m => m.department === activeFilter);
-
-  // Group members by department for "all" view
-  const groupedByDepartment = departments.slice(1).map(dept => ({
-    ...dept,
-    members: teamMembers.filter(m => m.department === dept.key)
-  })).filter(group => group.members.length > 0);
+    : teamMembers.filter(m => m.departments.includes(activeFilter as MemberDepartment));
 
   return (
     <div className="min-h-screen bg-background">

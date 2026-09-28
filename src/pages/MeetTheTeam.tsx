@@ -104,16 +104,6 @@ const MeetTheTeam = () => {
 
     // Function Leads — AI & Tech
     {
-      name: "Akshaya Jonnalagadda",
-      role: "Head, AI & Tech",
-      department: "tech",
-      major: "MSIS",
-      image: AkshayaImg,
-      linkedin: "https://www.linkedin.com/in/akshaya-jonnalagadda-00a30615a",
-      isPlaceholder: false,
-      isHead: true
-    },
-    {
       name: "Emerson Liu",
       role: "Head, AI & Tech",
       department: "tech",

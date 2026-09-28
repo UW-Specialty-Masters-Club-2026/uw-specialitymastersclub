@@ -79,6 +79,16 @@ const MeetTheTeam = () => {
       linkedin: "https://www.linkedin.com/in/savleenkaurmsba",
       isPlaceholder: false
     },
+    {
+      name: "Akshaya Jonnalagadda",
+      role: "Strategy: AI & Tech and Alumni & Relations ",
+      department: "strategy",
+      major: "MSIS",
+      image: AkshayaImg,
+      linkedin: "https://www.linkedin.com/in/akshaya-jonnalagadda-00a30615a",
+      isPlaceholder: false,
+      isHead: true
+    },
 
     // Function Leads — Marketing & Communications
     {

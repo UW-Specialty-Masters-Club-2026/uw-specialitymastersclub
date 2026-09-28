@@ -3,7 +3,7 @@ const Events = () => {
     <section id="events" className="section-container bg-lavender">
       <div className="text-center slide-up">
         <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-          Upcoming Q2 Events
+          Previous Events
         </h2>
         <div className="w-24 h-1 bg-gold mx-auto mb-12" />
 

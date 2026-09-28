@@ -55,7 +55,7 @@ const MeetTheTeam = () => {
     {
       name: "Sai Saranya Kannan",
       role: "President",
-      departments: ["leads"],
+      departments: ["strategy","leads"],
       major: "MSBA",
       image: SaranyaImg,
       linkedin: "https://www.linkedin.com/in/saisaranyakannan",
@@ -64,7 +64,7 @@ const MeetTheTeam = () => {
     {
       name: "Kaylee Goulding",
       role: "VP / Secretary, Marketing & Communications",
-      departments: ["leads"],
+      departments: ["strategy","leads"],
       major: "MSBA",
       image: KayleeImg,
       linkedin: "https://www.linkedin.com/in/kaylee-goulding",
@@ -74,7 +74,7 @@ const MeetTheTeam = () => {
     {
       name: "Savleen Kaur",
       role: "Strategy: Operations & Case Competitions",
-      departments: ["strategy"],
+      departments: ["strategy","casecomp", "operations"],
       major: "MSBA",
       image: SavleenImg,
       linkedin: "https://www.linkedin.com/in/savleenkaurmsba",
@@ -83,7 +83,7 @@ const MeetTheTeam = () => {
     {
       name: "Akshaya Jonnalagadda",
       role: "Strategy: AI & Tech and Alumni & Relations ",
-      departments: ["strategy", "tech"],
+      departments: ["strategy", "tech", "alumni"],
       major: "MSIS",
       image: AkshayaImg,
       linkedin: "https://www.linkedin.com/in/akshaya-jonnalagadda-00a30615a",

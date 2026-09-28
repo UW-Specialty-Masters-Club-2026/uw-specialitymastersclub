@@ -20,11 +20,12 @@ import VyImg from "@/assets/team/Vy.jpg";
 import RaeannImg from "@/assets/team/Raeann.jpg";
 
 type Department = "all" | "leads" | "strategy" | "alumni" | "tech" | "casecomp" | "operations";
+type MemberDepartment = Exclude<Department, "all">;
 type Major = "MSBA" | "MSIS" | "MSCM";
 interface TeamMember {
   name: string;
   role: string;
-  department: Department;
+  departments: MemberDepartment[];
   major: Major;
   image: string | null;
   linkedin: string | null;

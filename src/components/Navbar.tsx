@@ -41,7 +41,7 @@ const Navbar = () => {
   const navLinks = [
     { label: "Home", path: "/", hash: null },
     { label: "Team", path: "/team", hash: null },
-    { label: "Join", path: "/join", hash: null },
+    // { label: "Join", path: "/join", hash: null },
     { label: "Articles", path: "/articles", hash: null },
     { label: "Newsletter", path: "/newsletters", hash: null },
     { label: "Events", path: "/events", hash: null },
@@ -82,14 +82,14 @@ const Navbar = () => {
                 <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gold group-hover:w-3/4 transition-all duration-300 rounded-full" />
               </button>
             ))}
-            <Button
+            {/* <Button
               variant="gold"
               size="default"
               className="ml-4"
               onClick={() => window.open('https://smcfoster.notion.site/3580984ab5b68069996bf623248354cb?pvs=105', '_blank')}
             >
               Register Now
-            </Button>
+            </Button> */}
           </div>
 
           {/* Mobile Menu Button */}

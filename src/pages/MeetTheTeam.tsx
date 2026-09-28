@@ -20,11 +20,12 @@ import VyImg from "@/assets/team/Vy.jpg";
 import RaeannImg from "@/assets/team/Raeann.jpg";
 
 type Department = "all" | "leads" | "strategy" | "alumni" | "tech" | "casecomp" | "operations";
+type MemberDepartment = Exclude<Department, "all">;
 type Major = "MSBA" | "MSIS" | "MSCM";
 interface TeamMember {
   name: string;
   role: string;
-  department: Department;
+  departments: MemberDepartment[];
   major: Major;
   image: string | null;
   linkedin: string | null;
@@ -54,7 +55,7 @@ const MeetTheTeam = () => {
     {
       name: "Sai Saranya Kannan",
       role: "President",
-      department: "leads",
+      departments: ["leads"],
       major: "MSBA",
       image: SaranyaImg,
       linkedin: "https://www.linkedin.com/in/saisaranyakannan",
@@ -63,7 +64,7 @@ const MeetTheTeam = () => {
     {
       name: "Kaylee Goulding",
       role: "VP / Secretary, Marketing & Communications",
-      department: "leads",
+      departments: ["leads"],
       major: "MSBA",
       image: KayleeImg,
       linkedin: "https://www.linkedin.com/in/kaylee-goulding",
@@ -73,7 +74,7 @@ const MeetTheTeam = () => {
     {
       name: "Savleen Kaur",
       role: "Strategy: Operations & Case Competitions",
-      department: "strategy",
+      departments: ["strategy"],
       major: "MSBA",
       image: SavleenImg,
       linkedin: "https://www.linkedin.com/in/savleenkaurmsba",
@@ -82,7 +83,7 @@ const MeetTheTeam = () => {
     {
       name: "Akshaya Jonnalagadda",
       role: "Strategy: AI & Tech and Alumni & Relations ",
-      department: "strategy",
+      departments: ["strategy", "tech"],
       major: "MSIS",
       image: AkshayaImg,
       linkedin: "https://www.linkedin.com/in/akshaya-jonnalagadda-00a30615a",
@@ -94,7 +95,7 @@ const MeetTheTeam = () => {
     {
       name: "Vy Doan",
       role: "Marketing & Communications",
-      department: "strategy",
+      departments: ["strategy"],
       major: "MSBA",
       image: VyImg,
       linkedin: "https://www.linkedin.com/in/vydoan10/",
@@ -104,19 +105,9 @@ const MeetTheTeam = () => {
 
     // Function Leads — AI & Tech
     {
-      name: "Akshaya Jonnalagadda",
-      role: "Head, AI & Tech",
-      department: "tech",
-      major: "MSIS",
-      image: AkshayaImg,
-      linkedin: "https://www.linkedin.com/in/akshaya-jonnalagadda-00a30615a",
-      isPlaceholder: false,
-      isHead: true
-    },
-    {
       name: "Emerson Liu",
       role: "Head, AI & Tech",
-      department: "tech",
+      departments: ["tech"],
       major: "MSIS",
       image: EmersonImg,
       linkedin: "https://www.linkedin.com/in/emerson-liu-74a184352/"  ,
@@ -128,7 +119,7 @@ const MeetTheTeam = () => {
     {
       name: "Lalitha Pammi",
       role: "Head, Alumni",
-      department: "alumni",
+      departments: ["alumni"],
       major: "MSIS",
       image: LalithaImg,
       linkedin: "https://www.linkedin.com/in/lalitha-pammi",
@@ -138,7 +129,7 @@ const MeetTheTeam = () => {
     {
       name: "Divya",
       role: "Head, Alumni",
-      department: "alumni",
+      departments: ["alumni"],
       major: "MSIS",
       image: DivyaImg,
       linkedin: "https://www.linkedin.com/in/divya-rawal-pd/",
@@ -150,7 +141,7 @@ const MeetTheTeam = () => {
     {
       name: "Angela (Pin-Cheng) Tsao",
       role: "Head, Case Competitions & Career",
-      department: "casecomp",
+      departments: ["casecomp"],
       major: "MSIS",
       image: AngelaImg,
       linkedin: "https://www.linkedin.com/in/angela-tsao-903155353",
@@ -160,7 +151,7 @@ const MeetTheTeam = () => {
     {
       name: "Raeann Liu",
       role: "Head, Case Competitions & Career",
-      department: "casecomp",
+      departments: ["casecomp"],
       major: "MSCM",
       image: RaeannImg,
       linkedin: "https://www.linkedin.com/in/raeann-liu/",
@@ -172,7 +163,7 @@ const MeetTheTeam = () => {
     {
       name: "Elena Quan",
       role: "Head, Operations",
-      department: "operations",
+      departments: ["operations"],
       major: "MSBA",
       image: ElenaImg,
       linkedin: "https://www.linkedin.com/in/xinyu-quan",
@@ -182,7 +173,7 @@ const MeetTheTeam = () => {
     {
       name: "Alyssa Wang",
       role: "Head, Operations",
-      department: "operations",
+      departments: ["operations"],
       major: "MSBA",
       image: AlyssaImg,
       linkedin: "https://www.linkedin.com/in/alyssaw-ruoyu",
@@ -192,13 +183,7 @@ const MeetTheTeam = () => {
   ];
   const filteredMembers = activeFilter === "all"
     ? teamMembers
-    : teamMembers.filter(m => m.department === activeFilter);
-
-  // Group members by department for "all" view
-  const groupedByDepartment = departments.slice(1).map(dept => ({
-    ...dept,
-    members: teamMembers.filter(m => m.department === dept.key)
-  })).filter(group => group.members.length > 0);
+    : teamMembers.filter(m => m.departments.includes(activeFilter as MemberDepartment));
 
   return (
     <div className="min-h-screen bg-background">

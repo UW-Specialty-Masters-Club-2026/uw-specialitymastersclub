@@ -79,6 +79,15 @@ const MeetTheTeam = () => {
       linkedin: "https://www.linkedin.com/in/savleenkaurmsba",
       isPlaceholder: false
     },
+    {
+      name: "Akshaya Jonnalagadda",
+      role: "Strategy: AI & Alumni Relations",
+      department: "strategy",
+      major: "MSIS",
+      image: AkshayaImg,
+      linkedin: "https://www.linkedin.com/in/akshaya-jonnalagadda-00a30615a",
+      isPlaceholder: false
+    },
 
     // Function Leads — Marketing & Communications
     {
@@ -122,6 +131,16 @@ const MeetTheTeam = () => {
       major: "MSIS",
       image: LalithaImg,
       linkedin: "https://www.linkedin.com/in/lalitha-pammi",
+      isPlaceholder: false,
+      isHead: true
+    },
+    {
+      name: "Akshaya Jonnalagadda",
+      role: "Head, Alumni Relations",
+      department: "alumni",
+      major: "MSIS",
+      image: AkshayaImg,
+      linkedin: "https://www.linkedin.com/in/akshaya-jonnalagadda-00a30615a",
       isPlaceholder: false,
       isHead: true
     },

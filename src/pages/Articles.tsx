@@ -3,14 +3,15 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Newspaper, Calendar, User, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { articles, upcomingArticles } from "@/data/articles";
+import { useWordPressArticlesQuery } from "@/lib/wordpress/hooks";
 
 const Articles = () => {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("All");
+  const { data: articles = [], isLoading, isError, error } = useWordPressArticlesQuery();
 
   const categories = ["All", ...Array.from(new Set(articles.map(a => a.category)))];
-  const sortedArticles = [...articles].reverse();
+  const sortedArticles = [...articles];
   const filteredArticles = activeFilter === "All" 
     ? sortedArticles 
     : sortedArticles.filter(a => a.category === activeFilter);
@@ -72,6 +73,25 @@ const Articles = () => {
           ))}
         </div>
 
+        {isLoading && (
+          <div className="max-w-6xl mx-auto text-center py-12 text-foreground/70">
+            Loading articles from WordPress...
+          </div>
+        )}
+
+        {isError && (
+          <div className="max-w-6xl mx-auto text-center py-12 text-destructive">
+            {(error as Error)?.message || "Unable to load articles from WordPress."}
+          </div>
+        )}
+
+        {!isLoading && !isError && filteredArticles.length === 0 && (
+          <div className="max-w-6xl mx-auto text-center py-12 text-foreground/70">
+            No published WordPress articles found yet.
+          </div>
+        )}
+
+        {!isLoading && !isError && filteredArticles.length > 0 && (
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {filteredArticles.map((article) => (
             <article 
@@ -81,11 +101,15 @@ const Articles = () => {
             >
               {/* Article Image */}
               <div className="h-44 relative overflow-hidden">
-                <img 
-                  src={article.heroImage} 
-                  alt={article.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 brightness-110"
-                />
+                {article.heroImage ? (
+                  <img
+                    src={article.heroImage}
+                    alt={article.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 brightness-110"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-primary to-primary-dark" />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
                 <span className="absolute top-3 left-3 px-2 py-1 bg-gold/90 text-primary rounded-full text-xs font-semibold">
                   {article.category}
@@ -118,57 +142,10 @@ const Articles = () => {
             </article>
           ))}
         </div>
+        )}
       </section>
 
-      {/* Upcoming Articles Preview */}
-      <section className="section-container">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Coming <span className="text-gold">Soon</span>
-          </h2>
-          <div className="w-24 h-1 bg-gold mx-auto mb-6" />
-          <p className="text-foreground/70 text-lg">
-            More articles from our writers
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {upcomingArticles.map((article, index) => (
-            <article 
-              key={index}
-              className="bg-card rounded-2xl overflow-hidden border border-border card-hover group"
-            >
-              <div className="h-48 bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center">
-                <span className="text-6xl opacity-20 text-gold font-bold">
-                  0{index + 4}
-                </span>
-              </div>
-              <div className="p-6">
-                <span className="inline-block px-3 py-1 bg-gold/20 text-gold rounded-full text-sm font-medium mb-4">
-                  {article.category}
-                </span>
-                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-gold transition-colors">
-                  {article.title}
-                </h3>
-                <p className="text-foreground/70 mb-4 line-clamp-3">
-                  {article.excerpt}
-                </p>
-                <div className="flex items-center justify-between text-sm text-foreground/60">
-                  <div className="flex items-center gap-2">
-                    <User className="w-4 h-4" />
-                    <span>{article.author}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4" />
-                    <span>{article.date}</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
+      
       {/* Call to Action */}
       <section className="section-container">
         <div className="bg-primary rounded-3xl p-12 text-center relative overflow-hidden">

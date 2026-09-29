@@ -74,7 +74,7 @@ const MeetTheTeam = () => {
     {
       name: "Savleen Kaur",
       role: "Strategy: Operations & Case Competitions",
-      departments: ["strategy"],
+      departments: ["strategy","casecomp","operations" ],
       major: "MSBA",
       image: SavleenImg,
       linkedin: "https://www.linkedin.com/in/savleenkaurmsba",
@@ -83,7 +83,7 @@ const MeetTheTeam = () => {
     {
       name: "Akshaya Jonnalagadda",
       role: "Strategy: AI & Tech and Alumni & Relations ",
-      departments: ["strategy", "tech"],
+      departments: ["strategy", "tech", "alumni"],
       major: "MSIS",
       image: AkshayaImg,
       linkedin: "https://www.linkedin.com/in/akshaya-jonnalagadda-00a30615a",

@@ -212,3 +212,61 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Headless WordPress articles integration
+
+The articles pages now read published posts from a WordPress/CampusPress REST API (`_embed` enabled for author, featured media, and categories).
+
+### Public read configuration (Vite/browser-safe)
+
+Set these in your local `.env` (or deployment env):
+
+```bash
+VITE_WP_API_BASE_URL="https://your-campuspress-site.example"
+VITE_WP_POSTS_ENDPOINT="wp/v2/posts" # optional, defaults to wp/v2/posts
+```
+
+Notes:
+- `VITE_WP_API_BASE_URL` must be the real CampusPress WordPress site URL.
+- Slugs are used as route IDs (`/articles/:id`), so existing slugs like `ai-battleground` remain valid.
+
+### One-time migration from `src/data/articles.ts`
+
+A migration script is included to upload local article images to WordPress media and create/update posts idempotently by slug.
+
+```bash
+npm run migrate:wordpress-articles -- --dry-run
+```
+
+Run with writes enabled:
+
+```bash
+npm run migrate:wordpress-articles -- --no-dry-run
+```
+
+Server-side migration environment variables (never expose these in browser code):
+
+```bash
+WP_MIGRATION_BASE_URL="https://your-campuspress-site.example"
+WP_MIGRATION_USERNAME="your-wordpress-username"
+WP_MIGRATION_APP_PASSWORD="your-wordpress-application-password"
+
+# optional endpoint overrides
+WP_MIGRATION_POSTS_ENDPOINT="wp/v2/posts"
+WP_MIGRATION_CATEGORIES_ENDPOINT="wp/v2/categories"
+WP_MIGRATION_MEDIA_ENDPOINT="wp/v2/media"
+WP_MIGRATION_DRY_RUN="true"
+```
+
+Migration conventions:
+- `Article.id` -> WordPress post slug
+- `subtitle` -> post excerpt
+- `category` -> WordPress category (auto-created if missing)
+- `heroImage` -> featured media
+- `ContentBlock.highlight` -> `<blockquote class="smc-highlight" data-smc-highlight="true">...</blockquote>`
+- metadata (`author`, `authorAvatar`, `colabLink`) is preserved in a `data-smc-meta` content marker so it can be parsed back without requiring ACF/plugins
+
+Before running migration, you must provide:
+1. The exact CampusPress WordPress site URL.
+2. Confirmation that REST API writes/application passwords (or CampusPress-approved equivalent credentials) are enabled.
+3. A valid migration credential (`WP_MIGRATION_USERNAME` + `WP_MIGRATION_APP_PASSWORD` or equivalent).

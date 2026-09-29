@@ -3,14 +3,16 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Newspaper, Calendar, User, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { articles, upcomingArticles } from "@/data/articles";
+import { upcomingArticles } from "@/data/articles";
+import { useWordPressArticlesQuery } from "@/lib/wordpress/hooks";
 
 const Articles = () => {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("All");
+  const { data: articles = [], isLoading, isError, error } = useWordPressArticlesQuery();
 
   const categories = ["All", ...Array.from(new Set(articles.map(a => a.category)))];
-  const sortedArticles = [...articles].reverse();
+  const sortedArticles = [...articles];
   const filteredArticles = activeFilter === "All" 
     ? sortedArticles 
     : sortedArticles.filter(a => a.category === activeFilter);
@@ -72,6 +74,25 @@ const Articles = () => {
           ))}
         </div>
 
+        {isLoading && (
+          <div className="max-w-6xl mx-auto text-center py-12 text-foreground/70">
+            Loading articles from WordPress...
+          </div>
+        )}
+
+        {isError && (
+          <div className="max-w-6xl mx-auto text-center py-12 text-destructive">
+            {(error as Error)?.message || "Unable to load articles from WordPress."}
+          </div>
+        )}
+
+        {!isLoading && !isError && filteredArticles.length === 0 && (
+          <div className="max-w-6xl mx-auto text-center py-12 text-foreground/70">
+            No published WordPress articles found yet.
+          </div>
+        )}
+
+        {!isLoading && !isError && filteredArticles.length > 0 && (
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {filteredArticles.map((article) => (
             <article 
@@ -81,11 +102,15 @@ const Articles = () => {
             >
               {/* Article Image */}
               <div className="h-44 relative overflow-hidden">
-                <img 
-                  src={article.heroImage} 
-                  alt={article.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 brightness-110"
-                />
+                {article.heroImage ? (
+                  <img
+                    src={article.heroImage}
+                    alt={article.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 brightness-110"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-primary to-primary-dark" />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
                 <span className="absolute top-3 left-3 px-2 py-1 bg-gold/90 text-primary rounded-full text-xs font-semibold">
                   {article.category}
@@ -118,6 +143,7 @@ const Articles = () => {
             </article>
           ))}
         </div>
+        )}
       </section>
 
       {/* Upcoming Articles Preview */}

@@ -1,15 +1,47 @@
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Calendar, User, ExternalLink } from "lucide-react";
-import { articles, getImageSrc, type ContentBlock } from "@/data/articles";
+import { ArrowLeft, ExternalLink } from "lucide-react";
+import type { ContentBlock } from "@/data/articles";
 import { Button } from "@/components/ui/button";
+import { useWordPressArticleBySlugQuery } from "@/lib/wordpress/hooks";
 
 const ArticleDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  
-  const article = articles.find(a => a.id === id);
+  const { data: article, isLoading, isError, error } = useWordPressArticleBySlugQuery(id);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="section-container pt-32 text-center text-foreground/70">
+          Loading article from WordPress...
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="section-container pt-32 text-center">
+          <h1 className="text-4xl font-bold text-foreground mb-4">Unable to Load Article</h1>
+          <p className="text-foreground/70 mb-8">{(error as Error)?.message || "Please try again later."}</p>
+          <button
+            onClick={() => navigate("/articles")}
+            className="inline-flex items-center gap-2 text-gold hover:underline"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Articles
+          </button>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!article) {
     return (
@@ -68,7 +100,7 @@ const ArticleDetail = () => {
       return (
         <div key={index} className="my-12">
           <img 
-            src={getImageSrc(block.src)} 
+            src={block.src}
             alt={block.alt || "Article image"} 
             className="w-full max-h-[500px] object-contain rounded-xl shadow-lg"
           />
@@ -84,11 +116,15 @@ const ArticleDetail = () => {
       
       {/* Hero */}
       <section className="relative h-[50vh] md:h-[60vh] overflow-hidden">
-        <img 
-          src={article.heroImage} 
-          alt={article.title}
-          className="w-full h-full object-cover"
-        />
+        {article.heroImage ? (
+          <img
+            src={article.heroImage}
+            alt={article.title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-primary to-primary-dark" />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
         
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16">

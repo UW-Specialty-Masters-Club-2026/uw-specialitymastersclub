@@ -1,25 +1,3 @@
-import articleHero from "@/assets/article-ai-hero.jpg";
-import articleSeattle from "@/assets/article-seattle-fifa.jpg";
-import articleBuilders from "@/assets/article-builders.jpg";
-import articleBattleground from "@/assets/article-ai-battleground.jpg";
-import articlePartnerships from "@/assets/article-partnerships.jpg";
-import articleGenaiProcess from "@/assets/article-genai-process.jpg";
-import articleGenaiFlowchart from "@/assets/article-genai-flowchart.png";
-import articleDigitalAdvertising from "@/assets/article-digital-advertising.jpg";
-import articleAiBuilderLearning from "@/assets/article-ai-builder-learning.jpg";
-import articleCaseCompetition from "@/assets/article-case-competition.jpg";
-import articleData4goodTeam from "@/assets/article-data4good-team.jpg";
-import articleData4goodPresenting from "@/assets/article-data4good-presenting.jpg";
-import articleData4goodSpeaking from "@/assets/article-data4good-speaking.jpg";
-import articleData4goodGroup from "@/assets/article-data4good-group.jpg";
-import articleTcuCheck from "@/assets/article-tcu-check.jpg";
-import articleTcuSpencer from "@/assets/article-tcu-spencer.jpg";
-import articleTcuStadium from "@/assets/article-tcu-stadium.jpg";
-import articleTcuAuditorium from "@/assets/article-tcu-auditorium.jpg";
-import articleTcuMascot from "@/assets/article-tcu-mascot.jpg";
-import articleTcuNeeley from "@/assets/article-tcu-neeley.jpg";
-import articleTcuHandshake from "@/assets/article-tcu-handshake.jpg";
-import articleTcuCheck2 from "@/assets/article-tcu-check2.jpg";
 export type ContentBlock = {
   type: "paragraph" | "heading" | "list" | "highlight" | "image";
   text?: string;
@@ -41,27 +19,6 @@ export type Article = {
   colabLink?: string;
 };
 
-export const getImageSrc = (src: string) => {
-  switch (src) {
-    case "seattle": return articleSeattle;
-    case "builders": return articleBuilders;
-    case "partnerships": return articlePartnerships;
-    case "genai-flowchart": return articleGenaiFlowchart;
-    case "data4good-team": return articleData4goodTeam;
-    case "data4good-presenting": return articleData4goodPresenting;
-    case "data4good-speaking": return articleData4goodSpeaking;
-    case "data4good-group": return articleData4goodGroup;
-    case "tcu-check": return articleTcuCheck;
-    case "tcu-spencer": return articleTcuSpencer;
-    case "tcu-stadium": return articleTcuStadium;
-    case "tcu-auditorium": return articleTcuAuditorium;
-    case "tcu-mascot": return articleTcuMascot;
-    case "tcu-neeley": return articleTcuNeeley;
-    case "tcu-handshake": return articleTcuHandshake;
-    case "tcu-check2": return articleTcuCheck2;
-    default: return articleBuilders;
-  }
-};
 
 export const articles: Article[] = [
   {
@@ -72,7 +29,7 @@ export const articles: Article[] = [
     authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=AM&backgroundColor=4a154b",
     date: "December 2025",
     category: "Opinion",
-    heroImage: articleBattleground,
+    heroImage: "article-ai-battleground",
     content: [
       {
         type: "paragraph",
@@ -231,7 +188,7 @@ export const articles: Article[] = [
     authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=AG&backgroundColor=2d5016",
     date: "December 2025",
     category: "Technology",
-    heroImage: articleHero,
+    heroImage: "article-ai-hero",
     content: [
       {
         type: "paragraph",
@@ -423,7 +380,7 @@ export const articles: Article[] = [
     authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=DB&backgroundColor=1e3a5f",
     date: "December 2025",
     category: "Technical",
-    heroImage: articleGenaiProcess,
+    heroImage: "article-genai-process",
     content: [
       {
         type: "paragraph",
@@ -540,7 +497,7 @@ export const articles: Article[] = [
     authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=T11&backgroundColor=c9a227",
     date: "January 2026",
     category: "Analytics",
-    heroImage: articleDigitalAdvertising,
+    heroImage: "article-digital-advertising",
     colabLink: "https://colab.research.google.com/drive/1AoCMXUS48Cxi-fDcjru6bKniGP1Xo8nG#scrollTo=3X4KbztAsX-G",
     content: [
       {
@@ -602,7 +559,7 @@ export const articles: Article[] = [
     authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=VC&backgroundColor=4a154b",
     date: "January 2026",
     category: "Education",
-    heroImage: articleAiBuilderLearning,
+    heroImage: "article-ai-builder-learning",
     content: [
       {
         type: "paragraph",
@@ -714,7 +671,7 @@ export const articles: Article[] = [
     authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=HN&backgroundColor=1a5f7a",
     date: "January 2026",
     category: "Career",
-    heroImage: articleCaseCompetition,
+    heroImage: "article-case-competition",
     content: [
       {
         type: "paragraph",
@@ -782,7 +739,7 @@ export const articles: Article[] = [
     authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=AWAN&backgroundColor=1e3a5f",
     date: "February 2026",
     category: "Competition",
-    heroImage: articleData4goodGroup,
+    heroImage: "article-data4good-group",
     content: [
       {
         type: "image",
@@ -854,7 +811,7 @@ export const articles: Article[] = [
     authorAvatar: "https://api.dicebear.com/7.x/initials/svg?seed=KCIC&backgroundColor=4a154b",
     date: "February 2026",
     category: "Competition",
-    heroImage: articleTcuCheck,
+    heroImage: "article-tcu-check",
     content: [
       {
         type: "image",

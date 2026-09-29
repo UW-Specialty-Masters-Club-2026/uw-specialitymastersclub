@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Newspaper, Calendar, User, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { upcomingArticles } from "@/data/articles";
 import { useWordPressArticlesQuery } from "@/lib/wordpress/hooks";
 
 const Articles = () => {
@@ -146,55 +145,7 @@ const Articles = () => {
         )}
       </section>
 
-      {/* Upcoming Articles Preview */}
-      <section className="section-container">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Coming <span className="text-gold">Soon</span>
-          </h2>
-          <div className="w-24 h-1 bg-gold mx-auto mb-6" />
-          <p className="text-foreground/70 text-lg">
-            More articles from our writers
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {upcomingArticles.map((article, index) => (
-            <article 
-              key={index}
-              className="bg-card rounded-2xl overflow-hidden border border-border card-hover group"
-            >
-              <div className="h-48 bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center">
-                <span className="text-6xl opacity-20 text-gold font-bold">
-                  0{index + 4}
-                </span>
-              </div>
-              <div className="p-6">
-                <span className="inline-block px-3 py-1 bg-gold/20 text-gold rounded-full text-sm font-medium mb-4">
-                  {article.category}
-                </span>
-                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-gold transition-colors">
-                  {article.title}
-                </h3>
-                <p className="text-foreground/70 mb-4 line-clamp-3">
-                  {article.excerpt}
-                </p>
-                <div className="flex items-center justify-between text-sm text-foreground/60">
-                  <div className="flex items-center gap-2">
-                    <User className="w-4 h-4" />
-                    <span>{article.author}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4" />
-                    <span>{article.date}</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
+      
       {/* Call to Action */}
       <section className="section-container">
         <div className="bg-primary rounded-3xl p-12 text-center relative overflow-hidden">

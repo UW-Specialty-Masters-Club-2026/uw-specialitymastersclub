@@ -1,5 +1,5 @@
 import { buildWordPressApiUrl } from "./config";
-import type { WordPressPost, WordPressReadConfig } from "./types";
+import type { WordPressPage, WordPressPost, WordPressReadConfig } from "./types";
 
 const requestWordPressJson = async <T>(url: URL): Promise<{ data: T; headers: Headers }> => {
   const response = await fetch(url.toString());
@@ -48,5 +48,14 @@ export const fetchWordPressPostBySlug = async (
   });
 
   const { data } = await requestWordPressJson<WordPressPost[]>(url);
+  return data[0] || null;
+};
+
+export const fetchWordPressPageBySlug = async (
+  config: WordPressReadConfig,
+  slug: string,
+): Promise<WordPressPage | null> => {
+  const url = buildWordPressApiUrl(config, { _embed: true, per_page: 1, slug, status: "publish" }, config.pagesEndpoint);
+  const { data } = await requestWordPressJson<WordPressPage[]>(url);
   return data[0] || null;
 };

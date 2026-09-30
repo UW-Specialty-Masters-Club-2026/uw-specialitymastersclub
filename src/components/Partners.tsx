@@ -1,5 +1,8 @@
+import { useWordPressPartnersQuery } from "@/lib/wordpress/hooks";
+
 const Partners = () => {
-  const partners = [
+  const { data: partners = [] } = useWordPressPartnersQuery();
+  /* const partners = [
     {
       name: "UW Foster",
       logo: "https://foster.uw.edu/wp-content/uploads/2018/09/Foster-logo-purple.png"
@@ -16,7 +19,7 @@ const Partners = () => {
       name: "Industry Partners",
       logo: "https://via.placeholder.com/200x80/4B2E83/FFFFFF?text=Partners"
     }
-  ];
+  ]; */
 
   return (
     <section className="section-container bg-lavender">

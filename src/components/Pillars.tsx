@@ -1,9 +1,13 @@
 import { Users, Trophy, Cpu } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useWordPressHomepageQuery } from "@/lib/wordpress/hooks";
 
 const Pillars = () => {
-  const pillars = [
+  const { data } = useWordPressHomepageQuery();
+  const iconMap = [Users, Trophy, Cpu];
+  const pillars = data?.pillars || [];
+  /* const pillars = [
     {
       icon: Users,
       title: "Community & Connection",
@@ -33,7 +37,7 @@ const Pillars = () => {
         "Real-world Foster AI applications and ROI modeling"
       ]
     }
-  ];
+  ]; */
 
   return (
     <section className="section-container bg-background">
@@ -45,7 +49,9 @@ const Pillars = () => {
       </div>
       
       <div className="grid md:grid-cols-3 gap-8">
-        {pillars.map((pillar, index) => (
+        {pillars.map((pillar, index) => {
+          const Icon = iconMap[index] || Users;
+          return (
           <Card 
             key={index} 
             className="card-hover border-2 border-lavender bg-card slide-up transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30"
@@ -53,7 +59,7 @@ const Pillars = () => {
           >
             <CardHeader>
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <pillar.icon className="h-8 w-8 text-primary" />
+                <Icon className="h-8 w-8 text-primary" />
               </div>
               <CardTitle className="text-2xl text-primary">{pillar.title}</CardTitle>
             </CardHeader>
@@ -68,7 +74,8 @@ const Pillars = () => {
               </ul>
             </CardContent>
           </Card>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

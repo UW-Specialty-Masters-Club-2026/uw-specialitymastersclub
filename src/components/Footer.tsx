@@ -1,5 +1,5 @@
 import { Linkedin, Instagram } from "lucide-react";
-import smcLogo from "@/assets/smc-logo.png";
+import { useWordPressHomepageQuery } from "@/lib/wordpress/hooks";
 
 const SOCIAL_LINKS = {
   linkedin: "https://www.linkedin.com/company/uw-foster-specialty-masters-student-club//",
@@ -7,6 +7,7 @@ const SOCIAL_LINKS = {
 };
 
 const Footer = () => {
+  const { data } = useWordPressHomepageQuery();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -27,7 +28,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12 mb-8">
           <div>
             <img
-              src={smcLogo}
+              src={data?.logo || ""}
               alt="Specialty Masters Club"
               className="h-20 w-auto mb-4 brightness-0 invert"
             />

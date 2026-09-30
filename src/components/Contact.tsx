@@ -1,6 +1,9 @@
 import { Mail, Linkedin, Instagram } from "lucide-react";
+import { useWordPressHomepageQuery } from "@/lib/wordpress/hooks";
 
 const Contact = () => {
+  const { data } = useWordPressHomepageQuery();
+  const contact = data?.contact;
   return (
     <section id="contact" className="section-container bg-background">
       <div className="text-center mb-16 slide-up">
@@ -22,10 +25,10 @@ const Contact = () => {
             <div>
               <p className="font-semibold text-foreground">Email</p>
               <a
-                href="mailto:smcommittee@uw.edu"
+                href={`mailto:${contact?.email || ""}`}
                 className="text-gold hover:underline"
               >
-                smcommittee@uw.edu
+                {contact?.email}
               </a>
             </div>
           </div>
@@ -37,7 +40,7 @@ const Contact = () => {
             <div>
               <p className="font-semibold text-foreground">LinkedIn</p>
               <a
-                href="https://www.linkedin.com/company/uw-foster-specialty-masters-student-club//"
+                href={contact?.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gold hover:underline"
@@ -54,7 +57,7 @@ const Contact = () => {
             <div>
               <p className="font-semibold text-foreground">Instagram</p>
               <a
-                href="https://www.instagram.com/smclub_uw/"
+                href={contact?.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gold hover:underline"

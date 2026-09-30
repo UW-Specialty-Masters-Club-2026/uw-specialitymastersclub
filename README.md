@@ -213,9 +213,9 @@ npm i
 npm run dev
 ```
 
-## Headless WordPress articles integration
+## Headless WordPress content integration
 
-The articles pages now read published posts from a WordPress/CampusPress REST API (`_embed` enabled for author, featured media, and categories).
+The frontend reads published content from the UW CampusPress WordPress REST API (`_embed` enabled for author, featured media, categories, and media). Events intentionally remain embedded from Notion.
 
 ### Public read configuration (Vite/browser-safe)
 
@@ -224,24 +224,28 @@ Set these in your local `.env` (or deployment env):
 ```bash
 VITE_WP_API_BASE_URL="https://your-campuspress-site.example"
 VITE_WP_POSTS_ENDPOINT="wp/v2/posts" # optional, defaults to wp/v2/posts
+VITE_WP_PAGES_ENDPOINT="wp/v2/pages" # optional, defaults to wp/v2/pages
+VITE_WP_MEDIA_ENDPOINT="wp/v2/media" # optional, defaults to wp/v2/media
 ```
 
 Notes:
 - `VITE_WP_API_BASE_URL` must be the real CampusPress WordPress site URL.
 - Slugs are used as route IDs (`/articles/:id`), so existing slugs like `ai-battleground` remain valid.
 
-### One-time migration from `src/data/articles.ts`
+### CMS content migration
 
-A migration script is included to upload local article images to WordPress media and create/update posts idempotently by slug.
+A migration script uploads the local site media and creates/updates homepage, partner, team, newsletter, gallery, and article records idempotently. It is safe to rerun and uses request spacing plus exponential backoff with jitter for CampusPress throttling.
 
 ```bash
 npm run migrate:wordpress-articles -- --dry-run
+npm run migrate:wordpress-content -- --dry-run
 ```
 
 Run with writes enabled:
 
 ```bash
 npm run migrate:wordpress-articles -- --no-dry-run
+npm run migrate:wordpress-content -- --no-dry-run
 ```
 
 Server-side migration environment variables (never expose these in browser code):
@@ -253,13 +257,19 @@ WP_MIGRATION_APP_PASSWORD="your-wordpress-application-password"
 
 # optional endpoint overrides
 WP_MIGRATION_POSTS_ENDPOINT="wp/v2/posts"
+WP_MIGRATION_PAGES_ENDPOINT="wp/v2/pages"
 WP_MIGRATION_CATEGORIES_ENDPOINT="wp/v2/categories"
 WP_MIGRATION_MEDIA_ENDPOINT="wp/v2/media"
 WP_MIGRATION_DRY_RUN="true"
 ```
 
 Migration conventions:
-- `Article.id` -> WordPress post slug
+- Articles use `Article.id` -> WordPress post slug.
+- Homepage content -> reserved page slug `smc-homepage`.
+- Partners -> reserved page slug `smc-partners`.
+- Team -> posts in category `smc-team`.
+- Newsletters -> posts in category `smc-newsletter`.
+- Gallery -> posts in category `smc-gallery`.
 - `subtitle` -> post excerpt
 - `category` -> WordPress category (auto-created if missing)
 - `heroImage` -> featured media

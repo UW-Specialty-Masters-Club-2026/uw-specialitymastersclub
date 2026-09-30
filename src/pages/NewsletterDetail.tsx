@@ -3,13 +3,14 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { newsletters } from "@/data/newsletters";
+import { useWordPressNewsletterBySlugQuery } from "@/lib/wordpress/hooks";
 
 const NewsletterDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const [copied, setCopied] = useState(false);
+  const { data: newsletter, isLoading } = useWordPressNewsletterBySlugQuery(slug);
 
-  const newsletter = newsletters.find(n => n.slug === slug);
+  if (isLoading) return <div className="min-h-screen bg-background"><Navbar /><main className="pt-32 text-center">Loading newsletter from WordPress...</main><Footer /></div>;
 
   if (!newsletter) {
     return <Navigate to="/newsletters" replace />;

@@ -1,5 +1,8 @@
+import { useWordPressGalleryQuery } from "@/lib/wordpress/hooks";
+
 const Gallery = () => {
-  const images = [
+  const { data: images = [] } = useWordPressGalleryQuery();
+  /* const images = [
     {
       url: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop",
       caption: "SMC Networking Mixer"
@@ -24,7 +27,7 @@ const Gallery = () => {
       url: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=600&fit=crop",
       caption: "Team Collaboration"
     }
-  ];
+  ]; */
 
   return (
     <section className="section-container bg-background">

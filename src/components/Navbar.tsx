@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
-import smcLogo from "@/assets/smc-logo.png";
+import { useWordPressHomepageQuery } from "@/lib/wordpress/hooks";
 
 const Navbar = () => {
+  const { data } = useWordPressHomepageQuery();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ const Navbar = () => {
             className="hover:scale-105 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
           >
             <img 
-              src={smcLogo} 
+              src={data?.logo || ""}
               alt="Specialty Masters Committee" 
               className={`w-auto transition-all duration-300 ${isScrolled ? "h-12 md:h-14" : "h-14 md:h-20"}`}
             />

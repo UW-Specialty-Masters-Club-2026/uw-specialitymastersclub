@@ -12,6 +12,22 @@ const escapeHtml = (value: string) =>
 
 const normalizeText = (value?: string) => value?.trim() || "";
 
+export const serializeDataMarker = (name: string, value: unknown) =>
+  `<div data-smc-marker="${escapeHtml(name)}" data-smc-json="${escapeHtml(JSON.stringify(value))}"></div>`;
+
+export const parseDataMarker = <T>(html: string, name: string): T | null => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(`<div>${html}</div>`, "text/html");
+  const marker = doc.querySelector<HTMLElement>(`[data-smc-marker="${name}"]`);
+  const value = marker?.getAttribute("data-smc-json");
+  if (!value) return null;
+  try {
+    return JSON.parse(value) as T;
+  } catch {
+    return null;
+  }
+};
+
 const serializeMeta = (meta: ParsedSmcMeta) => {
   const attrs: string[] = ['data-smc-meta="true"'];
 

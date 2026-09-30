@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { newsletters } from "@/data/newsletters";
+import { useWordPressNewslettersQuery } from "@/lib/wordpress/hooks";
+import type { Newsletter } from "@/lib/wordpress/types";
 
-const NewsletterCard = ({ newsletter }: { newsletter: typeof newsletters[0] }) => {
+const NewsletterCard = ({ newsletter }: { newsletter: Newsletter }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopyLink = (e: React.MouseEvent) => {
@@ -97,6 +98,7 @@ const NewsletterCard = ({ newsletter }: { newsletter: typeof newsletters[0] }) =
 
 const Newsletters = () => {
   const [selectedEdition, setSelectedEdition] = useState<string>("all");
+  const { data: newsletters = [], isLoading, isError } = useWordPressNewslettersQuery();
 
   const filteredNewsletters = selectedEdition === "all"
     ? newsletters
@@ -124,6 +126,9 @@ const Newsletters = () => {
               Stay updated with the latest news, insights, and stories from the Specialty Masters Club community.
             </p>
           </div>
+
+          {isLoading && <p className="text-muted-foreground mb-8">Loading newsletters from WordPress...</p>}
+          {isError && <p className="text-destructive mb-8">Unable to load newsletters from WordPress.</p>}
 
           {/* Edition Filter */}
           <div className="mb-8 flex flex-wrap items-center gap-3">

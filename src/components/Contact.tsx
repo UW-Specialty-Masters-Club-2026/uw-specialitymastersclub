@@ -45,7 +45,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="text-gold hover:underline"
               >
-                Specialty Masters Club
+                UW Foster Specialty Masters Student Club
               </a>
             </div>
           </div>

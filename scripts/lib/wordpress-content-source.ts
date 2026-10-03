@@ -90,13 +90,13 @@ export const createWordPressContentSource = (): WordPressContentSource => {
       { name: "Seattle Public Library", logo: "https://via.placeholder.com/200x80/4B2E83/FFFFFF?text=SPL" },
       { name: "Industry Partners", logo: "https://via.placeholder.com/200x80/4B2E83/FFFFFF?text=Partners" },
     ]) },
-    ...team.map(([slug, name, role, departments, major, file, linkedin, isHead]) => ({
+    ...team.map(([slug, name, role, departments, major, file, linkedin, website, isHead]) => ({
       kind: "post" as const,
       slug,
       title: name,
       category: "smc-team",
       excerpt: role,
-      content: serializeDataMarker("team", { role, departments, major, linkedin, isPlaceholder: false, isHead, image: file }),
+      content: serializeDataMarker("team", { role, departments, major, linkedin,website, isPlaceholder: false, isHead, image: file }),
       mediaKey: file,
     })),
     { kind: "post", slug: "vol-1", title: "Specialty Masters Club Newsletter", category: "smc-newsletter", excerpt: "How Specialized Masters students are shaping the future of work.", content: serializeDataMarker("newsletter", { volume: "Vol. 1", highlights: ["Technology Landscape & Emerging Trends", "Case Competitions: Strategy & Preparation", "Student Opinion Page", "About the Specialty Masters Club"], pdfKey: "newsletter-vol-1.pdf" }) },

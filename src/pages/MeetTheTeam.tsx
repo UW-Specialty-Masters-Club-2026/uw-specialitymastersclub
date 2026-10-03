@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Card, CardContent } from "@/components/ui/card";
-import { Linkedin, Camera } from "lucide-react";
+import { Linkedin, Globe, Camera } from "lucide-react";
 import { useWordPressTeamQuery } from "@/lib/wordpress/hooks";
 import type { TeamMember } from "@/lib/wordpress/types";
 
@@ -40,7 +40,10 @@ const MeetTheTeam = () => {
 const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => <Card className="card-hover bg-card border-0 shadow-lg slide-up overflow-hidden group" style={{ animationDelay: `${index * 0.05}s` }}>
   <CardContent className="p-4 text-center"><div className="relative w-28 h-28 md:w-32 md:h-32 mx-auto mb-4"><div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${member.isHead ? "from-gold/30 to-primary/30" : "from-primary/20 to-gold/20"} transform rotate-6 group-hover:rotate-12 transition-transform duration-300`} /><div className={`relative w-full h-full rounded-2xl overflow-hidden bg-muted shadow-md ${member.isHead ? "ring-2 ring-gold" : ""}`}>{member.isPlaceholder || !member.image ? <div className="w-full h-full flex items-center justify-center bg-muted"><Camera className="w-12 h-12 text-muted-foreground/50" /></div> : <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />}</div></div>
     <h3 className="text-base md:text-lg font-bold text-foreground mb-1 line-clamp-1">{member.name}</h3><p className={`text-xs md:text-sm font-semibold uppercase tracking-wide mb-3 ${member.isHead ? "text-gold" : "text-gold/80"}`}>{member.role}</p>
-    {member.linkedin && !member.isPlaceholder && <button className="inline-flex items-center gap-1.5 text-primary hover:text-gold transition-colors duration-200" onClick={() => window.open(member.linkedin!, "_blank")}><Linkedin className="h-4 w-4" /><span className="text-xs font-medium">Connect</span></button>}
+    <div className="flex items-center justify-center gap-3 flex-wrap">
+      {member.linkedin && !member.isPlaceholder && <button className="inline-flex items-center gap-1.5 text-primary hover:text-gold transition-colors duration-200" onClick={() => window.open(member.linkedin!, "_blank")}><Linkedin className="h-4 w-4" /><span className="text-xs font-medium">Connect</span></button>}
+      {member.website && !member.isPlaceholder && <button className="inline-flex items-center gap-1.5 text-primary hover:text-gold transition-colors duration-200" onClick={() => window.open(member.website!, "_blank")}><Globe className="h-4 w-4" /><span className="text-xs font-medium">Website</span></button>}
+    </div>
   </CardContent>
 </Card>;
 

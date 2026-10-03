@@ -84,6 +84,7 @@ export const mapWordPressPostToTeamMember = (post: WordPressPost): TeamMember | 
     major: marker.major || "",
     image: getFeaturedMedia(post) || marker.image || null,
     linkedin: marker.linkedin || null,
+    website: marker.website || null,
     isPlaceholder: Boolean(marker.isPlaceholder),
     isHead: Boolean(marker.isHead),
   };

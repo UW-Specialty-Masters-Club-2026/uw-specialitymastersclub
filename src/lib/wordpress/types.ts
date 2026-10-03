@@ -78,6 +78,7 @@ export type TeamMember = {
   major: string;
   image: string | null;
   linkedin: string | null;
+  website?: string|null;
   isPlaceholder: boolean;
   isHead?: boolean;
 };

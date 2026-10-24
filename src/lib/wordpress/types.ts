@@ -27,6 +27,7 @@ export type WordPressTerm = {
 
 export type WordPressPost = {
   id: number;
+  link?: string;
   slug: string;
   date: string;
   title: WordPressRenderedField;
@@ -95,6 +96,17 @@ export type Newsletter = {
 };
 
 export type GalleryItem = { id: string; caption: string; url: string; alt: string };
+export type SMCEvent = {
+  id: number;
+  title: string;
+  image: string;
+  summary: string;
+  startAt?: string;
+  endAt?: string;
+  location: string;
+  rsvpUrl: string;
+  postUrl: string;
+};
 export type Partner = { name: string; logo: string; href?: string };
 
 export type { Article, ContentBlock };

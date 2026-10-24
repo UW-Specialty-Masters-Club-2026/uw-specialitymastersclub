@@ -215,7 +215,7 @@ npm run dev
 
 ## Headless WordPress content integration
 
-The frontend reads published content from the UW CampusPress WordPress REST API (`_embed` enabled for author, featured media, categories, and media). Events intentionally remain embedded from Notion.
+The frontend reads published content from the UW CampusPress WordPress REST API (`_embed` enabled for author, featured media, categories, and media). Events also load WordPress content and render as native event cards (see WordPress events below).
 
 ### Public read configuration (Vite/browser-safe)
 
@@ -280,3 +280,17 @@ Before running migration, you must provide:
 1. The exact CampusPress WordPress site URL.
 2. Confirmation that REST API writes/application passwords (or CampusPress-approved equivalent credentials) are enabled.
 3. A valid migration credential (`WP_MIGRATION_USERNAME` + `WP_MIGRATION_APP_PASSWORD` or equivalent).
+
+## WordPress events
+
+The Events page uses native cards loaded from WordPress, like the Team page. Post ID `219` is included as the initial event; future events should use the exact category name `smc-events`. Event posts are excluded from Articles. The existing `VITE_WP_API_BASE_URL` must point to `https://sites.uw.edu/smcommittee`.
+
+Use the post title, excerpt, and Featured Image for each card. Without a Featured Image, the first image in the post is used. Read more opens the original WordPress post. Posts without event metadata still appear under More Events with “Date to be announced”; publication dates are never treated as event dates.
+
+For scheduling and RSVP details, add a Custom HTML block to the WordPress post, following the same data-marker convention as Team records:
+
+```html
+<div data-smc-marker="event" data-smc-json='{"startAt":"2026-10-26T14:00:00-07:00","endAt":"2026-10-26T17:00:00-07:00","location":"Replace with the event venue","rsvpUrl":"https://example.com/replace-with-registration-link"}'></div>
+```
+
+These are example values; replace them with confirmed event details. Dates require ISO 8601 timestamps with a timezone offset (Seattle uses `-07:00` during daylight time and `-08:00` during standard time). Cards display times in America/Los_Angeles. An event remains upcoming until its end time, or start time if no end is supplied. Verify WordPress preserves the data attributes after saving. No application passwords or CMS writes are needed for the frontend.

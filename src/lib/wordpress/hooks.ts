@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllWordPressPosts, fetchWordPressPageBySlug, fetchWordPressPostBySlug } from "./client";
 import { getWordPressReadConfig } from "./config";
+import { isWordPressEventPost, mapWordPressPostToEvent } from "./mappers";
 import { filterWordPressArticlePosts, filterWordPressPostsByCategory, mapWordPressPageToHomepage, mapWordPressPageToPartners, mapWordPressPostToArticle, mapWordPressPostToGalleryItem, mapWordPressPostToNewsletter, mapWordPressPostToTeamMember } from "./mappers";
 
 const missingConfigError =
@@ -57,6 +58,14 @@ export const useWordPressHomepageQuery = () => useQuery({
 });
 
 export const useWordPressTeamQuery = () => useWordPressCategoryQuery("smc-team", mapWordPressPostToTeamMember);
+export const useWordPressEventsQuery = () => useQuery({
+  queryKey: ["wordpress", "events"],
+  queryFn: async () => {
+    const config = getWordPressReadConfig();
+    if (!config) throw new Error(missingConfigError);
+    return (await fetchAllWordPressPosts(config)).filter(isWordPressEventPost).map(mapWordPressPostToEvent);
+  },
+});
 export const useWordPressNewslettersQuery = () => useWordPressCategoryQuery("smc-newsletter", mapWordPressPostToNewsletter);
 export const useWordPressGalleryQuery = () => useWordPressCategoryQuery("smc-gallery", mapWordPressPostToGalleryItem);
 

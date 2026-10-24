@@ -1,5 +1,6 @@
 import type { Article, GalleryItem, HomepageContent, Newsletter, Partner, TeamMember, WordPressPage, WordPressPost } from "./types";
 import { parseDataMarker, parseWordPressHtmlContent } from "./contentBlocks";
+import type { SMCEvent } from "./types";
 
 const stripHtml = (html: string) => {
   const parser = new DOMParser();
@@ -118,7 +119,44 @@ export const mapWordPressPageToPartners = (page: WordPressPage): Partner[] =>
 export const filterWordPressPostsByCategory = (posts: WordPressPost[], category: string) =>
   posts.filter((post) => getPostCategoryNames(post).includes(category));
 
-const NON_ARTICLE_CATEGORIES = new Set(["smc-team", "smc-newsletter", "smc-gallery"]);
+const NON_ARTICLE_CATEGORIES = new Set(["smc-team", "smc-newsletter", "smc-gallery", "smc-events"]);
+
+export const isWordPressEventPost = (post: WordPressPost) =>
+  post.id === 219 || getPostCategoryNames(post).includes("smc-events");
+
+const safeWebUrl = (value: unknown): string => {
+  if (typeof value !== "string") return "";
+  try {
+    const url = new URL(value);
+    return ["https:", "http:"].includes(url.protocol) ? url.href : "";
+  } catch { return ""; }
+};
+
+const eventDate = (value: unknown): string | undefined => {
+  // Explicit offsets keep event times consistent for visitors in other timezones.
+  if (typeof value !== "string" || !/T.*(?:Z|[+-]\d{2}:\d{2})$/i.test(value)) return undefined;
+  return Number.isNaN(Date.parse(value)) ? undefined : value;
+};
+
+export const mapWordPressPostToEvent = (post: WordPressPost): SMCEvent => {
+  const html = post.content.rendered || "";
+  const metadata = parseDataMarker<Partial<SMCEvent>>(html, "event");
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  doc.querySelectorAll("[data-smc-marker], script, style").forEach((node) => node.remove());
+  const startAt = eventDate(metadata?.startAt);
+  const endAt = eventDate(metadata?.endAt);
+  return {
+    id: post.id,
+    title: decodeHtml(post.title.rendered || post.slug),
+    image: safeWebUrl(getFeaturedMedia(post)) || safeWebUrl(doc.querySelector("img")?.getAttribute("src")),
+    summary: stripHtml(post.excerpt.rendered || "") || (doc.body.textContent?.trim() || "").slice(0, 280),
+    startAt,
+    endAt: startAt && endAt && Date.parse(endAt) >= Date.parse(startAt) ? endAt : undefined,
+    location: typeof metadata?.location === "string" ? metadata.location : "",
+    rsvpUrl: safeWebUrl(metadata?.rsvpUrl),
+    postUrl: safeWebUrl(post.link) || (post.id === 219 ? "https://sites.uw.edu/smcommittee/2026/10/24/219/" : ""),
+  };
+};
 
 export const filterWordPressArticlePosts = (posts: WordPressPost[]) =>
-  posts.filter((post) => !getPostCategoryNames(post).some((category) => NON_ARTICLE_CATEGORIES.has(category)));
+  posts.filter((post) => !isWordPressEventPost(post) && !getPostCategoryNames(post).some((category) => NON_ARTICLE_CATEGORIES.has(category)));

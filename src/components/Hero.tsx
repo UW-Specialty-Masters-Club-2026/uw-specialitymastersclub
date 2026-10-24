@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useWordPressHomepageQuery } from "@/lib/wordpress/hooks";
 
 const Hero = () => {
+  const navigate = useNavigate();
   const { data } = useWordPressHomepageQuery();
   const hero = data?.hero;
   const scrollToSection = (sectionId: string) => {
@@ -38,7 +40,7 @@ const Hero = () => {
           <Button 
             variant="outline-gold" 
             size="lg"
-            onClick={() => scrollToSection('events')}
+            onClick={() => navigate("/events")}
             className="min-w-[200px]"
           >
             {hero?.secondaryCta || "Upcoming Events"}

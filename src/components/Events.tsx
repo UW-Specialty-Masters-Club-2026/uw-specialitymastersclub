@@ -1,6 +1,7 @@
 import { CalendarDays, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { getEventCta } from "@/lib/wordpress/eventCta";
 import { useWordPressEventsQuery } from "@/lib/wordpress/hooks";
 import type { SMCEvent } from "@/lib/wordpress/types";
 
@@ -9,24 +10,29 @@ const formatDate = (value: string) => new Intl.DateTimeFormat("en-US", {
   hour: "numeric", minute: "2-digit", timeZoneName: "short",
 }).format(new Date(value));
 
-const EventCard = ({ event }: { event: SMCEvent }) => (
-  <Card className="overflow-hidden border-0 shadow-lg card-hover">
-    {event.image && <img src={event.image} alt={`${event.title} poster`} loading="lazy" className="w-full h-72 object-contain bg-muted" />}
-    <CardContent className="p-6 space-y-4">
-      <h3 className="text-2xl font-bold text-primary">{event.title}</h3>
-      <p className="flex items-start gap-2 text-sm text-muted-foreground">
-        <CalendarDays className="h-5 w-5 shrink-0" aria-hidden="true" />
-        <span>{event.startAt ? <><time dateTime={event.startAt}>{formatDate(event.startAt)}</time>{event.endAt && <> – <time dateTime={event.endAt}>{formatDate(event.endAt)}</time></>}</> : "Date to be announced"}</span>
-      </p>
-      {event.location && <p className="flex items-start gap-2 text-sm text-muted-foreground"><MapPin className="h-5 w-5 shrink-0" aria-hidden="true" />{event.location}</p>}
-      {event.summary && <p className="text-foreground/80 whitespace-pre-line line-clamp-4">{event.summary}</p>}
-      <div className="flex flex-wrap gap-3">
-        {event.postUrl && <Button asChild variant="outline"><a href={event.postUrl} target="_blank" rel="noopener noreferrer" aria-label={`Read more about ${event.title} (opens in a new tab)`}>Read more</a></Button>}
-        {event.rsvpUrl && <Button asChild variant="gold"><a href={event.rsvpUrl} target="_blank" rel="noopener noreferrer" aria-label={`RSVP for ${event.title} (opens in a new tab)`}>RSVP</a></Button>}
-      </div>
-    </CardContent>
-  </Card>
-);
+const EventCard = ({ event }: { event: SMCEvent }) => {
+  const cta = getEventCta(event);
+  return (
+    <Card className="overflow-hidden border-0 shadow-lg card-hover">
+      {event.image && <img src={event.image} alt={`${event.title} poster`} loading="lazy" className="w-full h-72 object-contain bg-muted" />}
+      <CardContent className="p-6 space-y-4">
+        <h3 className="text-2xl font-bold text-primary">{event.title}</h3>
+        <p className="flex items-start gap-2 text-sm text-muted-foreground">
+          <CalendarDays className="h-5 w-5 shrink-0" aria-hidden="true" />
+          <span>{event.startAt ? <><time dateTime={event.startAt}>{formatDate(event.startAt)}</time>{event.endAt && <> – <time dateTime={event.endAt}>{formatDate(event.endAt)}</time></>}</> : "Date to be announced"}</span>
+        </p>
+        {event.location && <p className="flex items-start gap-2 text-sm text-muted-foreground"><MapPin className="h-5 w-5 shrink-0" aria-hidden="true" />{event.location}</p>}
+        {event.summary && <p className="text-foreground/80 whitespace-pre-line line-clamp-4">{event.summary}</p>}
+        <div className="flex flex-wrap gap-3">
+          {cta
+            ? <Button asChild variant="gold"><a href={cta.url} target="_blank" rel="noopener noreferrer" aria-label={`${cta.label} for ${event.title} (opens in a new tab)`}>{cta.label}</a></Button>
+            : event.postUrl && <Button asChild variant="outline"><a href={event.postUrl} target="_blank" rel="noopener noreferrer" aria-label={`Read more about ${event.title} (opens in a new tab)`}>Read more</a></Button>}
+          {event.rsvpUrl && <Button asChild variant="gold"><a href={event.rsvpUrl} target="_blank" rel="noopener noreferrer" aria-label={`RSVP for ${event.title} (opens in a new tab)`}>RSVP</a></Button>}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
 
 const Events = () => {
   const { data: events = [], isLoading, isError, refetch } = useWordPressEventsQuery();

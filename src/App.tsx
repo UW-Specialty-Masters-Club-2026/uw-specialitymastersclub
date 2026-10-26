@@ -12,6 +12,7 @@ import NewsletterDetail from "./pages/NewsletterDetail";
 import PdfReader from "./pages/PdfReader";
 import MeetTheTeam from "./pages/MeetTheTeam";
 import EventsPage from "./pages/EventsPage";
+import SkillsLibrary from "./pages/SkillsLibrary";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();

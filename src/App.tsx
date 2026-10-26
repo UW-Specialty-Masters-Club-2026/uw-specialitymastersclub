@@ -33,6 +33,7 @@ const App = () => (
           <Route path="/newsletters/:slug" element={<NewsletterDetail />} />
           <Route path="/pdf-reader" element={<PdfReader />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/skills" element={<SkillsLibrary />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Linkedin, Camera } from "lucide-react";
+import { Linkedin, Camera, Globe } from "lucide-react";
 import { useWordPressTeamQuery } from "@/lib/wordpress/hooks";
 
 const Leadership = () => {

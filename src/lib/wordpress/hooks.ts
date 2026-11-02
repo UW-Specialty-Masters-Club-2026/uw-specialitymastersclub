@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllWordPressPosts, fetchWordPressPageBySlug, fetchWordPressPostBySlug } from "./client";
 import { getWordPressReadConfig } from "./config";
+import { applyTeamPositions } from "./teamOrder";
+import type { TeamMember } from "./types";
 import { isWordPressEventPost, mapWordPressPostToEvent } from "./mappers";
 import { filterWordPressArticlePosts, filterWordPressPostsByCategory, mapWordPressPageToHomepage, mapWordPressPageToPartners, mapWordPressPostToArticle, mapWordPressPostToGalleryItem, mapWordPressPostToNewsletter, mapWordPressPostToTeamMember } from "./mappers";
 
@@ -57,7 +59,17 @@ export const useWordPressHomepageQuery = () => useQuery({
   },
 });
 
-export const useWordPressTeamQuery = () => useWordPressCategoryQuery("smc-team", mapWordPressPostToTeamMember);
+export const useWordPressTeamQuery = () => useQuery({
+  queryKey: ["wordpress", "category", "smc-team"],
+  queryFn: async () => {
+    const config = getWordPressReadConfig();
+    if (!config) throw new Error(missingConfigError);
+    const members = filterWordPressPostsByCategory(await fetchAllWordPressPosts(config), "smc-team")
+      .map((post) => ({ id: post.id, member: mapWordPressPostToTeamMember(post) }))
+      .filter((entry): entry is { id: number; member: TeamMember } => entry.member !== null);
+    return applyTeamPositions(members, (entry) => entry.id).map((entry) => entry.member);
+  },
+});
 export const useWordPressEventsQuery = () => useQuery({
   queryKey: ["wordpress", "events"],
   queryFn: async () => {

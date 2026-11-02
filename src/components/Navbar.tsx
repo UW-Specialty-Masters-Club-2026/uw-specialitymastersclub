@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useWordPressHomepageQuery } from "@/lib/wordpress/hooks";
 
@@ -20,6 +19,21 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const headerRef = useRef<HTMLElement>(null);
+  const isOpenRef = useRef(isOpen);
+  isOpenRef.current = isOpen;
+
+  // Publish the collapsed header height so pages can offset sticky and
+  // anchored content below this fixed bar (it wraps to two rows on phones).
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+    const observer = new ResizeObserver(() => {
+      if (!isOpenRef.current) document.documentElement.style.setProperty("--navbar-h", `${header.offsetHeight}px`);
+    });
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, []);
 
   const handleNavigation = (path: string, hash?: string) => {
     setIsOpen(false);
@@ -33,68 +47,67 @@ const Navbar = () => {
     }
   };
 
-  const isActive = (link: (typeof navLinks)[number]) => !link.hash && location.pathname === link.path;
+  const isActive = (link: (typeof navLinks)[number]) =>
+    !link.hash && (link.path === "/" ? location.pathname === "/" : location.pathname.startsWith(link.path));
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-brand-deep">
-      <div className="home-container h-[68px] flex items-center justify-between gap-6">
-        <button onClick={() => handleNavigation("/")} className="flex items-center gap-2.5 shrink-0" aria-label="Specialty Masters Club home">
-          <span className="w-10 h-10 rounded-full bg-background flex items-center justify-center overflow-hidden">
-            {data?.logo && <img src={data.logo} alt="" className="w-8 h-8 object-contain" />}
+    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 bg-smc-ink text-white">
+      <div className="max-w-[960px] mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+        <button
+          onClick={() => handleNavigation("/")}
+          className="inline-flex items-center gap-2.5 text-[13px] font-extrabold tracking-[0.14em] text-smc-gold"
+          aria-label="Specialty Masters Club home"
+        >
+          <span className="w-10 h-10 rounded-full bg-white overflow-hidden">
+            {data?.logo && <img src={data.logo} alt="" width={40} height={40} className="w-10 h-10" />}
           </span>
-          <span className="text-[13px] font-bold tracking-[0.12em] uppercase text-highlight">Specialty Masters Club</span>
+          <span>SPECIALTY MASTERS CLUB</span>
         </button>
 
-        <div className="hidden lg:flex items-center gap-[18px]">
-          {navLinks.map((link) => (
-            <button
-              key={link.label}
-              onClick={() => handleNavigation(link.path, link.hash || undefined)}
-              className={`text-sm font-semibold transition-colors hover:text-highlight ${isActive(link) ? "text-highlight" : "text-primary-foreground"}`}
-            >
-              {link.label}
-            </button>
-          ))}
-          <a
-            href={REGISTER_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-4 px-3 py-1.5 text-sm font-semibold bg-highlight text-brand-ink hover:opacity-90 transition-opacity"
-          >
-            Join
-          </a>
-        </div>
-
-        <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 text-primary-foreground" aria-label="Toggle menu">
-          {isOpen ? <X size={26} /> : <Menu size={26} />}
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className="min-[901px]:hidden min-h-10 px-3.5 border-2 border-smc-gold font-extrabold text-white"
+          aria-expanded={isOpen}
+          aria-controls="site-menu"
+        >
+          {isOpen ? "Close" : "Menu"}
         </button>
-      </div>
 
-      {isOpen && (
-        <div className="lg:hidden bg-brand-deep border-t border-primary-foreground/15">
-          <div className="home-container py-4 flex flex-col gap-1">
+        <nav
+          id="site-menu"
+          aria-label="Main"
+          className={`${isOpen ? "flex" : "hidden"} w-full flex-col items-start pt-2 pb-3 gap-x-6 gap-y-2 min-[901px]:flex min-[901px]:w-auto min-[901px]:flex-row min-[901px]:flex-wrap min-[901px]:items-center min-[901px]:p-0`}
+        >
+          <ul className="flex flex-col gap-3 min-[901px]:flex-row min-[901px]:flex-wrap min-[901px]:gap-x-[18px] min-[901px]:gap-y-1">
             {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => handleNavigation(link.path, link.hash || undefined)}
-                className={`text-left py-2.5 font-semibold ${isActive(link) ? "text-highlight" : "text-primary-foreground"}`}
-              >
-                {link.label}
-              </button>
+              <li key={link.label}>
+                <button
+                  onClick={() => handleNavigation(link.path, link.hash || undefined)}
+                  aria-current={isActive(link) ? "page" : undefined}
+                  className={`text-sm font-semibold ${isActive(link) ? "text-smc-gold" : "text-smc-lavender"}`}
+                >
+                  {link.label}
+                </button>
+              </li>
             ))}
-            <a
-              href={REGISTER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsOpen(false)}
-              className="mt-3 py-3 text-center font-semibold bg-highlight text-brand-ink"
-            >
-              Join
-            </a>
-          </div>
-        </div>
-      )}
-    </nav>
+          </ul>
+          <ul className="flex flex-col gap-3 min-[901px]:flex-row">
+            <li>
+              <a
+                href={REGISTER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="inline-block px-3 py-1.5 text-sm font-semibold bg-smc-gold text-smc-ink"
+              >
+                Join
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
   );
 };
 

@@ -52,6 +52,11 @@ export default {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
+        "brand-deep": "hsl(var(--brand-deep))",
+        "brand-vivid": "hsl(var(--brand-vivid))",
+        "brand-ink": "hsl(var(--brand-ink))",
+        highlight: "hsl(var(--highlight))",
+        wash: "hsl(var(--wash))",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",

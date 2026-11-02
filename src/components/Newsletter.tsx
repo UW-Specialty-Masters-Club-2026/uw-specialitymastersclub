@@ -1,32 +1,18 @@
-import { Mail, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const Newsletter = () => {
-  return (
-    <section id="newsletter" className="section-container bg-primary">
-      <div className="text-center slide-up">
-        <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center">
-            <Mail className="w-8 h-8 text-gold" />
-          </div>
-        </div>
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-          Newsletter
-        </h2>
-        <div className="w-24 h-1 bg-gold mx-auto mb-8" />
-        <p className="text-xl text-white/80 mb-6">
-          Stay updated with the latest news, events, and opportunities from SMC
-        </p>
-        <Link 
-          to="/newsletters"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-primary-foreground font-semibold rounded-lg hover:bg-gold/90 transition-colors"
-        >
-          View Newsletters
-          <ArrowRight className="w-4 h-4" />
-        </Link>
-      </div>
-    </section>
-  );
-};
+const Newsletter = () => (
+  <section id="newsletter" className="bg-wash py-20">
+    <div className="home-container">
+      <h2 className="display text-5xl text-brand-vivid mb-5">Newsletter</h2>
+      <p className="text-brand-ink mb-5">Stay updated with the latest news, events, and opportunities from SMC</p>
+      <Link
+        to="/newsletters"
+        className="inline-block px-[28px] py-3 text-sm font-bold uppercase tracking-[0.12em] border-2 border-brand-ink text-brand-ink hover:bg-background transition-colors"
+      >
+        View Newsletters
+      </Link>
+    </div>
+  </section>
+);
 
 export default Newsletter;

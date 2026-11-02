@@ -5,19 +5,19 @@ import HomeEvents from "@/components/HomeEvents";
 import Newsletter from "@/components/Newsletter";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => (
-  <div className="min-h-screen">
+  <div className="min-h-screen bg-smc-page text-smc-ink">
     <Navbar />
-    <Hero />
-    <About />
-    <HomeEvents />
-    <Newsletter />
-    <Contact />
-    <div className="bg-wash h-16" aria-hidden="true" />
+    <main>
+      <Hero />
+      <About />
+      <HomeEvents />
+      <Newsletter />
+      <Contact />
+    </main>
+    <div className="h-16" aria-hidden="true" />
     <Footer />
-    <ScrollToTop />
   </div>
 );
 

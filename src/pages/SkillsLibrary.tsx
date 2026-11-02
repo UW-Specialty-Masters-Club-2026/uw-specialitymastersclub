@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Download, ExternalLink, Github, Sparkles, RefreshCw, AlertCircle, CheckCircle2, Upload } from "lucide-react";
+import { WORKSHOP_PATH, workshop } from "@/data/claudeWorkshop";
+import workshopPoster from "@/assets/workshop-claude-poster.jpeg";
+import "@/styles/smc-reference.css";
 
 const SKILLS_URL =
   "https://raw.githubusercontent.com/UW-Specialty-Masters-Club-2026/uw-foster-smc-claude-skills/main/skills.json";
+const SKILLS_REPO = "https://github.com/UW-Specialty-Masters-Club-2026/uw-foster-smc-claude-skills";
 
 interface SkillCategory {
   id: string;
@@ -29,6 +33,29 @@ interface SkillsData {
   categories: SkillCategory[];
   skills: Skill[];
 }
+
+const SkillCard = ({ skill }: { skill: Skill }) => (
+  <li className="card">
+    <h3 className="card__title">{skill.name}</h3>
+    <p className="muted">{skill.description}</p>
+    {skill.try_prompt && (
+      <p className="try"><strong>Try it:</strong> “{skill.try_prompt}”</p>
+    )}
+    <div className="card__actions">
+      {skill.action === "download" && (
+        <>
+          <a className="btn btn--small" href={skill.download_url} target="_blank" rel="noopener noreferrer">Download ZIP</a>
+          {skill.source_url && (
+            <a href={skill.source_url} target="_blank" rel="noopener noreferrer">View skill ↗</a>
+          )}
+        </>
+      )}
+      {skill.action === "link" && skill.source_url && (
+        <a href={skill.source_url} target="_blank" rel="noopener noreferrer">Open on GitHub ↗</a>
+      )}
+    </div>
+  </li>
+);
 
 const SkillsLibrary = () => {
   const [data, setData] = useState<SkillsData | null>(null);
@@ -60,183 +87,66 @@ const SkillsLibrary = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-smc-page">
       <Navbar />
+      <main className="smc skills-page">
+        <p className="eyebrow">Claude skills library</p>
+        <h1 className="display">Make Claude work for you</h1>
+        <p className="muted lead">
+          Ready-made skills that turn Claude into a career coach, analyst, and study partner. Pick one, add it to Claude, and try it out.
+        </p>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-primary relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary-dark opacity-90" />
-        <div className="absolute top-20 right-10 w-64 h-64 bg-gold/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-10 w-48 h-48 bg-gold/5 rounded-full blur-2xl" />
-
-        <div className="section-container relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="flex justify-center mb-6">
-              <div className="w-20 h-20 bg-gold/20 rounded-full flex items-center justify-center">
-                <Sparkles className="w-10 h-10 text-gold" />
-              </div>
-            </div>
-            <p className="text-gold font-semibold tracking-widest uppercase mb-4">
-              Claude Skills Library
+        <section className="feature-card" aria-labelledby="workshop-card">
+          <img
+            src={workshopPoster}
+            alt={`Workshop poster: ${workshop.title}, led by Professor ${workshop.instructor}`}
+            width={1081}
+            height={1400}
+            loading="lazy"
+          />
+          <div>
+            <p className="eyebrow">Claude workshop · Start here</p>
+            <h2 id="workshop-card">{workshop.title}</h2>
+            <p>
+              With Prof. {workshop.instructor}, {workshop.affiliation}. A self-paced guide to building your AI digital twin and chief of staff: model choice, context engineering, dashboards, tool integrations and your first vibecoded app.
             </p>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-2">
-              MAKE CLAUDE
-            </h1>
-            <h1 className="text-5xl md:text-6xl font-bold text-gold mb-8">
-              WORK FOR YOU
-            </h1>
-            <div className="w-32 h-1 bg-gold mx-auto mb-8" />
-            <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              Ready-made skills that turn Claude into a career coach, analyst,
-              and study partner. Pick one, add it to Claude, and try it out.
-            </p>
+            <Link className="btn" to={WORKSHOP_PATH}>Start here <span aria-hidden="true">→</span></Link>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* How to add a skill */}
-      <section className="section-container">
-        <div className="max-w-4xl mx-auto -mt-10 relative z-20 mb-16">
-          <div className="bg-card rounded-2xl border border-border shadow-lg p-8">
-            <h2 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
-              <Upload className="w-5 h-5 text-gold" />
-              How to add a skill
-            </h2>
-            <ol className="space-y-3">
-              {[
-                <>Sign in at <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-gold font-medium hover:underline">claude.ai</a>.</>,
-                <>Go to <span className="font-semibold text-foreground">Settings → Capabilities</span> and turn on <span className="font-semibold text-foreground">"Code execution and file creation"</span>.</>,
-                <>Download a skill ZIP, then go to <span className="font-semibold text-foreground">Customize → Skills → + → Create skill → Upload a skill</span>.</>,
-              ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center mt-0.5">
-                    {i + 1}
-                  </span>
-                  <p className="text-foreground/75 leading-relaxed">{step}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
+        <section className="card" aria-labelledby="how">
+          <h2 id="how" style={{ marginTop: 0 }}>How to add a skill</h2>
+          <ol className="steps">
+            <li>Sign in at <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">claude.ai</a>.</li>
+            <li>Go to Settings → Capabilities and turn on “Code execution and file creation”.</li>
+            <li>Download a skill ZIP, then go to Customize → Skills → + → Create skill → Upload a skill.</li>
+          </ol>
+        </section>
 
-      {/* Skill sections */}
-      <section className="section-container pb-20">
-        {isLoading && (
-          <div className="flex flex-col items-center justify-center py-20 text-foreground/70">
-            <RefreshCw className="w-8 h-8 text-gold animate-spin mb-4" />
-            <p>Loading skills...</p>
-          </div>
-        )}
+        {isLoading && <p className="muted">Loading skills…</p>}
 
         {isError && (
-          <div className="max-w-2xl mx-auto flex flex-col items-center text-center py-20">
-            <AlertCircle className="w-10 h-10 text-destructive mb-4" />
-            <p className="text-foreground/75 mb-4">
-              We couldn't load the skills list right now.
-            </p>
-            <a
-              href="https://github.com/UW-Specialty-Masters-Club-2026/uw-foster-smc-claude-skills"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-gold font-medium hover:underline"
-            >
-              <Github className="w-4 h-4" />
-              Browse the skills repo instead
-            </a>
-          </div>
+          <p className="muted">
+            We couldn’t load the skills list right now.{" "}
+            <a href={SKILLS_REPO} target="_blank" rel="noopener noreferrer">Browse the skills repo instead ↗</a>
+          </p>
         )}
 
-        {!isLoading && !isError && data && (
-          <div className="space-y-16">
-            {data.categories.map((category) => {
-              const skills = data.skills.filter((s) => s.category === category.id);
-              if (skills.length === 0) return null;
-              return (
-                <div key={category.id}>
-                  <div className="mb-6">
-                    <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                      {category.label}
-                    </h2>
-                    <div className="w-16 h-1 bg-gold rounded-full mt-3 mb-2" />
-                    {category.note && (
-                      <p className="text-foreground/60 text-sm">{category.note}</p>
-                    )}
-                  </div>
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {skills.map((skill) => (
-                      <article
-                        key={skill.id}
-                        className="bg-card rounded-2xl border border-border shadow-sm hover:shadow-xl transition-all duration-300 p-6 flex flex-col"
-                      >
-                        <h3 className="text-lg font-bold text-foreground mb-2">
-                          {skill.name}
-                        </h3>
-                        <p className="text-foreground/60 text-sm leading-relaxed mb-4 flex-1">
-                          {skill.description}
-                        </p>
-
-                        {skill.action === "download" && (
-                          <div>
-                            <a
-                              href={skill.download_url}
-                              className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark transition-all hover:scale-[1.02]"
-                            >
-                              <Download className="w-4 h-4" />
-                              Download ZIP
-                            </a>
-                            {skill.source_url && (
-                              <a
-                                href={skill.source_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block mt-2 text-xs text-foreground/50 hover:text-gold transition-colors"
-                              >
-                                View skill ↗
-                              </a>
-                            )}
-                            {skill.try_prompt && (
-                              <div className="mt-4 bg-muted/60 border border-border rounded-lg p-3">
-                                <span className="text-xs font-semibold text-gold block mb-1">
-                                  Try it:
-                                </span>
-                                <span className="text-xs text-foreground/70 italic">
-                                  "{skill.try_prompt}"
-                                </span>
-                              </div>
-                            )}
-                          </div>
-                        )}
-
-                        {skill.action === "link" && skill.source_url && (
-                          <a
-                            href={skill.source_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark transition-all hover:scale-[1.02] self-start"
-                          >
-                            <Github className="w-4 h-4" />
-                            Open on GitHub
-                            <ExternalLink className="w-3 h-3 opacity-60" />
-                          </a>
-                        )}
-
-                        {skill.action === "none" && (
-                          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold self-start">
-                            <CheckCircle2 className="w-4 h-4" />
-                            Already in Claude
-                          </span>
-                        )}
-                      </article>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </section>
-
+        {data?.categories.map((category) => {
+          const skills = data.skills.filter((s) => s.category === category.id);
+          if (skills.length === 0) return null;
+          return (
+            <section key={category.id}>
+              <h2 className="section-title">{category.label}</h2>
+              {category.note && <p className="muted">{category.note}</p>}
+              <ul className="card-grid">
+                {skills.map((skill) => <SkillCard key={skill.id} skill={skill} />)}
+              </ul>
+            </section>
+          );
+        })}
+      </main>
+      <div className="h-16" aria-hidden="true" />
       <Footer />
     </div>
   );

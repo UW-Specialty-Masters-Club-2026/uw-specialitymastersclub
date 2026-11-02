@@ -45,12 +45,14 @@ All colors MUST be HSL.
     
     --radius: 0.75rem;
     
-    /* Reference home redesign tokens */
-    --brand-deep: 263 78% 22%;
-    --brand-vivid: 263 75% 56%;
-    --brand-ink: 263 70% 24%;
-    --highlight: 47 90% 66%;
-    --wash: 268 60% 95%;
+    /* Reference site palette (homepage, navbar, footer) */
+    --smc-ink: 262 82% 22%;
+    --smc-accent: 262 77% 58%;
+    --smc-gold: 47 86% 66%;
+    --smc-lavender: 285 92% 95%;
+    --smc-page: 265 66% 94%;
+    --smc-body: 259 40% 29%;
+    --smc-soft: 264 77% 75%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 217 33% 17%;
@@ -88,7 +90,25 @@ All colors MUST be HSL.
     @apply uppercase tracking-tight leading-none;
   }
   .home-container {
-    @apply max-w-[928px] mx-auto px-5;
+    @apply max-w-[960px] mx-auto px-4;
+  }
+  .section-title {
+    font-family: 'Anton', Impact, 'Arial Narrow Bold', sans-serif;
+    font-size: clamp(28px, 5vw, 40px);
+    @apply uppercase leading-none text-smc-accent mt-10 mb-4;
+  }
+  .btn-ref {
+    @apply inline-flex items-center justify-center min-h-12 px-7 border-2 border-smc-accent bg-smc-accent text-white text-sm font-extrabold uppercase tracking-[0.1em] no-underline;
+  }
+  .btn-ref-light {
+    @apply bg-transparent border-white;
+  }
+  .btn-ref-outline {
+    @apply bg-white border-smc-ink text-smc-ink;
+  }
+  .btn-ref:focus-visible {
+    outline: 3px solid hsl(var(--smc-gold));
+    outline-offset: 2px;
   }
 
   .gradient-text {

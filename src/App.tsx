@@ -13,6 +13,7 @@ import PdfReader from "./pages/PdfReader";
 import MeetTheTeam from "./pages/MeetTheTeam";
 import EventsPage from "./pages/EventsPage";
 import SkillsLibrary from "./pages/SkillsLibrary";
+import ClaudeWorkshop from "./pages/ClaudeWorkshop";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/pdf-reader" element={<PdfReader />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/skills" element={<SkillsLibrary />} />
+          <Route path="/skills/claude-digital-twin" element={<ClaudeWorkshop />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

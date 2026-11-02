@@ -1,17 +1,10 @@
 import { Link } from "react-router-dom";
 
 const Newsletter = () => (
-  <section id="newsletter" className="bg-wash py-20">
-    <div className="home-container">
-      <h2 className="display text-5xl text-brand-vivid mb-5">Newsletter</h2>
-      <p className="text-brand-ink mb-5">Stay updated with the latest news, events, and opportunities from SMC</p>
-      <Link
-        to="/newsletters"
-        className="inline-block px-[28px] py-3 text-sm font-bold uppercase tracking-[0.12em] border-2 border-brand-ink text-brand-ink hover:bg-background transition-colors"
-      >
-        View Newsletters
-      </Link>
-    </div>
+  <section id="newsletter" className="home-container pt-10 pb-16" aria-labelledby="newsletter-title">
+    <h2 id="newsletter-title" className="section-title">Newsletter</h2>
+    <p className="my-4 text-smc-body leading-relaxed">Stay updated with the latest news, events, and opportunities from SMC</p>
+    <Link to="/newsletters" className="btn-ref btn-ref-outline">View Newsletters</Link>
   </section>
 );
 

@@ -1,113 +1,50 @@
-import { Linkedin, Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useWordPressHomepageQuery } from "@/lib/wordpress/hooks";
 
-const SOCIAL_LINKS = {
-  linkedin: "https://www.linkedin.com/company/uw-foster-specialty-masters-student-club//",
-  instagram: "https://www.instagram.com/smclub_uw/",
-};
+const LINKEDIN = "https://www.linkedin.com/company/uw-foster-specialty-masters-student-club/";
+const INSTAGRAM = "https://www.instagram.com/smclub_uw/";
+const REGISTER_URL = "https://smcfoster.notion.site/3580984ab5b68069996bf623248354cb?pvs=105";
+
+const heading = "text-xs font-bold uppercase tracking-[0.2em] text-highlight mb-3";
+const link = "block underline underline-offset-2 hover:text-highlight transition-colors";
 
 const Footer = () => {
   const { data } = useWordPressHomepageQuery();
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const scrollToSection = (sectionId: string) => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    const yOffset = -80; // Account for a fixed header/navbar height if you have one
-    const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-    
-    window.scrollTo({ top: y, behavior: 'smooth' });
-  }
-};
-
   return (
-    <footer className="bg-primary text-primary-foreground border-t-4 border-gold">
-      <div className="section-container">
-        <div className="grid md:grid-cols-3 gap-12 mb-8">
-          <div>
-            <img
-              src={data?.logo || ""}
-              alt="Specialty Masters Club"
-              className="h-20 w-auto mb-4 brightness-0 invert"
-            />
-            <p className="text-primary-foreground/80 mb-4">
-              Empowering MSBA, MSIS, MSCM & Specialty Master's Students at UW Foster School of Business.
-            </p>
-            {/* Social Icons */}
-            <div className="flex items-center gap-3">
-              <a
-                href={SOCIAL_LINKS.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-gold/20 flex items-center justify-center transition-colors group"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5 text-primary-foreground/70 group-hover:text-gold transition-colors" />
-              </a>
-              <a
-                href={SOCIAL_LINKS.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-gold/20 flex items-center justify-center transition-colors group"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-5 h-5 text-primary-foreground/70 group-hover:text-gold transition-colors" />
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <nav className="space-y-2">
-              <button onClick={scrollToTop} className="block hover:text-gold transition-colors">
-                Home
-              {/* </button> */}
-             
-              {/* <button onClick={() => scrollToSection('join')} className="block hover:text-gold transition-colors">
-                Join */}
-              </button>
-              <a href="mailto:smcommittee@uw.edu" className="block hover:text-gold transition-colors">
-
-              </a>
-            </nav>
-          </div>
-
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Address</h4>
-            <p className="text-primary-foreground/80 mb-4">
-              UW Foster School of Business<br />
-              PACCAR Hall<br />
-              Seattle, WA 98195
-            </p>
-            <h4 className="text-lg font-semibold mb-3">Follow Us</h4>
-            <div className="space-y-2">
-              <a
-                href={SOCIAL_LINKS.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary-foreground/80 hover:text-gold transition-colors"
-              >
-                <Linkedin className="w-4 h-4" />
-                LinkedIn
-              </a>
-              <a
-                href={SOCIAL_LINKS.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary-foreground/80 hover:text-gold transition-colors"
-              >
-                <Instagram className="w-4 h-4" />
-                Instagram
-              </a>
-            </div>
+    <footer className="bg-brand-deep text-primary-foreground text-sm">
+      <div className="home-container pt-10 pb-8 grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <span className="w-14 h-14 rounded-full bg-background flex items-center justify-center overflow-hidden mb-6">
+            {data?.logo && <img src={data.logo} alt="Specialty Masters Club" className="w-10 h-10 object-contain" />}
+          </span>
+          <p className="leading-relaxed text-primary-foreground/85">
+            Empowering MSBA, MSIS, MSCM & Specialty Master’s Students at UW Foster School of Business.
+          </p>
+        </div>
+        <div>
+          <h4 className={heading}>Quick Links</h4>
+          <nav className="space-y-1">
+            <Link to="/" className={link}>Home</Link>
+            <Link to="/events" className={link}>Events</Link>
+            <Link to="/articles" className={link}>Articles</Link>
+            <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer" className={link}>Join SMC</a>
+          </nav>
+        </div>
+        <div>
+          <h4 className={heading}>Address</h4>
+          <p className="leading-relaxed text-primary-foreground/85">UW Foster School of Business<br />PACCAR Hall<br />Seattle, WA 98195</p>
+        </div>
+        <div>
+          <h4 className={heading}>Follow Us</h4>
+          <div className="space-y-1">
+            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className={link}>LinkedIn</a>
+            <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className={link}>Instagram @smclub_uw</a>
+            <a href="mailto:smcommittee@uw.edu" className={link}>smcommittee@uw.edu</a>
           </div>
         </div>
-
-        <div className="border-t border-primary-foreground/20 pt-8 text-center text-primary-foreground/80">
-          <p>&copy; 2026 Specialty Masters Club. All rights reserved.</p>
-        </div>
+      </div>
+      <div className="border-t border-primary-foreground/20 py-4 text-center text-xs text-primary-foreground/80">
+        &copy; 2026 Specialty Masters Club. All rights reserved.
       </div>
     </footer>
   );

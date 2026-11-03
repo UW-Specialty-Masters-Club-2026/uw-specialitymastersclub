@@ -7,12 +7,18 @@ import { Linkedin, Globe, Camera } from "lucide-react";
 import { useWordPressTeamQuery } from "@/lib/wordpress/hooks";
 import type { TeamMember } from "@/lib/wordpress/types";
 
-type Department = "all" | "leads" | "strategy" | "alumni" | "tech" | "casecomp" | "operations";
+type Department = "all" | "leads" | "strategy" | "alumni" | "tech" | "casecomp" | "operations" | "marketing" | "finance";
 const departments: { key: Department; label: string }[] = [
   { key: "all", label: "All" }, { key: "leads", label: "SMC Leads" }, { key: "strategy", label: "Core Strategy" },
-  { key: "alumni", label: "Alumni Relations" }, { key: "tech", label: "Tech Development" },
+  { key: "tech", label: "Tech" }, { key: "alumni", label: "Alumni Relations" },
   { key: "casecomp", label: "Career & Case Comps" }, { key: "operations", label: "Operations" },
+  { key: "marketing", label: "Marketing & Communications" }, { key: "finance", label: "Finance" },
 ];
+
+const departmentRank = (member: TeamMember) => {
+  const index = departments.findIndex((department) => department.key !== "all" && member.departments.includes(department.key));
+  return index === -1 ? departments.length : index;
+};
 
 const MeetTheTeam = () => {
   useEffect(() => {
@@ -20,7 +26,9 @@ const MeetTheTeam = () => {
   }, []);
   const [activeFilter, setActiveFilter] = useState<Department>("all");
   const { data: teamMembers = [], isLoading, isError } = useWordPressTeamQuery();
-  const filteredMembers = activeFilter === "all" ? teamMembers : teamMembers.filter((member) => member.departments.includes(activeFilter));
+  const filteredMembers = activeFilter === "all"
+    ? [...teamMembers].sort((a, b) => departmentRank(a) - departmentRank(b))
+    : teamMembers.filter((member) => member.departments.includes(activeFilter));
 
   return <div className="min-h-screen bg-background">
     <Navbar />

@@ -11,7 +11,21 @@ const departments = [
   { key: "all", label: "All" }, { key: "leads", label: "SMC Leads" }, { key: "strategy", label: "Core Strategy" },
   { key: "tech", label: "Tech" }, { key: "alumni", label: "Alumni Relations" },
   { key: "casecomp", label: "Career & Case Comps" }, { key: "operations", label: "Operations" },
-];
+  { key: "marketing", label: "Marketing & Communications" }, { key: "finance", label: "Finance" },
+] as const;
+
+type Department = (typeof departments)[number]["key"];
+
+const departmentRank = (member: TeamMember) => {
+  const index = departments.findIndex(({ key }) => key !== "all" && member.departments.includes(key));
+  return index < 0 ? departments.length : index;
+};
+
+const leadRoleRank = ({ role }: TeamMember) => {
+  if (/^president\b/i.test(role.trim())) return 0;
+  if (/^(?:vice[\s-]+president|vp)\b/i.test(role.trim())) return 1;
+  return 2;
+};
 
 const MeetTheTeam = () => {
   useEffect(() => {
@@ -19,7 +33,10 @@ const MeetTheTeam = () => {
   }, []);
   const [activeFilter, setActiveFilter] = useState<Department>("all");
   const { data: teamMembers = [], isLoading, isError } = useWordPressTeamQuery();
-  const filteredMembers = activeFilter === "all" ? teamMembers : teamMembers.filter((member) => member.departments.includes(activeFilter));
+  const filteredMembers = activeFilter === "all"
+    ? [...teamMembers].sort((a, b) => departmentRank(a) - departmentRank(b)
+      || (a.departments.includes("leads") && b.departments.includes("leads") ? leadRoleRank(a) - leadRoleRank(b) : 0))
+    : teamMembers.filter((member) => member.departments.includes(activeFilter));
 
   return <div className="min-h-screen bg-background">
     <Navbar />
@@ -47,3 +64,4 @@ const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => <
 </Card>;
 
 export default MeetTheTeam;
+

@@ -1,5 +1,4 @@
 import type { Newsletter } from "@/lib/wordpress/types";
-import vol4Pdf from "@/assets/newsletter-vol-4.pdf.asset.json";
 
 /**
  * Locally hosted newsletters, merged with the WordPress newsletter posts.

@@ -12,13 +12,11 @@ const event = (id: number): SMCEvent => ({
   postUrl: `https://sites.uw.edu/smcommittee/${id}/`,
 });
 
-// The Claude Workshop card must send people to the public Luma event page.
-assert.deepEqual(getEventCta(event(219)), {
-  label: "Register",
-  url: "https://luma.com/event/evt-QA5jHGLqkyzr4m4",
-});
+// The Claude Workshop card has no override: it shows its normal "Read more"
+// link to the WordPress post, not a Register button.
+assert.equal(getEventCta(event(219)), null);
 
-// Every other event keeps its normal "Read more" link.
+// Every other event keeps its normal "Read more" link too.
 assert.equal(getEventCta(event(220)), null);
 
 console.log("wordpress event cta tests passed");

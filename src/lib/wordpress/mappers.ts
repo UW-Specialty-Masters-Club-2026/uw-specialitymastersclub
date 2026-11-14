@@ -110,7 +110,8 @@ export const mapWordPressPostToNewsletter = (post: WordPressPost): Newsletter | 
     volume: marker.volume || "",
     date: formatArticleDate(post.date),
     description: stripHtml(post.excerpt.rendered || ""),
-    pdfUrl: toDirectUploadUrl(marker.pdfUrl || ""),
+    // Our own copy when we have one; otherwise the CDN copy, which allows cross-origin loads.
+    pdfUrl: toDirectUploadUrl(preferLocalPdf(marker.pdfUrl || "")),
     highlights: marker.highlights || [],
   };
 };
@@ -169,3 +170,15 @@ export const mapWordPressPostToEvent = (post: WordPressPost): SMCEvent => {
 
 export const filterWordPressArticlePosts = (posts: WordPressPost[]) =>
   posts.filter((post) => !isWordPressEventPost(post) && !getPostCategoryNames(post).some((category) => NON_ARTICLE_CATEGORIES.has(category)));
+
+// PDFs on the UW WordPress host won't display inside our viewer, so use the copies served by this site.
+const LOCAL_PDFS = new Set([
+  "Specialty_Masters_Club_Newsletter_VOL_1.pdf",
+  "Specialty_Masters_Club_Newsletter_VOL_2.pdf",
+  "Specialty_Masters_Club_Newsletter_VOL_3.pdf",
+  "Specialty_Masters_Club_Newsletter_VOL_4.pdf",
+]);
+function preferLocalPdf(url: string): string {
+  const name = url.split("/").pop()?.split("?")[0] || "";
+  return LOCAL_PDFS.has(name) ? `/newsletters/${name}` : url;
+}

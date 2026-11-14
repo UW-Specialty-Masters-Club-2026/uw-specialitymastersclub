@@ -1,0 +1,6 @@
+from pathlib import Path
+p=Path('output/miner-mockup/build_revised.py'); s=p.read_text(encoding='utf-8-sig')
+a='Mining companies will trial MINER, then replace manual soil-survey and sampling tasks after acceptance. Provide the robot, operator training, maintenance and integration support. Measure paid pilots converting to regular use, survey labor-hours replaced, total cost per usable sample and human exposure. Include remaining supervision and support costs when assessing salary savings. Retrain affected staff for oversight and maintenance. Later releases may replace tasks in drilling, cutting and heavy machinery operation, subject to separate safety validation; release one covers shallow soil sampling.'
+b='Mining companies will test MINER to replace manual soil-survey tasks, reducing human exposure and salary costs. Provide robots, training, maintenance and integration support; retrain affected staff for oversight. Measure regular use, labor-hours replaced, human exposure and total sampling cost, including remaining supervision. Later releases may automate drilling, cutting and heavy machinery after separate safety validation; release one covers shallow sampling.'
+assert a in s
+p.write_text(s.replace(a,b),encoding='utf-8')

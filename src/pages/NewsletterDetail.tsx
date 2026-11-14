@@ -1,9 +1,12 @@
 import { ArrowLeft, FileText, Download, Calendar, Share2, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link, useParams, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useWordPressNewsletterBySlugQuery } from "@/lib/wordpress/hooks";
+
+// pdf.js is large; load it only when a PDF is shown.
+const PdfPages = lazy(() => import("@/components/PdfPages"));
 
 const NewsletterDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -90,17 +93,9 @@ const NewsletterDetail = () => {
               </span>
             </div>
             <div className="h-[600px] lg:h-[800px] w-full rounded-lg overflow-hidden border border-border bg-white">
-              <object
-                data={`${newsletter.pdfUrl}#view=FitH&scrollbar=1&toolbar=1&navpanes=0`}
-                type="application/pdf"
-                className="w-full h-full"
-              >
-                <embed
-                  src={`${newsletter.pdfUrl}#view=FitH&scrollbar=1&toolbar=1&navpanes=0`}
-                  type="application/pdf"
-                  className="w-full h-full"
-                />
-              </object>
+              <Suspense fallback={<p className="py-12 text-center text-sm text-muted-foreground">Loading PDF…</p>}>
+                <PdfPages url={newsletter.pdfUrl} title={`${newsletter.title} — ${newsletter.volume}`} className="h-full" />
+              </Suspense>
             </div>
           </div>
 

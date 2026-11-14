@@ -1,6 +1,9 @@
 import { ArrowLeft, Download, Maximize, Minimize } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
+
+// pdf.js is large; load it only when a PDF is shown.
+const PdfPages = lazy(() => import("@/components/PdfPages"));
 
 const PdfReader = () => {
   const [searchParams] = useSearchParams();
@@ -74,12 +77,9 @@ const PdfReader = () => {
       {/* PDF Viewer */}
       <div className="flex-1 bg-muted">
         {pdfUrl ? (
-          <iframe
-            src={`${pdfUrl}#view=FitH&scrollbar=1&toolbar=1&navpanes=1`}
-            className="w-full h-full"
-            title={title}
-            style={{ border: 'none', minHeight: 'calc(100vh - 60px)' }}
-          />
+          <Suspense fallback={<p className="py-12 text-center text-sm text-muted-foreground">Loading PDF…</p>}>
+            <PdfPages url={pdfUrl} title={title} className="h-[calc(100vh-60px)]" />
+          </Suspense>
         ) : (
           <div className="flex items-center justify-center h-full">
             <p className="text-muted-foreground">No PDF specified</p>

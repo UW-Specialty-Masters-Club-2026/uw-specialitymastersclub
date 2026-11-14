@@ -18,14 +18,24 @@ const icons: Record<ModuleIcon, ReactNode> = {
   help: <svg {...svg}><circle cx="12" cy="12" r="9" /><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5v.01" /></svg>,
 };
 
+type NavItem = { id: string; num?: string; title: string; icon?: ModuleIcon };
+
+type LearningNavProps = {
+  title?: string;
+  items?: NavItem[];
+  /** Show the saved "Mark as complete" progress (workshop modules only). */
+  showProgress?: boolean;
+};
+
 /** Sticky module list: highlights the module in view and shows saved progress. */
-const LearningNav = () => {
-  const [current, setCurrent] = useState(workshopModules[0].id);
+const LearningNav = ({ title = "Learning path", items = workshopModules, showProgress = true }: LearningNavProps) => {
+  const [current, setCurrent] = useState(items[0].id);
   const [isOpen, setIsOpen] = useState(false);
-  const { done } = useWorkshopProgress();
+  const { done: saved } = useWorkshopProgress();
+  const done = showProgress ? saved : [];
 
   useEffect(() => {
-    const sections = workshopModules
+    const sections = items
       .map((m) => document.getElementById(m.id))
       .filter((el): el is HTMLElement => el !== null);
     const update = () => {
@@ -43,14 +53,14 @@ const LearningNav = () => {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
-  }, []);
+  }, [items]);
 
-  const active = workshopModules.find((m) => m.id === current) ?? workshopModules[0];
+  const active = items.find((m) => m.id === current) ?? items[0];
 
   return (
     <nav className="learn-nav" aria-labelledby="learn-nav-title">
-      <h2 id="learn-nav-title" className="learn-nav__title">Learning path</h2>
-      <p className="learn-nav__progress">{done.length} of {workshopModules.length} completed</p>
+      <h2 id="learn-nav-title" className="learn-nav__title">{title}</h2>
+      {showProgress && <p className="learn-nav__progress">{done.length} of {items.length} completed</p>}
       <button
         type="button"
         className="learn-nav__toggle"
@@ -58,16 +68,16 @@ const LearningNav = () => {
         aria-controls="learn-nav-list"
         onClick={() => setIsOpen((open) => !open)}
       >
-        <span>{active.num} · {active.title}</span>
+        <span>{active.num ? `${active.num} · ` : ""}{active.title}</span>
         <span aria-hidden="true">{isOpen ? "▲" : "▼"}</span>
         <span className="sr-only">{isOpen ? "Hide" : "Show"} all modules</span>
       </button>
       <ol id="learn-nav-list" className={`learn-nav__list${isOpen ? " is-open" : ""}`}>
-        {workshopModules.map((m) => (
+        {items.map((m) => (
           <li key={m.id}>
             <a href={`#${m.id}`} aria-current={current === m.id ? "location" : undefined} onClick={() => setIsOpen(false)}>
-              {icons[m.icon]}
-              <span className="learn-nav__num">{m.num}</span>
+              {m.icon && icons[m.icon]}
+              {m.num && <span className="learn-nav__num">{m.num}</span>}
               <span className="learn-nav__label">{m.title}</span>
               {done.includes(m.id) && (
                 <span className="learn-nav__check" title="Completed">

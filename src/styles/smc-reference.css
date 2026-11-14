@@ -1081,6 +1081,27 @@
   }
 }
 
+/* Additions for the lecture notes page and the Skills "Start here" list. */
+.smc .feature-list { list-style: none; margin: 24px 0; padding: 0; display: grid; gap: 16px; }
+.smc .feature-list .feature-card { margin: 0; }
+.smc .notes-section + .notes-section { border-top: 1px solid #ece3f8; margin-top: 28px; }
+.smc .notes-path {
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: hsl(var(--smc-body));
+  margin: -4px 0 8px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.smc .notes-path a { color: hsl(var(--smc-accent)); }
+.smc .notes-question { color: hsl(var(--smc-ink)); font-weight: 800; margin-top: 24px; }
+.smc .notes-figure { margin: 24px 0; }
+.smc .notes-figure img { display: block; width: 100%; height: auto; border: 2px solid #e6dcf5; }
+.smc .notes-figure figcaption { color: hsl(var(--smc-body)); margin-top: 8px; font-size: 13px; line-height: 1.5; }
+@media (max-width: 600px) {
+  .smc .feature-list .feature-card img { max-width: 220px; }
+}
+
 /*
  * The site navbar is fixed; Navbar publishes its height as --navbar-h
  * (68px on desktop, taller when it wraps on phones). Offset sticky and

@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { WORKSHOP_PATH, workshop } from "@/data/claudeWorkshop";
+import { NOTES_PATH, notes } from "@/data/claudeWorkshopNotes";
 import workshopPoster from "@/assets/workshop-claude-poster.jpeg";
+import notesCover from "@/assets/notes-living-gallery.jpg";
 import "@/styles/smc-reference.css";
 
 const SKILLS_URL =
@@ -96,23 +98,36 @@ const SkillsLibrary = () => {
           Ready-made skills that turn Claude into a career coach, analyst, and study partner. Pick one, add it to Claude, and try it out.
         </p>
 
-        <section className="feature-card" aria-labelledby="workshop-card">
-          <img
-            src={workshopPoster}
-            alt={`Workshop poster: ${workshop.title}, led by Professor ${workshop.instructor}`}
-            width={1081}
-            height={1400}
-            loading="lazy"
-          />
-          <div>
-            <p className="eyebrow">Claude workshop · Start here</p>
-            <h2 id="workshop-card">{workshop.title}</h2>
-            <p>
-              With Prof. {workshop.instructor}, {workshop.affiliation}. A self-paced guide to building your AI digital twin and chief of staff: model choice, context engineering, dashboards, tool integrations and your first vibecoded app.
-            </p>
-            <Link className="btn" to={WORKSHOP_PATH}>Start here <span aria-hidden="true">→</span></Link>
-          </div>
-        </section>
+        <ul className="feature-list" aria-label="Start here">
+          <li className="feature-card">
+            <img
+              src={workshopPoster}
+              alt={`Workshop poster: ${workshop.title}, led by Professor ${workshop.instructor}`}
+              width={1081}
+              height={1400}
+              loading="lazy"
+            />
+            <div>
+              <p className="eyebrow">Claude workshop · Start here</p>
+              <h2>{workshop.title}</h2>
+              <p>
+                With Prof. {workshop.instructor}, {workshop.affiliation}. A self-paced guide to building your AI digital twin and chief of staff: model choice, context engineering, dashboards, tool integrations and your first vibecoded app.
+              </p>
+              <Link className="btn" to={WORKSHOP_PATH}>Start here <span aria-hidden="true">→</span></Link>
+            </div>
+          </li>
+          <li className="feature-card">
+            <img src={notesCover} alt="" width={1400} height={735} loading="lazy" />
+            <div>
+              <p className="eyebrow">Lecture notes · Start here</p>
+              <h2>{notes.title}</h2>
+              <p>
+                The edited notes from Prof. {workshop.instructor}’s session, in twelve topics: working environments, privacy and permissions, design taste, reusable skills, your chief of staff, dashboards, artifacts and research apps. Each section links to its module in the workshop guide.
+              </p>
+              <Link className="btn" to={NOTES_PATH}>Read the notes <span aria-hidden="true">→</span></Link>
+            </div>
+          </li>
+        </ul>
 
         <section className="card" aria-labelledby="how">
           <h2 id="how" style={{ marginTop: 0 }}>How to add a skill</h2>

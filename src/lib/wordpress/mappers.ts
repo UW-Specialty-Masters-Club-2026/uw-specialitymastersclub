@@ -91,6 +91,15 @@ export const mapWordPressPostToTeamMember = (post: WordPressPost): TeamMember | 
   };
 };
 
+// sites.uw.edu serves uploads through a redirect to its CDN, and that redirect
+// has no CORS headers, so browsers stop pdf.js from following it. The CDN copy
+// allows any origin, so point straight at it.
+const UPLOADS_URL = "https://sites.uw.edu/smcommittee/files/";
+const UPLOADS_CDN_URL = "https://bpb-us-e1.wpmucdn.com/sites.uw.edu/dist/a/41759/files/";
+
+export const toDirectUploadUrl = (url: string) =>
+  url.startsWith(UPLOADS_URL) ? UPLOADS_CDN_URL + url.slice(UPLOADS_URL.length) : url;
+
 export const mapWordPressPostToNewsletter = (post: WordPressPost): Newsletter | null => {
   const marker = parseDataMarker<Partial<Newsletter>>(post.content.rendered || "", "newsletter");
   if (!marker) return null;
@@ -101,7 +110,7 @@ export const mapWordPressPostToNewsletter = (post: WordPressPost): Newsletter | 
     volume: marker.volume || "",
     date: formatArticleDate(post.date),
     description: stripHtml(post.excerpt.rendered || ""),
-    pdfUrl: marker.pdfUrl || "",
+    pdfUrl: toDirectUploadUrl(marker.pdfUrl || ""),
     highlights: marker.highlights || [],
   };
 };

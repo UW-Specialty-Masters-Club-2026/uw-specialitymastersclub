@@ -13,7 +13,7 @@ export const localNewsletters: Newsletter[] = [
     date: "November 2026",
     description:
       "November ’26 issue — Ideas into Impact. A new academic year brings fresh ideas and opportunities for the Specialty Masters community.",
-    pdfUrl: vol4Pdf.url,
+    pdfUrl: "/newsletters/Specialty_Masters_Club_Newsletter_VOL_4.pdf",
     highlights: [
       "October Recap & Upcoming Events",
       "What's Happening in the Industry",

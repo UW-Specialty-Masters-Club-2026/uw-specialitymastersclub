@@ -4,6 +4,7 @@ import { getWordPressReadConfig } from "./config";
 import { applyTeamPositions } from "./teamOrder";
 import type { TeamMember } from "./types";
 import { isWordPressEventPost, mapWordPressPostToEvent } from "./mappers";
+import { localNewsletters } from "@/data/newsletters";
 import { filterWordPressArticlePosts, filterWordPressPostsByCategory, mapWordPressPageToHomepage, mapWordPressPageToPartners, mapWordPressPostToArticle, mapWordPressPostToGalleryItem, mapWordPressPostToNewsletter, mapWordPressPostToTeamMember } from "./mappers";
 
 const missingConfigError =
@@ -78,7 +79,20 @@ export const useWordPressEventsQuery = () => useQuery({
     return (await fetchAllWordPressPosts(config)).filter(isWordPressEventPost).map(mapWordPressPostToEvent);
   },
 });
-export const useWordPressNewslettersQuery = () => useWordPressCategoryQuery("smc-newsletter", mapWordPressPostToNewsletter);
+export const useWordPressNewslettersQuery = () =>
+  useQuery({
+    queryKey: ["wordpress", "category", "smc-newsletter"],
+    queryFn: async () => {
+      const config = getWordPressReadConfig();
+      if (!config) throw new Error(missingConfigError);
+      const posts = filterWordPressPostsByCategory(await fetchAllWordPressPosts(config), "smc-newsletter");
+      const wpNewsletters = posts
+        .map(mapWordPressPostToNewsletter)
+        .filter((value): value is NonNullable<typeof value> => value !== null);
+      const wpSlugs = new Set(wpNewsletters.map((n) => n.slug));
+      return [...localNewsletters.filter((n) => !wpSlugs.has(n.slug)), ...wpNewsletters];
+    },
+  });
 export const useWordPressGalleryQuery = () => useWordPressCategoryQuery("smc-gallery", mapWordPressPostToGalleryItem);
 
 export const useWordPressNewsletterBySlugQuery = (slug?: string) => useQuery({
@@ -88,7 +102,8 @@ export const useWordPressNewsletterBySlugQuery = (slug?: string) => useQuery({
     const config = getWordPressReadConfig();
     if (!config) throw new Error(missingConfigError);
     const post = await fetchWordPressPostBySlug(config, slug || "");
-    return post ? mapWordPressPostToNewsletter(post) : null;
+    if (post) return mapWordPressPostToNewsletter(post);
+    return localNewsletters.find((n) => n.slug === slug) || null;
   },
 });
 

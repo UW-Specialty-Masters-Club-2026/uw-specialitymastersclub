@@ -62,7 +62,7 @@ const homepage = {
     { title: "Tech & AI Projects", items: ["Agentic AI experimentation & hands-on labs", "AI Safety Awareness collaborations", "Real-world Foster AI applications and ROI modeling"] },
   ],
   projects: [{ title: "AI Safety Workshop", location: "Seattle Public Library", description: "Community education on AI use & safety, bringing awareness and best practices to the public.", image: "ai-safety-workshop.jpg" }],
-  contact: { email: "smcommittee@uw.edu", linkedin: "https://www.linkedin.com/company/uw-foster-specialty-masters-student-club//", instagram: "https://www.instagram.com/smclub_uw/" },
+  contact: { email: "smcommittee@uw.edu", linkedin: "https://www.linkedin.com/company/uw-foster-specialty-masters-club//", instagram: "https://www.instagram.com/smclub_uw/" },
   newsletter: { title: "Newsletter", description: "Stay updated with the latest news, events, and opportunities from SMC" },
 };
 

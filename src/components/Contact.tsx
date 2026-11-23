@@ -4,7 +4,7 @@ const Contact = () => {
   const { data } = useWordPressHomepageQuery();
   const contact = data?.contact;
   const email = contact?.email || "smcommittee@uw.edu";
-  const linkedin = contact?.linkedin || "https://www.linkedin.com/company/uw-foster-specialty-masters-student-club/";
+  const linkedin = contact?.linkedin || "https://www.linkedin.com/company/uw-foster-specialty-masters-club/";
   const instagram = contact?.instagram || "https://www.instagram.com/smclub_uw/";
 
   const label = "text-xs font-extrabold uppercase tracking-[0.12em] text-smc-accent";

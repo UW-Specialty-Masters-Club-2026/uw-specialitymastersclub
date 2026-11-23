@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useWordPressHomepageQuery } from "@/lib/wordpress/hooks";
 
-const LINKEDIN = "https://www.linkedin.com/company/uw-foster-specialty-masters-student-club/";
+const LINKEDIN = "https://www.linkedin.com/company/uw-foster-specialty-masters-club/";
 const INSTAGRAM = "https://www.instagram.com/smclub_uw/";
 const REGISTER_URL = "https://smcfoster.notion.site/3580984ab5b68069996bf623248354cb?pvs=105";
 
